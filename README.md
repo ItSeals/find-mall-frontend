@@ -1,4 +1,4 @@
-# find-mall-backend
+# find-mall-frontend
 
 ## How we work with git:
 1. get repo to my comp
