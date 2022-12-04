@@ -1,9 +1,5 @@
 # find-mall-backend
 
-A few links:
-
-[How to work with docker (mysql+adminer)](.docker/README.md)
-
 ## How we work with git:
 1. get repo to my comp
 ```
