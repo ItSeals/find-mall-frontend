@@ -1,0 +1,55 @@
+body{
+  background-color: aqua;
+}
+.nav-link{
+  margin-left:-44px;
+  width:374px;
+  height:60px;
+ 
+}
+.ml{
+  background-color: #3457ED;
+}
+.ml-1{
+  background-color: #2039A5;
+}
+.ms-2{
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-size: 18px;
+  color:antiquewhite;
+}
+.bi{
+  width:10px;
+}
+.link{
+  padding-top:16px;
+}
+
+.col-2{
+  background-color: 	#284EEF;
+}
+.admin_panel{
+  background-color: #3457ED;
+  width:280px;
+  height:60px;
+  margin:80px 0px 70px 20px;
+  border: 1px solid #FFFFFF;
+border-radius: 3px;
+  
+}
+
+.button{
+  width:10px;
+  height:15px;
+  margin-left:100px;
+  border: none;
+  background-color: #2039A5;
+}
+.dashboard{
+display:none;
+}
+.dashboard.minify{
+  margin-left:-32px;
+  margin-top:18px;
+  display:grid;
+}
