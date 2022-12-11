@@ -1,28 +1,46 @@
 {
   "mall": [
     {
-      "id": 1,
-      "title": "Lviv Mall",
-      "description": "The best mall ever",
-      "status": 1
+      "title": "New Mall №9",
+      "description": "New description",
+      "status": 1,
+      "id": 22
     },
     {
-      "id": 2,
-      "title": "Lviv Mall 2",
-      "description": "The best mall ever 2",
-      "status": 1
+      "title": "New Mall №7",
+      "description": "New description",
+      "status": 1,
+      "id": 28
     },
     {
-      "id": 3,
-      "title": "Lviv Mall 3",
-      "description": "The best mall ever 3",
-      "status": 1
+      "title": "New Mall №3",
+      "description": "New description",
+      "status": 1,
+      "id": 29
     },
     {
-      "id": 4,
-      "title": "Lviv Mall 4",
-      "description": "The best mall ever 4",
-      "status": 1
+      "title": "New Mall №4",
+      "description": "New description",
+      "status": 1,
+      "id": 30
+    },
+    {
+      "title": "New Mall №5",
+      "description": "New description",
+      "status": 1,
+      "id": 31
+    },
+    {
+      "title": "New Mall №6",
+      "description": "New description",
+      "status": 1,
+      "id": 32
+    },
+    {
+      "title": "New Mall №7",
+      "description": "New description",
+      "status": 1,
+      "id": 33
     }
   ]
 }
