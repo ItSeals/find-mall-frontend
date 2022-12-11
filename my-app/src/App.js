@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import FirstPageMain from './components/FirstPageMain';
  
 function handleDelete(){
   const dashboard = document.querySelector('.js-button');
@@ -92,6 +93,9 @@ function SideBar(){
                 </ul>
             </il>
            </ul>
+        </div>
+        <div className='col gx-0'>
+          <FirstPageMain/>
         </div>
       </div>
     </div>

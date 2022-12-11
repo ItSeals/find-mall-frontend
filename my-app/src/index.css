@@ -53,3 +53,46 @@ display:none;
   margin-top:18px;
   display:grid;
 }
+
+/* menu part */
+table.admin th:not(:first-child) div{
+  display: grid;
+  align-items: center;
+  height: 80px;
+  border-left: 1px solid #000;
+}
+
+table.admin button{
+  margin: auto;
+  border-radius: 30px;
+}
+
+table.admin td:not(:first-child) div{
+  display: grid;
+  align-items: center;
+  height: 40px;
+  border-left: 1px solid #000;
+}
+
+table.admin th{
+  padding: 0;
+}
+
+table.admin td{
+  padding: 0;
+}
+
+table.admin tr{
+  background: #B2C0F8;
+  height: 88px;
+}
+
+table.admin tr:nth-child(even){
+  background: #DAE1FF;
+}
+
+table.admin tr:first-child{
+  height: 145px;
+  justify-content: center;
+}
+/*-----------*/
