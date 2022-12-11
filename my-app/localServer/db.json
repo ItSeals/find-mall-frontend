@@ -1,0 +1,28 @@
+{
+  "mall": [
+    {
+      "id": 1,
+      "title": "Lviv Mall",
+      "description": "The best mall ever",
+      "status": 1
+    },
+    {
+      "id": 2,
+      "title": "Lviv Mall 2",
+      "description": "The best mall ever 2",
+      "status": 1
+    },
+    {
+      "id": 3,
+      "title": "Lviv Mall 3",
+      "description": "The best mall ever 3",
+      "status": 1
+    },
+    {
+      "id": 4,
+      "title": "Lviv Mall 4",
+      "description": "The best mall ever 4",
+      "status": 1
+    }
+  ]
+}
