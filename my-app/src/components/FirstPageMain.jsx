@@ -22,6 +22,15 @@ const FirstPageMain = (props) => {
     setMalls([...malls, mall]);
   };
 
+  const MallEdit = async (mall) => {
+    mall.title = `Updated mall whith id: ${mall.id}`;
+    await axios.patch(apiEndPoint + "/" + mall.id, mall);
+    const postsClone = [...malls];
+    const index = postsClone.indexOf(mall);
+    postsClone[index] = { ...mall };
+    setMalls(postsClone);
+  };
+
   const MallDelete = async (mall) => {
     await axios.delete(apiEndPoint + "/" + mall.id);
     setMalls(malls.filter((p) => p.id !== mall.id));
@@ -52,7 +61,7 @@ const FirstPageMain = (props) => {
           </th>
         </tr>
         {malls.map((mall) => (
-          <FirstPageMainItem mall={mall} MD={MallDelete} key={mall.id}/>
+          <FirstPageMainItem mall={mall} MD={MallDelete} ME={MallEdit} key={mall.id}/>
         ))}
       </table>
     </div>

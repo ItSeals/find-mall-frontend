@@ -1,7 +1,7 @@
 import React from 'react'
 import { MallDelete } from "./FirstPageMain";
 
-const FirstPageMainItem = ({mall, MD}) => {
+const FirstPageMainItem = ({mall, MD, ME}) => {
   
   return (
     <tr>
@@ -15,13 +15,16 @@ const FirstPageMainItem = ({mall, MD}) => {
         <div>{mall.location ? mall.location : "Не визначено"}</div>
       </td>
       <td>
-        <div>
-          <button className='btn btn-primary'>Edit</button>
-        </div>
-        <div>
+        <div className='d-flex'>
+          <button
+            onClick={() => ME(mall)}
+            className='btn btn-primary'
+          >
+            Edit
+          </button>
           <button
             onClick={() => MD(mall)}
-            className="btn btn-danger btn-sm"
+            className="btn btn-dark"
           >
             Delete
           </button>

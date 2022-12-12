@@ -74,6 +74,10 @@ table.admin td:not(:first-child) div{
   border-left: 1px solid #000;
 }
 
+table.admin td:last-child{
+  width: 150px;
+}
+
 table.admin th{
   padding: 0;
 }
