@@ -23,7 +23,7 @@ const EditMallPage = ({...props}) => {
       <table className='admin' style={{width: '100%'}}>
         <tr>
           <th>
-            Create
+            Edit
           </th>
         </tr>
         <tr>

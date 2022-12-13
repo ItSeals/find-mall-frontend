@@ -7,7 +7,7 @@
       "id": 1
     },
     {
-      "title": "Updated mall whith id: 2222222223343434784",
+      "title": "Updated mall whith id: 2",
       "description": "New description",
       "status": 1,
       "id": 2
@@ -19,7 +19,7 @@
       "id": 4
     },
     {
-      "title": "New Mall №5, хто сказав що 5!?",
+      "title": "New Mall №5",
       "description": "New description",
       "status": 1,
       "id": 6
@@ -37,10 +37,10 @@
       "id": 8
     },
     {
-      "title": "Казка плакала!!!!",
+      "title": "New Mall №7",
       "description": "New description",
       "status": 1,
-      "id": 10
+      "id": 9
     }
   ]
 }
