@@ -1,7 +1,7 @@
 import React from 'react'
 import { MallDelete } from "./FirstPageMain";
 
-const FirstPageMainItem = ({mall, MD, ME}) => {
+const FirstPageMainItem = ({mall, MD, ME, sEP}) => {
   
   return (
     <tr>
@@ -17,7 +17,7 @@ const FirstPageMainItem = ({mall, MD, ME}) => {
       <td>
         <div className='d-flex'>
           <button
-            onClick={() => ME(mall)}
+            onClick={() => sEP({mall: mall, is: true})}
             className='btn btn-primary'
           >
             Edit

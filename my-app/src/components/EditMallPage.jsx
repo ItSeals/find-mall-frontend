@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
-const CreateMallPage = (props) => {
-  const [nameBody, setNameBody] = useState('')
+const EditMallPage = ({...props}) => {
+  const [nameBody, setNameBody] = useState(props.mall.title)
   let mall = {
     title: nameBody,
     description: "New description",
     status: 1,
+    id: props.mall.id
   }
 
   useEffect(() => {
@@ -13,6 +14,7 @@ const CreateMallPage = (props) => {
       title: nameBody,
       description: "New description",
       status: 1,
+      id: props.mall.id,
     }
   }, [nameBody])
 
@@ -68,10 +70,10 @@ const CreateMallPage = (props) => {
         <tr>
           <td>
             <button 
-              onClick={() => props.AM(mall)}
+              onClick={() => props.ME(mall)}
               className='btn btn-primary'
             >
-              Create
+              Edit
             </button>
           </td>
         </tr>
@@ -81,4 +83,4 @@ const CreateMallPage = (props) => {
   )
 }
 
-export default CreateMallPage
+export default EditMallPage

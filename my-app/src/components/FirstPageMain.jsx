@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import CreateMallPage from './CreateMallPage';
+import EditMallPage from './EditMallPage';
 import FirstPageMainItem from './FirstPageMainItem';
 
 const FirstPageMain = (props) => {
   const [malls, setMalls] = useState([])
   const [createPage, setCreatePage] = useState(false)
+  const [editPage, setEditPage] = useState({mall: {}, is: false})
   const apiEndPoint = "http://localhost:3000/mall";
-  let editPage = false
 
   useEffect(() => {
     const getMalls = async () => {
@@ -18,10 +19,6 @@ const FirstPageMain = (props) => {
     getMalls()
   }, [malls])
 
-  const OpenCreateMallPage = async () => {
-    setCreatePage(true)
-  };
-
   const AddMall = async (mall) => {
     await axios.post(apiEndPoint, mall);
     setMalls([...malls, mall]);
@@ -29,12 +26,13 @@ const FirstPageMain = (props) => {
   };
 
   const MallEdit = async (mall) => {
-    mall.title = `Updated mall whith id: ${mall.id}`;
-    await axios.patch(apiEndPoint + "/" + mall.id, mall);
-    const postsClone = [...malls];
-    const index = postsClone.indexOf(mall);
-    postsClone[index] = { ...mall };
-    setMalls(postsClone);
+    console.log(mall)
+    await axios.put(apiEndPoint + "/" + mall.id, mall);
+    const mallsClone = [...malls];
+    const index = mallsClone.indexOf(mall);
+    mallsClone[index] = { ...mall };
+    setMalls(mallsClone);
+    setEditPage({mall: {}, is: false})
   };
 
   const MallDelete = async (mall) => {
@@ -46,8 +44,10 @@ const FirstPageMain = (props) => {
     return (
       <CreateMallPage {...props} AM={AddMall}/>
     )
-  } else if (editPage) {
-    // return ()
+  } else if (editPage.is) {
+    return (
+      <EditMallPage {...props} ME={MallEdit} mall={editPage.mall}/>
+    )
   } else {
     return (
       <div {...props}>
@@ -65,7 +65,7 @@ const FirstPageMain = (props) => {
             <th>
               <div>
                 <button 
-                  onClick={OpenCreateMallPage}
+                  onClick={() => setCreatePage(true)}
                   className='btn btn-primary'
                 >
                   Create
@@ -74,7 +74,7 @@ const FirstPageMain = (props) => {
             </th>
           </tr>
           {malls.map((mall) => (
-            <FirstPageMainItem mall={mall} MD={MallDelete} ME={MallEdit} key={mall.id}/>
+            <FirstPageMainItem mall={mall} MD={MallDelete} sEP={setEditPage} ME={MallEdit} key={mall.id}/>
           ))}
         </table>
       </div>
