@@ -99,4 +99,13 @@ table.admin tr:first-child{
   height: 145px;
   justify-content: center;
 }
+
+table.admin input {
+  width: 60%;
+}
+
+table.admin .title-input {
+  position: absolute;
+  left: 1%;
+}
 /*-----------*/

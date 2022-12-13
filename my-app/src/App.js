@@ -9,9 +9,7 @@ function App(){
     <div className= 'container-fluid'>
       <div className ='row'>
         <SideBar className='col-2 min-vh-100'/>
-        <div className='col gx-0'>
-          <FirstPageMain/>
-        </div>
+        <FirstPageMain className='col gx-0' style={{textAlign: 'center'}}/>
       </div>
     </div>
     

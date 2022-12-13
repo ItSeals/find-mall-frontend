@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import CreateMallPage from './CreateMallPage';
 import FirstPageMainItem from './FirstPageMainItem';
 
 const FirstPageMain = (props) => {
   const [malls, setMalls] = useState([])
-
+  const [createPage, setCreatePage] = useState(false)
   const apiEndPoint = "http://localhost:3000/mall";
+  let editPage = false
 
   useEffect(() => {
     const getMalls = async () => {
@@ -16,10 +18,14 @@ const FirstPageMain = (props) => {
     getMalls()
   }, [malls])
 
-  const AddMall = async () => {
-    const mall = {title: `New Mall №${malls.length + 1}`, description: "New description", status: 1 };
+  const OpenCreateMallPage = async () => {
+    setCreatePage(true)
+  };
+
+  const AddMall = async (mall) => {
     await axios.post(apiEndPoint, mall);
     setMalls([...malls, mall]);
+    setCreatePage(false)
   };
 
   const MallEdit = async (mall) => {
@@ -33,39 +39,47 @@ const FirstPageMain = (props) => {
 
   const MallDelete = async (mall) => {
     await axios.delete(apiEndPoint + "/" + mall.id);
-    setMalls(malls.filter((p) => p.id !== mall.id));
+    setMalls(malls.filter((m) => m.id !== mall.id));
   };
 
-  return (
-    <div {...props} style={{textAlign: 'center'}}>
-      <table className='admin' style={{width: '100%'}}>
-        <tr>
-          <th>
-            <div>Name</div>
-          </th>
-          <th>
-            <div>Category</div>
-          </th>
-          <th>
-            <div>Location</div>
-          </th>
-          <th>
-            <div>
-              <button 
-                onClick={AddMall} 
-                className='btn btn-primary'
-              >
-                Create
-              </button>
-            </div>
-          </th>
-        </tr>
-        {malls.map((mall) => (
-          <FirstPageMainItem mall={mall} MD={MallDelete} ME={MallEdit} key={mall.id}/>
-        ))}
-      </table>
-    </div>
-  )
+  if (createPage) {
+    return (
+      <CreateMallPage {...props} AM={AddMall}/>
+    )
+  } else if (editPage) {
+    // return ()
+  } else {
+    return (
+      <div {...props}>
+        <table className='admin' style={{width: '100%'}}>
+          <tr>
+            <th>
+              <div>Name</div>
+            </th>
+            <th>
+              <div>Category</div>
+            </th>
+            <th>
+              <div>Location</div>
+            </th>
+            <th>
+              <div>
+                <button 
+                  onClick={OpenCreateMallPage}
+                  className='btn btn-primary'
+                >
+                  Create
+                </button>
+              </div>
+            </th>
+          </tr>
+          {malls.map((mall) => (
+            <FirstPageMainItem mall={mall} MD={MallDelete} ME={MallEdit} key={mall.id}/>
+          ))}
+        </table>
+      </div>
+    )
+  }
 }
 
 export default FirstPageMain
