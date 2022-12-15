@@ -9,6 +9,11 @@
       "id": 2,
       "title": "Forum",
       "location": "У львові"
+    },
+    {
+      "id": 3,
+      "title": "Spartak",
+      "location": "Hetmana Mazepy St, 1B"
     }
   ]
 }

@@ -40,10 +40,6 @@ const CreateMallPage = (props) => {
           </td>
         </tr>
         <tr><td></td></tr>
-        <tr><td></td></tr>
-        <tr><td></td></tr>
-        <tr><td></td></tr>
-        <tr><td></td></tr>
         <tr>
           <td>
             <button 

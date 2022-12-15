@@ -47,10 +47,6 @@ const EditMallPage = ({...props}) => {
           </td>
         </tr>
         <tr><td></td></tr>
-        <tr><td></td></tr>
-        <tr><td></td></tr>
-        <tr><td></td></tr>
-        <tr><td></td></tr>
         <tr>
           <td>
             <button 
