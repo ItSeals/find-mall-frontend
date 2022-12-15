@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react'
 
 const EditMallPage = ({...props}) => {
   const [nameBody, setNameBody] = useState(props.mall.title)
+  const [locationBody, setLocationBody] = useState(props.mall.location)
   let mall = {
+    id: props.mall.id,
     title: nameBody,
-    description: "New description",
-    status: 1,
-    id: props.mall.id
+    location: locationBody,
   }
 
   useEffect(() => {
     mall = {
-      title: nameBody,
-      description: "New description",
-      status: 1,
       id: props.mall.id,
+      title: nameBody,
+      location: locationBody,
     }
   }, [nameBody])
 
@@ -39,33 +38,18 @@ const EditMallPage = ({...props}) => {
         <tr><td></td></tr>
         <tr>
           <td style={{position: 'relative'}}>
-          <div className='title-input'>Category:</div>
-          <input 
-            disabled
-            type='text'
-          />
-          </td>
-        </tr>
-        <tr><td></td></tr>
-        <tr>
-          <td style={{position: 'relative'}}>
-          <div className='title-input'>Tags: </div>
-          <input 
-            disabled
-            type='text'
-          />
-          </td>
-        </tr>
-        <tr><td></td></tr>
-        <tr>
-          <td style={{position: 'relative'}}>
           <div className='title-input'>Location:</div>
           <input 
-            disabled
+            value={locationBody}
             type='text'
+            onChange={event => setLocationBody(event.target.value)}
           />
           </td>
         </tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
         <tr><td></td></tr>
         <tr>
           <td>

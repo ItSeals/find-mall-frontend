@@ -9,9 +9,6 @@ const FirstPageMainItem = ({mall, MD, ME, sEP}) => {
         <div>{mall.title ? mall.title : "Не визначено"}</div>
       </td>
       <td>
-        <div>{mall.category ? mall.category : "Не визначено"}</div>
-      </td>
-      <td>
         <div>{mall.location ? mall.location : "Не визначено"}</div>
       </td>
       <td>

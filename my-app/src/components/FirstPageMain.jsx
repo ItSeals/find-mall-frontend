@@ -57,9 +57,6 @@ const FirstPageMain = (props) => {
               <div>Name</div>
             </th>
             <th>
-              <div>Category</div>
-            </th>
-            <th>
               <div>Location</div>
             </th>
             <th>
@@ -74,7 +71,7 @@ const FirstPageMain = (props) => {
             </th>
           </tr>
           {malls.map((mall) => (
-            <FirstPageMainItem mall={mall} MD={MallDelete} sEP={setEditPage} ME={MallEdit} key={mall.id}/>
+            <FirstPageMainItem mall={mall} MD={MallDelete} sEP={setEditPage} ME={MallEdit} Mlength={malls.length} key={mall.id}/>
           ))}
         </table>
       </div>

@@ -1,46 +1,14 @@
 {
   "mall": [
     {
-      "title": "New Mall №1",
-      "description": "New description",
-      "status": 1,
-      "id": 1
+      "id": 1,
+      "title": "Victoria gardens",
+      "location": "за львовом"
     },
     {
-      "title": "Updated mall whith id: 2",
-      "description": "New description",
-      "status": 1,
-      "id": 2
-    },
-    {
-      "title": "Updated mall whith id: 4",
-      "description": "New description",
-      "status": 1,
-      "id": 4
-    },
-    {
-      "title": "New Mall №5",
-      "description": "New description",
-      "status": 1,
-      "id": 6
-    },
-    {
-      "title": "New Mall №5",
-      "description": "New description",
-      "status": 1,
-      "id": 7
-    },
-    {
-      "title": "Updated mall whith id: 8",
-      "description": "New description",
-      "status": 1,
-      "id": 8
-    },
-    {
-      "title": "New Mall №7",
-      "description": "New description",
-      "status": 1,
-      "id": 9
+      "id": 2,
+      "title": "Forum",
+      "location": "У львові"
     }
   ]
 }

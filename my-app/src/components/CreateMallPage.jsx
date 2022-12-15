@@ -2,19 +2,13 @@ import React, { useState, useEffect } from 'react'
 
 const CreateMallPage = (props) => {
   const [nameBody, setNameBody] = useState('')
-  let mall = {
-    title: nameBody,
-    description: "New description",
-    status: 1,
-  }
+  const [locationBody, setLocationBody] = useState('')
 
-  useEffect(() => {
-    mall = {
-      title: nameBody,
-      description: "New description",
-      status: 1,
-    }
-  }, [nameBody])
+  let mall = {
+    id: props.Mlength + 1,
+    title: nameBody,
+    location: locationBody,
+  }
 
   return (
     <div className={props.className} style={props.style}>
@@ -37,33 +31,18 @@ const CreateMallPage = (props) => {
         <tr><td></td></tr>
         <tr>
           <td style={{position: 'relative'}}>
-          <div className='title-input'>Category:</div>
-          <input 
-            disabled
-            type='text'
-          />
-          </td>
-        </tr>
-        <tr><td></td></tr>
-        <tr>
-          <td style={{position: 'relative'}}>
-          <div className='title-input'>Tags: </div>
-          <input 
-            disabled
-            type='text'
-          />
-          </td>
-        </tr>
-        <tr><td></td></tr>
-        <tr>
-          <td style={{position: 'relative'}}>
           <div className='title-input'>Location:</div>
           <input 
-            disabled
+            value={locationBody}
             type='text'
+            onChange={event => setLocationBody(event.target.value)}
           />
           </td>
         </tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
+        <tr><td></td></tr>
         <tr><td></td></tr>
         <tr>
           <td>
