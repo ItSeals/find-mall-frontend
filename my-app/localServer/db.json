@@ -15,5 +15,19 @@
       "title": "Spartak",
       "location": "Hetmana Mazepy St, 1B"
     }
+  ],
+  "item": [
+    {
+      "id": 1,
+      "title": "Maksym Shop",
+      "malls": [
+        "first",
+        "second"
+      ],
+      "category": {
+        "id": 1,
+        "title": "cat1"
+      }
+    }
   ]
 }

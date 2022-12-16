@@ -1,7 +1,7 @@
 import React from 'react'
-import { MallDelete } from "./FirstPageMain";
+import { MallDelete } from "../Malls";
 
-const FirstPageMainItem = ({mall, MD, ME, sEP}) => {
+const MallItem = ({mall, MD, ME, sEP}) => {
   
   return (
     <tr>
@@ -31,4 +31,4 @@ const FirstPageMainItem = ({mall, MD, ME, sEP}) => {
   )
 }
 
-export default FirstPageMainItem
+export default MallItem

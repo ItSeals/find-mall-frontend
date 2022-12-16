@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const CreateMallPage = (props) => {
+const MallCreate = (props) => {
   const [nameBody, setNameBody] = useState('')
   const [locationBody, setLocationBody] = useState('')
 
@@ -56,4 +56,4 @@ const CreateMallPage = (props) => {
   )
 }
 
-export default CreateMallPage
+export default MallCreate

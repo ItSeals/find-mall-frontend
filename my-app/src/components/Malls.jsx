@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import CreateMallPage from './CreateMallPage';
-import EditMallPage from './EditMallPage';
-import FirstPageMainItem from './FirstPageMainItem';
+import MallCreate from './malls/MallCreate';
+import MallEdit from './malls/MallEdit';
+import MallItem from './malls/MallItem';
 
-const FirstPageMain = (props) => {
+const Malls = (props) => {
   const [malls, setMalls] = useState([])
   const [createPage, setCreatePage] = useState(false)
-  const [editPage, setEditPage] = useState({mall: {}, is: false})
+  const [editPage, setEditPage] = useState({is: false, mall: {}})
   const apiEndPoint = "http://localhost:3000/mall";
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const FirstPageMain = (props) => {
     setCreatePage(false)
   };
 
-  const MallEdit = async (mall) => {
+  const EditMall = async (mall) => {
     console.log(mall)
     await axios.put(apiEndPoint + "/" + mall.id, mall);
     const mallsClone = [...malls];
@@ -35,48 +35,52 @@ const FirstPageMain = (props) => {
     setEditPage({mall: {}, is: false})
   };
 
-  const MallDelete = async (mall) => {
+  const DeleteMall = async (mall) => {
     await axios.delete(apiEndPoint + "/" + mall.id);
     setMalls(malls.filter((m) => m.id !== mall.id));
   };
 
   if (createPage) {
     return (
-      <CreateMallPage {...props} AM={AddMall}/>
+      <MallCreate {...props} AM={AddMall}/>
     )
   } else if (editPage.is) {
     return (
-      <EditMallPage {...props} ME={MallEdit} mall={editPage.mall}/>
+      <MallEdit {...props} ME={EditMall} mall={editPage.mall}/>
     )
   } else {
     return (
       <div {...props}>
         <table className='admin' style={{width: '100%'}}>
-          <tr>
-            <th>
-              <div>Name</div>
-            </th>
-            <th>
-              <div>Location</div>
-            </th>
-            <th>
-              <div>
-                <button 
-                  onClick={() => setCreatePage(true)}
-                  className='btn btn-primary'
-                >
-                  Create
-                </button>
-              </div>
-            </th>
-          </tr>
-          {malls.map((mall) => (
-            <FirstPageMainItem mall={mall} MD={MallDelete} sEP={setEditPage} ME={MallEdit} Mlength={malls.length} key={mall.id}/>
-          ))}
+          <thead>
+            <tr>
+              <th>
+                <div>Name</div>
+              </th>
+              <th>
+                <div>Location</div>
+              </th>
+              <th>
+                <div>
+                  <button 
+                    onClick={() => setCreatePage(true)}
+                    className='btn btn-primary'
+                  >
+                    Create
+                  </button>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {malls.map((mall) => (
+              <MallItem mall={mall} MD={DeleteMall} sEP={setEditPage} ME={EditMall} Mlength={malls.length} key={mall.id}/>
+            ))}
+          </tbody>
         </table>
       </div>
     )
   }
 }
 
-export default FirstPageMain
+export default Malls

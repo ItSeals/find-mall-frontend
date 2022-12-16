@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const EditMallPage = ({...props}) => {
+const MallEdit = ({...props}) => {
   const [nameBody, setNameBody] = useState(props.mall.title)
   const [locationBody, setLocationBody] = useState(props.mall.location)
   let mall = {
@@ -63,4 +63,4 @@ const EditMallPage = ({...props}) => {
   )
 }
 
-export default EditMallPage
+export default MallEdit
