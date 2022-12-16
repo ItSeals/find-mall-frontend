@@ -86,17 +86,21 @@ table.admin td{
   padding: 0;
 }
 
-table.admin tr{
+table.admin thead tr{
+  height: 145px;
   background: #B2C0F8;
+}
+
+table.admin tr{
+  background: #DAE1FF;
   height: 88px;
 }
 
 table.admin tr:nth-child(even){
-  background: #DAE1FF;
+  background: #B2C0F8;
 }
 
 table.admin tr:first-child{
-  height: 145px;
   justify-content: center;
 }
 
