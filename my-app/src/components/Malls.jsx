@@ -17,7 +17,7 @@ const Malls = (props) => {
       setMalls(res)
     }
     getMalls()
-  }, [malls])
+  }, [])
 
   const AddMall = async (mall) => {
     await axios.post(apiEndPoint, mall);
@@ -50,34 +50,91 @@ const Malls = (props) => {
     )
   } else {
     return (
-      <div {...props}>
-        <table className='admin' style={{width: '100%'}}>
-          <thead>
-            <tr>
-              <th>
-                <div>Name</div>
-              </th>
-              <th>
-                <div>Location</div>
-              </th>
-              <th>
-                <div>
-                  <button 
-                    onClick={() => setCreatePage(true)}
-                    className='btn btn-primary'
-                  >
-                    Create
-                  </button>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {malls.map((mall) => (
-              <MallItem mall={mall} MD={DeleteMall} sEP={setEditPage} ME={EditMall} Mlength={malls.length} key={mall.id}/>
-            ))}
-          </tbody>
-        </table>
+      // <div {...props}>
+      //   <table className='admin' style={{width: '100%'}}>
+      //     <thead>
+      //       <tr>
+      //         <th>
+      //           <div>Name</div>
+      //         </th>
+      //         <th>
+      //           <div>Location</div>
+      //         </th>
+      //         <th>
+      //           <div>
+      //             <button 
+      //               onClick={() => setCreatePage(true)}
+      //               className='btn btn-primary'
+      //             >
+      //               Create
+      //             </button>
+      //           </div>
+      //         </th>
+      //       </tr>
+      //     </thead>
+      //     <tbody>
+      //       {malls.map((mall) => (
+      //         <MallItem mall={mall} MD={DeleteMall} sEP={setEditPage} ME={EditMall} Mlength={malls.length} key={mall.id}/>
+      //       ))}
+      //     </tbody>
+      //   </table>
+      // </div>
+      <div className={`${props.className} admin-table`}>
+        <div className="row row-head">
+          <div className='col displayed'>1111111</div>
+          <div className='col'>2222222</div>
+          <div className='col'>3333333</div>
+        </div>
+        <div className="row">
+          <div className='col'>1</div>
+          <div className='col'>2</div>
+          <div className='col'>3</div>
+        </div>
+        <div className="row">
+          <div className='col'>1</div>
+          <div className='col'>2</div>
+          <div className='col'>3</div>
+        </div>
+        <div className="row">
+          <div className='col'>1</div>
+          <div className='col'>2</div>
+          <div className='col'>3</div>
+        </div>
+        <div className="row">
+          <div className='col'>1</div>
+          <div className='col'>2</div>
+          <div className='col'>3</div>
+        </div>
+        <div className="row">
+          <div className='col'>1</div>
+          <div className='col'>2</div>
+          <div className='col'>3</div>
+        </div>
+        <div className="row">
+          <div className='col'>1</div>
+          <div className='col'>2</div>
+          <div className='col'>3</div>
+        </div>
+        <div className="row">
+          <div className='col'>1</div>
+          <div className='col'>2</div>
+          <div className='col'>3</div>
+        </div>
+        <div className="row">
+          <div className='col'>1</div>
+          <div className='col'>2</div>
+          <div className='col'>3</div>
+        </div>
+        <div className="row">
+          <div className='col'>1</div>
+          <div className='col'>2</div>
+          <div className='col'>3</div>
+        </div>
+        <div className="row">
+          <div className='col'>1</div>
+          <div className='col'>2</div>
+          <div className='col'>3</div>
+        </div>
       </div>
     )
   }
