@@ -20,44 +20,52 @@ const MallEdit = ({...props}) => {
   return (
     <div className={props.className} style={props.style}>
       <table className='admin' style={{width: '100%'}}>
-        <tr>
-          <th>
-            Edit
-          </th>
-        </tr>
-        <tr>
-          <td style={{position: 'relative'}}>
-          <div className='title-input'>Name:</div>
-          <input 
-            value={nameBody}
-            type='text'
-            onChange={event => setNameBody(event.target.value)}
-          />
-          </td>
-        </tr>
-        <tr><td></td></tr>
-        <tr>
-          <td style={{position: 'relative'}}>
-          <div className='title-input'>Location:</div>
-          <input 
-            value={locationBody}
-            type='text'
-            onChange={event => setLocationBody(event.target.value)}
-          />
-          </td>
-        </tr>
-        <tr><td></td></tr>
-        <tr>
-          <td>
-            <button 
-              onClick={() => props.ME(mall)}
-              className='btn btn-primary'
-            >
+        <thead>
+          <tr>
+            <th>
               Edit
-            </button>
-          </td>
-        </tr>
-        <tr><td></td></tr>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style={{position: 'relative'}}>
+            <div className='title-input'>Name:</div>
+            <input 
+              value={nameBody}
+              type='text'
+              onChange={event => setNameBody(event.target.value)}
+            />
+            </td>
+          </tr>
+          <tr><td></td></tr>
+          <tr>
+            <td style={{position: 'relative'}}>
+            <div className='title-input'>Location:</div>
+            <input 
+              value={locationBody}
+              type='text'
+              onChange={event => setLocationBody(event.target.value)}
+            />
+            </td>
+          </tr>
+          <tr><td></td></tr>
+          <tr><td></td></tr>
+          <tr><td></td></tr>
+          <tr><td></td></tr>
+          <tr><td></td></tr>
+          <tr>
+            <td>
+              <button 
+                onClick={() => props.ME(mall)}
+                className='btn btn-primary btn-lg'
+              >
+                Edit
+              </button>
+            </td>
+          </tr>
+          <tr><td></td></tr>
+        </tbody>
       </table>
     </div>
   )

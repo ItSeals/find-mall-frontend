@@ -64,7 +64,7 @@ const Malls = (props) => {
                 <div>
                   <button 
                     onClick={() => setCreatePage(true)}
-                    className='btn btn-primary'
+                    className='btn btn-primary btn-lg'
                   >
                     Create
                   </button>

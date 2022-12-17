@@ -54,7 +54,17 @@ display:none;
   display:grid;
 }
 
-/* menu part */
+/* admin-table */
+table.admin {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+table.admin thead{
+  font-size: 24px;
+  font-weight: 600;
+}
+
 table.admin th:not(:first-child) div{
   display: grid;
   align-items: center;
@@ -87,13 +97,13 @@ table.admin td{
 }
 
 table.admin thead tr{
-  height: 145px;
+  height: 14vh;
   background: #B2C0F8;
 }
 
 table.admin tr{
   background: #DAE1FF;
-  height: 88px;
+  height: 8.6vh;
 }
 
 table.admin tr:nth-child(even){
