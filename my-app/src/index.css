@@ -1,6 +1,29 @@
-body{
-  background-color: aqua;
+@font-face {
+  font-family: 'MacPaw Fixel text';
+  src: url(./font/MacPawFixelText-SemiBold.otf);
 }
+
+/*---null---*/
+li {
+  list-style-type: none;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/*----------*/
+
+body {
+  font-family: 'MacPaw Fixel text', sans-serif;
+}
+
 .nav-link{
   margin-left:-44px;
   width:374px;
@@ -55,71 +78,118 @@ display:none;
 }
 
 /* admin-table */
-table.admin {
-  font-size: 20px;
-  font-weight: 600;
+table.admin-table {
+  font-family: 'MacPaw Fixel text', sans-serif;
+  border-spacing: 0;
 }
 
-table.admin thead{
-  font-size: 24px;
-  font-weight: 600;
-}
-
-table.admin th:not(:first-child) div{
-  display: grid;
-  align-items: center;
-  height: 80px;
-  border-left: 1px solid #000;
-}
-
-table.admin button{
-  margin: auto;
-  border-radius: 30px;
-}
-
-table.admin td:not(:first-child) div{
-  display: grid;
-  align-items: center;
-  height: 40px;
-  border-left: 1px solid #000;
-}
-
-table.admin td:last-child{
-  width: 150px;
-}
-
-table.admin th{
-  padding: 0;
-}
-
-table.admin td{
-  padding: 0;
-}
-
-table.admin thead tr{
-  height: 14vh;
+table.admin-table thead tr {
   background: #B2C0F8;
+  height: 14.5vh;
 }
 
-table.admin tr{
+table.admin-table tbody tr {
   background: #DAE1FF;
-  height: 8.6vh;
+  height: 8.556vh;
 }
 
-table.admin tr:nth-child(even){
+table.admin-table tbody tr:nth-child(even) {
   background: #B2C0F8;
 }
 
-table.admin tr:first-child{
-  justify-content: center;
+table.admin-table td,
+table.admin-table th {
+  position: relative;
+  padding: 10px;
+  padding-left: 11px;
+  text-align: center;
+  font-size: 25px;
+  line-height: 25px;
 }
 
-table.admin input {
-  width: 60%;
+table.admin-table th {
+  font-size: 30px;
+  line-height: 30px;
 }
 
-table.admin .title-input {
+table.admin-table td:not(:first-child):before,
+table.admin-table th:not(:first-child):before {
+  content: '';
   position: absolute;
-  left: 1%;
+  left: 0;
+  top: 2.4vh;
+  bottom: 2.4vh;
+  width: 1px;
+  height: auto;
+  background: #000;
 }
-/*-----------*/
+
+table.admin-table th:not(:first-child):before {
+  top: 3.25vh;
+  bottom: 3.25vh;
+}
+
+table.admin-table .btn {
+  width: 110px;
+  height: 6vh;
+  min-height: 35px;
+  padding: 0;
+  background: #284EEF;
+  border-radius: 100vw;
+  border: 0;
+  font-size: inherit;
+  color: white;
+  cursor: pointer;
+  padding-top: 0.3vh;
+}
+
+table.admin-table th .btn {
+  min-height: 40px;
+}
+
+table.admin-table .btn-del {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  background: url(./img/cross1.svg);
+  border: 0;
+  cursor: pointer;
+}
+
+table.admin-table .btn-large {
+  position: absolute;
+  top: -1vh;
+  bottom: -1vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+  padding: 0 29px;
+  border-radius: 30px;
+  font-size: 30px;
+}
+
+table.admin-table input {
+  position: absolute;
+  margin: auto;
+  height: 35px;
+  top: 50%;
+  left: 220px;
+  right: 220px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  border: 1px solid #000;
+}
+
+table.admin-table .title-input {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 100%;
+  left: 42px;
+  top: 0;
+}

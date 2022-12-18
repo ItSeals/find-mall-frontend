@@ -19,7 +19,7 @@ const MallEdit = ({...props}) => {
 
   return (
     <div className={props.className} style={props.style}>
-      <table className='admin' style={{width: '100%'}}>
+      <table className='admin-table' style={{width: '100%'}}>
         <thead>
           <tr>
             <th>
@@ -58,7 +58,7 @@ const MallEdit = ({...props}) => {
             <td>
               <button 
                 onClick={() => props.ME(mall)}
-                className='btn btn-primary btn-lg'
+                className='btn btn-large'
               >
                 Edit
               </button>

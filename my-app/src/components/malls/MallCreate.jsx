@@ -12,7 +12,7 @@ const MallCreate = (props) => {
 
   return (
     <div className={props.className} style={props.style}>
-      <table className='admin' style={{width: '100%'}}>
+      <table className='admin-table' style={{width: '100%'}}>
         <thead>
           <tr>
             <th>
@@ -22,7 +22,7 @@ const MallCreate = (props) => {
         </thead>
         <tbody>
           <tr>
-            <td style={{position: 'relative'}}>
+            <td className='position-relative'>
             <div className='title-input'>Name:</div>
             <input 
               value={nameBody}
@@ -33,7 +33,7 @@ const MallCreate = (props) => {
           </tr>
           <tr><td></td></tr>
           <tr>
-            <td style={{position: 'relative'}}>
+            <td className='position-relative'>
             <div className='title-input'>Location:</div>
             <input 
               value={locationBody}
@@ -51,7 +51,7 @@ const MallCreate = (props) => {
             <td>
               <button 
                 onClick={() => props.AM(mall)}
-                className='btn btn-primary btn-lg'
+                className='btn btn-large'
               >
                 Create
               </button>

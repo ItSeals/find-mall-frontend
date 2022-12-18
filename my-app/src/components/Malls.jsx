@@ -42,33 +42,52 @@ const Malls = (props) => {
 
   if (createPage) {
     return (
-      <MallCreate {...props} AM={AddMall}/>
+      <MallCreate className={`${props.className} position-fixed`} AM={AddMall}/>
     )
   } else if (editPage.is) {
     return (
-      <MallEdit {...props} ME={EditMall} mall={editPage.mall}/>
+      <MallEdit className={`${props.className} position-fixed`} ME={EditMall} mall={editPage.mall}/>
     )
   } else {
     return (
-      <div {...props}>
-        <table className='admin' style={{width: '100%'}}>
+      <div className={`${props.className} position-relative`}>
+        <table className='admin-table position-absolute' style={{width: '100%', zIndex: '-1'}}>
           <thead>
             <tr>
-              <th>
-                <div>Name</div>
+              <th style={{width: '20%'}}></th>
+              <th></th>
+              <th style={{width: '230px'}}></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+            <tr><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <table className='admin-table' style={{width: '100%'}}>
+          <thead>
+            <tr>
+              <th style={{width: '20%'}}>
+                Name
               </th>
               <th>
-                <div>Location</div>
+                Location
               </th>
-              <th>
-                <div>
-                  <button 
-                    onClick={() => setCreatePage(true)}
-                    className='btn btn-primary btn-lg'
-                  >
-                    Create
-                  </button>
-                </div>
+              <th style={{width: '230px'}}>
+                <button 
+                  onClick={() => setCreatePage(true)}
+                  className='btn pt-1px'
+                >
+                  Create
+                </button>
               </th>
             </tr>
           </thead>

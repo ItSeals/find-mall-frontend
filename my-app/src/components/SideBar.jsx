@@ -10,20 +10,20 @@ const SideBar = (props) => {
   }
 
   return (
-    <div {...props}>
+    <div className={props.className}>
       <div className='admin_panel pt-2'>
       <img className='alt' src='/src/img/Oval.png' width="50" height="50"></img> <span className='ms-2' >admin pannel</span>
       </div>
        <ul>
         <li>
-          <a href = '' className = 'nav-link ml px-2'>
+          <a href = '' className = 'nav-link ml px-2' onClick={() => props.sAP(1)}>
             <div className='link'>
             <i className ='bi bi-circle ms-5'></i> <span className= 'ms-2 d-none d-sm-inline'>Malls</span>
             </div>
           </a>
         </li>
         <li >
-          <a href='' className = 'nav-link ml-1 px-2' >
+          <a href='' className = 'nav-link ml-1 px-2' onClick={() => props.sAP(1)}>
           <div className='link'>
             <i className ='bi bi-bag ms-5'></i> <span className = 'ms-2 d-none d-sm-inline'>All stores & cafes</span>
             </div>
