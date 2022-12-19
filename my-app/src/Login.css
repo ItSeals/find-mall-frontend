@@ -1,0 +1,36 @@
+.authorization-field,
+.go-to-admin {
+    display: flex;
+    flex-direction: column;
+    background-color: #284eef;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+}
+
+.input-field {
+    margin: 20px;
+}
+.go-to-admin-link {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+}
+.go-to-admin-link:hover {
+    color: #dae1ff;
+}
+.sign-in-button {
+    margin-bottom: 50px;
+    width: 200px;
+    height: 50px;
+    background-color: #fff;
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    color:#284eef;
+    border-radius: 5px;
+}
+.sign-in-button:hover {
+    background-color: #DAE1FF;
+    color: #011e9b;
+}
