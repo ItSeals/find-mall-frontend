@@ -71,11 +71,11 @@ const Malls = (props) => {
 
   if (createPage) {
     return (
-      <MallCreate className={`${props.className} position-fixed`} AM={AddMall}/>
+      <MallCreate className={`${props.className} position-fixed`} AM={AddMall} prePage={setCreatePage}/>
     )
   } else if (editPage.is) {
     return (
-      <MallEdit className={`${props.className} position-fixed`} ME={EditMall} mall={editPage.mall}/>
+      <MallEdit className={`${props.className} position-fixed`} ME={EditMall} prePage={setEditPage} mall={editPage.mall}/>
     )
   } else {
     return (

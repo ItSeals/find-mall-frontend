@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const MallEdit = ({...props}) => {
+const MallEdit = (props) => {
   const [nameBody, setNameBody] = useState(props.mall.title)
   const [locationBody, setLocationBody] = useState(props.mall.location)
   let mall = {
@@ -22,7 +22,13 @@ const MallEdit = ({...props}) => {
       <table className='admin-table' style={{width: '100%'}}>
         <thead>
           <tr>
-            <th>
+            <th style={{position: 'relative'}}>
+            <button 
+              onClick={() => props.prePage({mall: {}, is: false})}
+              className='btn-pre-arrow'
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="7vh" height="7vh" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="20" y1="12" x2="4" y2="12"/><polyline points="10 18 4 12 10 6"/></svg>
+            </button>
               Edit
             </th>
           </tr>

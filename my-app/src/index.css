@@ -147,6 +147,16 @@ table.admin-table th .btn {
   min-height: 40px;
 }
 
+table.admin-table .btn-pre-arrow {
+  display: flex;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
 table.admin-table .btn-del {
   position: absolute;
   top: 50%;
