@@ -43,6 +43,7 @@ const Dialog = ({ message, onDialog, nameProduct }) => {
               border: "none",
               borderRadius: "10px",
               fontSize: "25px",
+              fontWeight: "bold",
               cursor: "pointer"
             }}
           >
@@ -59,6 +60,7 @@ const Dialog = ({ message, onDialog, nameProduct }) => {
               border: "none",
               borderRadius: "10px",
               fontSize: "25px",
+              fontWeight: "bold",
               cursor: "pointer"
             }}
           >
