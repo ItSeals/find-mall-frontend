@@ -7,7 +7,7 @@ import AllSAndC from './components/AllSAndC';
 import './App.css';
 import Login from "./Login";
 function App() {
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(true);
   const [activePage, setActivePage] = useState(1)
 
   if (success == false) {

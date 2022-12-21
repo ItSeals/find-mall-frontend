@@ -19,7 +19,7 @@ const MallItem = ({mall, MD, ME, sEP}) => {
           Edit
         </button>
         <button
-          onClick={() => MD(mall)}
+          onClick={() => MD(mall.id)}
           className="btn-del"
         ></button>
       </td>

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Dialog from './Dialog';
 import MallCreate from './malls/MallCreate';
 import MallEdit from './malls/MallEdit';
 import MallItem from './malls/MallItem';
@@ -9,6 +9,13 @@ const Malls = (props) => {
   const [malls, setMalls] = useState([])
   const [createPage, setCreatePage] = useState(false)
   const [editPage, setEditPage] = useState({is: false, mall: {}})
+  const [dialog, setDialog] = useState({
+    message: "",
+    isLoading: false,
+    //Update
+    nameProduct: ""
+  });
+  const idMallRef = useRef();
   const apiEndPoint = "http://localhost:3000/mall";
 
   useEffect(() => {
@@ -35,9 +42,31 @@ const Malls = (props) => {
     setEditPage({mall: {}, is: false})
   };
 
-  const DeleteMall = async (mall) => {
-    await axios.delete(apiEndPoint + "/" + mall.id);
-    setMalls(malls.filter((m) => m.id !== mall.id));
+  const handleDialog = (message, isLoading, nameProduct) => {
+    setDialog({
+      message,
+      isLoading,
+      //Update
+      nameProduct
+    });
+  };
+
+  const handleDelete = (id) => {
+    //Update
+    const index = malls.findIndex((m) => m.id === id);
+
+    handleDialog("Are you sure you want to delete?", true, malls[index].title);
+    idMallRef.current = id;
+  };
+
+  const areUSureDelete = async (choose) => {
+    if (choose) {
+      await axios.delete(apiEndPoint + "/" + idMallRef.current);
+      setMalls(malls.filter((m) => m.id !== idMallRef.current));
+      handleDialog("", false);
+    } else {
+      handleDialog("", false);
+    }
   };
 
   if (createPage) {
@@ -104,10 +133,18 @@ const Malls = (props) => {
           </thead>
           <tbody>
             {malls.map((mall) => (
-              <MallItem mall={mall} MD={DeleteMall} sEP={setEditPage} ME={EditMall} Mlength={malls.length} key={mall.id}/>
+              <MallItem mall={mall} MD={handleDelete} sEP={setEditPage} ME={EditMall} Mlength={malls.length} key={mall.id}/>
             ))}
           </tbody>
         </table>
+        {dialog.isLoading && (
+          <Dialog
+            //Update
+            nameProduct={dialog.nameProduct}
+            onDialog={areUSureDelete}
+            message={dialog.message}
+          />
+        )}
       </div>
     )
   }
