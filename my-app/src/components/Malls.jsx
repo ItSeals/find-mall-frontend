@@ -80,7 +80,7 @@ const Malls = (props) => {
   } else {
     return (
       <div className={`${props.className} position-relative overflow-auto`} style={{height: '100vh'}}>
-        <table className='admin-table position-absolute' style={{width: '100%', zIndex: '-1'}}>
+        <table className='admin-table position-absolute' style={{width: '100%'}}>
           <thead>
             <tr>
               <th style={{width: '20%'}}>
