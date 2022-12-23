@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import Malls from './components/Malls';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import './App.css';
+import MallsTable from './components/mallsTable/MallsTable';
 import SideBar from './components/SideBar';
 import AllSAndC from './components/AllSAndC';
-import './App.css';
 import Login from "./Login";
+import Malls from './components/Malls';
+import MallEdit from './components/mallsTable/mallsComponets/MallEdit';
+import MallCreate from './components/mallsTable/mallsComponets/MallCreate';
+
 function App() {
   const [success, setSuccess] = useState(true);
   const [activePage, setActivePage] = useState(1)
@@ -17,13 +22,12 @@ function App() {
       </main>
     );
   } else {
-    return(
-      <div className= 'container-fluid'>
-        <div className ='row'>
-          <SideBar className='col-2 min-vh-100' sAP={setActivePage}/>
-          <Malls className='col gx-0 text-center'/>
-        </div>
-      </div>
+    return (
+      <>
+        <Routes>
+          <Route path='/' component={<Malls />} />
+        </Routes>
+      </>
     )
   }
 }

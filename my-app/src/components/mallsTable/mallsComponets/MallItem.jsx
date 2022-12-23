@@ -1,5 +1,5 @@
 import React from 'react'
-import { MallDelete } from "../Malls";
+import { MallDelete } from "../MallsTable";
 
 const MallItem = ({mall, MD, ME, sEP}) => {
   

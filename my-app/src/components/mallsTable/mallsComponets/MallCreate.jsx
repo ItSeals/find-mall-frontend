@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 const MallCreate = (props) => {
   const [nameBody, setNameBody] = useState('')
