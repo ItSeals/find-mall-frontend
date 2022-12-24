@@ -5,7 +5,7 @@ import MallCreate from './allSAndC/SorCCreate';
 import SorCEdit from './allSAndC/SorCEdit';
 import SorCItem from './allSAndC/SorCItem';
 
-const Malls = (props) => {
+const AllSAndC = (props) => {
   const [malls, setMalls] = useState([])
   const [createPage, setCreatePage] = useState(false)
   const [editPage, setEditPage] = useState({is: false, mall: {}})
@@ -150,4 +150,4 @@ const Malls = (props) => {
   }
 }
 
-export default Malls
+export default AllSAndC
