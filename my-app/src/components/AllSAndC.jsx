@@ -16,7 +16,7 @@ const AllSAndC = (props) => {
     nameProduct: ""
   });
   const idMallRef = useRef();
-  const apiEndPoint = "http://localhost:3000/mall";
+  const apiEndPoint = "http://localhost:3000/item";
 
   useEffect(() => {
     const getMalls = async () => {
@@ -80,14 +80,17 @@ const AllSAndC = (props) => {
   } else {
     return (
       <div className={`${props.className} position-relative overflow-auto`} style={{height: '100vh'}}>
-        <table className='admin-table position-absolute' style={{width: '100%'}}>
+        {/* <table className='admin-table position-absolute' style={{width: '100%'}}>
           <thead>
             <tr>
               <th style={{width: '20%'}}>
                 Name
               </th>
+              <th style={{width: '30%'}}>
+                Category
+              </th>
               <th>
-                Location
+                Mall List
               </th>
               <th style={{width: '230px'}}>
                 <button 
@@ -111,7 +114,7 @@ const AllSAndC = (props) => {
             <tr><td>{malls[8] !== undefined ? malls[8].title : ''}</td><td>{malls[8] !== undefined ? malls[8].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
             <tr><td>{malls[9] !== undefined ? malls[9].title : ''}</td><td>{malls[9] !== undefined ? malls[9].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
           </tbody>
-        </table>
+        </table> */}
         <table className='admin-table' style={{width: '100%'}}>
           <thead>
             <tr>
@@ -119,9 +122,12 @@ const AllSAndC = (props) => {
                 Name
               </th>
               <th>
-                Location
+                Category
               </th>
-              <th style={{width: '230px'}}>
+              <th>
+                Mall List
+              </th>
+              <th style={{width: '230px', maxWidth: '20%'}}>
                 <button 
                   onClick={() => setCreatePage(true)}
                   className='btn pt-1px'

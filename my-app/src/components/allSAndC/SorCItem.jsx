@@ -9,7 +9,18 @@ const SorCItem = ({mall, MD, ME, sEP}) => {
         {mall.title ? mall.title : "Не визначено"}
       </td>
       <td>
-        {mall.location ? mall.location : "Не визначено"}
+        {mall.category.title ? mall.category.title : "Не визначено"}
+      </td>
+      <td>
+        {
+          mall.malls[0].title ?
+          mall.malls.map((mall, index) => {
+            let sep = ''
+            if (index !== 0) {sep = ', '}
+            return `${sep}${mall.title}`
+          }) : 
+          "Не визначено"
+        }
       </td>
       <td>
         <button

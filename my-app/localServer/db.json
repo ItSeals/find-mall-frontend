@@ -18,7 +18,7 @@
   ],
   "item": [
     {
-      "id": 20,
+      "id": 1,
       "title": "Maksym Shop",
       "category": {
         "id": 5,
@@ -26,11 +26,51 @@
       },
       "malls": [
         {
+          "id": 1,
+          "title": "Victoria gardens",
+          "location": "за львовом"
+        },
+        {
           "id": 3,
           "title": "Spartak",
           "location": "Hetmana Mazepy St, 1B"
         }
       ]
+    },
+    {
+      "id": 2,
+      "title": "Concurent Shop",
+      "category": {
+        "id": 4,
+        "title": "Fish"
+      },
+      "malls": [
+        {
+          "id": 1,
+          "title": "Victoria gardens",
+          "location": "за львовом"
+        },
+        {
+          "id": 2,
+          "title": "Forum",
+          "location": "У львові"
+        },
+        {
+          "id": 3,
+          "title": "Spartak",
+          "location": "Hetmana Mazepy St, 1B"
+        }
+      ]
+    }
+  ],
+  "category": [
+    {
+      "id": 4,
+      "title": "Fish"
+    },
+    {
+      "id": 5,
+      "title": "Food"
     }
   ]
 }
