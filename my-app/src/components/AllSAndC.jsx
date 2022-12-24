@@ -1,14 +1,21 @@
 import axios from 'axios';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import SorCCreate from './allSAndC/SorCCreate';
+import React, { useState, useEffect, useRef } from 'react';
+import Dialog from './Dialog';
+import MallCreate from './allSAndC/SorCCreate';
 import SorCEdit from './allSAndC/SorCEdit';
-import ASAndCItem from './allSAndC/ASAndCItem';
+import SorCItem from './allSAndC/SorCItem';
 
-const AllSAndC = (props) => {
-  const [SAndC, setMalls] = useState([])
+const Malls = (props) => {
+  const [malls, setMalls] = useState([])
   const [createPage, setCreatePage] = useState(false)
-  const [editPage, setEditPage] = useState({SOrC: {}, is: false})
+  const [editPage, setEditPage] = useState({is: false, mall: {}})
+  const [dialog, setDialog] = useState({
+    message: "",
+    isLoading: false,
+    //Update
+    nameProduct: ""
+  });
+  const idMallRef = useRef();
   const apiEndPoint = "http://localhost:3000/mall";
 
   useEffect(() => {
@@ -17,69 +24,130 @@ const AllSAndC = (props) => {
       setMalls(res)
     }
     getMalls()
-  }, [SAndC])
+  }, [malls])
 
-  const AddMall = async (SOrC) => {
-    await axios.post(apiEndPoint, SOrC);
-    setMalls([...SAndC, SOrC]);
+  const AddMall = async (mall) => {
+    await axios.post(apiEndPoint, mall);
+    setMalls([...malls, mall]);
     setCreatePage(false)
   };
 
-  const EditSOrC = async (SOrC) => {
-    console.log(SOrC)
-    await axios.put(apiEndPoint + "/" + SOrC.id, SOrC);
-    const mallsClone = [...SAndC];
-    const index = mallsClone.indexOf(SOrC);
-    mallsClone[index] = { ...SOrC };
+  const EditMall = async (mall) => {
+    console.log(mall)
+    await axios.put(apiEndPoint + "/" + mall.id, mall);
+    const mallsClone = [...malls];
+    const index = mallsClone.indexOf(mall);
+    mallsClone[index] = { ...mall };
     setMalls(mallsClone);
-    setEditPage({SOrC: {}, is: false})
+    setEditPage({mall: {}, is: false})
   };
 
-  const DeleteSOrC = async (SOrC) => {
-    await axios.delete(apiEndPoint + "/" + SOrC.id);
-    setMalls(SAndC.filter((sc) => sc.id !== SOrC.id));
+  const handleDialog = (message, isLoading, nameProduct) => {
+    setDialog({
+      message,
+      isLoading,
+      //Update
+      nameProduct
+    });
+  };
+
+  const handleDelete = (id) => {
+    //Update
+    const index = malls.findIndex((m) => m.id === id);
+
+    handleDialog("Are you sure you want to delete?", true, malls[index].title);
+    idMallRef.current = id;
+  };
+
+  const areUSureDelete = async (choose) => {
+    if (choose) {
+      await axios.delete(apiEndPoint + "/" + idMallRef.current);
+      setMalls(malls.filter((m) => m.id !== idMallRef.current));
+      handleDialog("", false);
+    } else {
+      handleDialog("", false);
+    }
   };
 
   if (createPage) {
     return (
-      <SorCCreate {...props} AM={AddMall}/>
+      <MallCreate className={`${props.className} position-fixed`} AM={AddMall} prePage={setCreatePage}/>
     )
   } else if (editPage.is) {
     return (
-      <SorCEdit {...props} ME={EditSOrC} mall={editPage.SOrC}/>
+      <SorCEdit className={`${props.className} position-fixed`} ME={EditMall} prePage={setEditPage} mall={editPage.mall}/>
     )
   } else {
     return (
-      <div {...props}>
-        <table className='admin' style={{width: '100%'}}>
-          <tr>
-            <th>
-              <div>Name</div>
-            </th>
-            <th>
-              <div>Category</div>
-            </th>
-            <th>
-              <div>Mall List</div>
-            </th>
-            <th>
-              <div>
+      <div className={`${props.className} position-relative overflow-auto`} style={{height: '100vh'}}>
+        <table className='admin-table position-absolute' style={{width: '100%'}}>
+          <thead>
+            <tr>
+              <th style={{width: '20%'}}>
+                Name
+              </th>
+              <th>
+                Location
+              </th>
+              <th style={{width: '230px'}}>
                 <button 
                   onClick={() => setCreatePage(true)}
-                  className='btn btn-primary'
+                  className='btn pt-1px'
                 >
                   Create
                 </button>
-              </div>
-            </th>
-          </tr>
-          {SAndC.map((SOrC) => (
-            <ASAndCItem mall={SOrC} MD={DeleteSOrC} sEP={setEditPage} ME={EditSOrC} Mlength={SAndC.length} key={SOrC.id}/>
-          ))}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>{malls[0] !== undefined ? malls[0].title : ''}</td><td>{malls[0] !== undefined ? malls[0].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[1] !== undefined ? malls[1].title : ''}</td><td>{malls[1] !== undefined ? malls[1].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[2] !== undefined ? malls[2].title : ''}</td><td>{malls[2] !== undefined ? malls[2].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[3] !== undefined ? malls[3].title : ''}</td><td>{malls[3] !== undefined ? malls[3].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[4] !== undefined ? malls[4].title : ''}</td><td>{malls[4] !== undefined ? malls[4].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[5] !== undefined ? malls[5].title : ''}</td><td>{malls[5] !== undefined ? malls[5].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[6] !== undefined ? malls[6].title : ''}</td><td>{malls[6] !== undefined ? malls[6].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[7] !== undefined ? malls[7].title : ''}</td><td>{malls[7] !== undefined ? malls[7].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[8] !== undefined ? malls[8].title : ''}</td><td>{malls[8] !== undefined ? malls[8].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[9] !== undefined ? malls[9].title : ''}</td><td>{malls[9] !== undefined ? malls[9].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+          </tbody>
         </table>
+        <table className='admin-table' style={{width: '100%'}}>
+          <thead>
+            <tr>
+              <th style={{width: '20%'}}>
+                Name
+              </th>
+              <th>
+                Location
+              </th>
+              <th style={{width: '230px'}}>
+                <button 
+                  onClick={() => setCreatePage(true)}
+                  className='btn pt-1px'
+                >
+                  Create
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {malls.map((mall) => (
+              <SorCItem mall={mall} MD={handleDelete} sEP={setEditPage} ME={EditMall} Mlength={malls.length} key={mall.id}/>
+            ))}
+          </tbody>
+        </table>
+        {dialog.isLoading && (
+          <Dialog
+            //Update
+            nameProduct={dialog.nameProduct}
+            onDialog={areUSureDelete}
+            message={dialog.message}
+          />
+        )}
       </div>
     )
   }
 }
 
-export default AllSAndC
+export default Malls

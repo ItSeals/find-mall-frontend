@@ -18,16 +18,19 @@
   ],
   "item": [
     {
-      "id": 1,
+      "id": 20,
       "title": "Maksym Shop",
-      "malls": [
-        "first",
-        "second"
-      ],
       "category": {
-        "id": 1,
-        "title": "cat1"
-      }
+        "id": 5,
+        "title": "Food"
+      },
+      "malls": [
+        {
+          "id": 3,
+          "title": "Spartak",
+          "location": "Hetmana Mazepy St, 1B"
+        }
+      ]
     }
   ]
 }
