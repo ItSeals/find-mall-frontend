@@ -1,15 +1,56 @@
 import React, { useState, useEffect } from 'react'
+import axios from '../../api/axios'
 
 const MallCreate = (props) => {
   const [nameBody, setNameBody] = useState('')
-  const [locationBody, setLocationBody] = useState('')
-
-  let mall = {
-    id: props.Mlength + 1,
+  const [categories, setCategories] = useState([])
+  const [categoryBody, setCategoryBody] = useState(1)
+  const [SOrCcategory, setSOrCCategory] = useState({})
+  let SOrC = {
     title: nameBody,
-    location: locationBody,
+    category: SOrCcategory,
+    malls: []
   }
+  
+  // "id": 1,
+  // "title": "Maksym Shop",
+  // "category": {
+  //   "id": 5,
+  //   "title": "Food"
+  // },
+  // "malls": [
+  //   {
+  //     "id": 1,
+  //     "title": "Victoria gardens",
+  //     "location": "за львовом"
+  //   },
+  //   {
+  //     "id": 3,
+  //     "title": "Spartak",
+  //     "location": "Hetmana Mazepy St, 1B"
+  //   }
 
+  useEffect(() => {
+    const getCategories = async () => {
+      const { data: res } = await axios.get('http://localhost:3000/category')
+      setCategories(res)
+    }
+    getCategories()
+  }, [])
+
+  
+  useEffect(() => {
+    const GetNeedCategory = async () => {
+      const { data: res } = await axios.get(`http://localhost:3000/category/${categoryBody}`)
+      setSOrCCategory({
+        id: res.id,
+        title: res.title
+      })
+    }
+    GetNeedCategory()
+  }, [categoryBody])
+  
+  console.log(SOrC)
   return (
     <div className={props.className} style={props.style}>
       <table className='admin-table' style={{width: '100%'}}>
@@ -40,23 +81,46 @@ const MallCreate = (props) => {
           <tr><td></td></tr>
           <tr>
             <td className='position-relative'>
-            <div className='title-input'>Location:</div>
+            <div className='title-input'>Category:</div>
+              <select 
+                value={categoryBody}
+                onChange={event => setCategoryBody(event.target.value)}
+              >
+                {categories.map(cat => {
+                  return <option value={cat.id}>{cat.title}</option>
+                })}
+              </select>
+            </td>
+          </tr>
+          <tr><td></td></tr>
+          <tr>
+            <td className='position-relative'>
+            <div className='title-input'>Tags:</div>
             <input 
-              value={locationBody}
+              disabled
+              value='В розробці'
               type='text'
-              onChange={event => setLocationBody(event.target.value)}
+              // onChange={event => setLocationBody(event.target.value)}
             />
             </td>
           </tr>
           <tr><td></td></tr>
-          <tr><td></td></tr>
-          <tr><td></td></tr>
-          <tr><td></td></tr>
+          <tr>
+            <td className='position-relative'>
+            <div className='title-input'>Mall List</div>
+            <input 
+              disabled
+              value='В розробці'
+              type='text'
+              // onChange={event => setLocationBody(event.target.value)}
+            />
+            </td>
+          </tr>
           <tr><td></td></tr>
           <tr>
             <td>
               <button 
-                onClick={() => props.AM(mall)}
+                onClick={() => props.AM(SOrC)}
                 className='btn btn-large'
               >
                 Create

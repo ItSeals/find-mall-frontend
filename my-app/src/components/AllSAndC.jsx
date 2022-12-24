@@ -71,7 +71,7 @@ const AllSAndC = (props) => {
 
   if (createPage) {
     return (
-      <MallCreate className={`${props.className} position-fixed`} AM={AddMall} prePage={setCreatePage}/>
+      <MallCreate className={`${props.className} position-fixed`} apiEndPoint={apiEndPoint} AM={AddMall} prePage={setCreatePage}/>
     )
   } else if (editPage.is) {
     return (
@@ -118,7 +118,7 @@ const AllSAndC = (props) => {
         <table className='admin-table' style={{width: '100%'}}>
           <thead>
             <tr>
-              <th style={{width: '20%'}}>
+              <th>
                 Name
               </th>
               <th>
