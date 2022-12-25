@@ -18,11 +18,12 @@ const AllSAndC = (props) => {
   const idMallRef = useRef();
   const apiEndPoint = "http://localhost:3000/item";
 
+  const getMalls = async () => {
+    const { data: res } = await axios.get(apiEndPoint)
+    setMalls(res)
+  }
+  
   useEffect(() => {
-    const getMalls = async () => {
-      const { data: res } = await axios.get(apiEndPoint)
-      setMalls(res)
-    }
     getMalls()
   }, [])
 
@@ -30,6 +31,7 @@ const AllSAndC = (props) => {
     await axios.post(apiEndPoint, mall);
     setMalls([...malls, mall]);
     setCreatePage(false)
+    getMalls()
   };
 
   const EditMall = async (mall) => {
@@ -40,6 +42,7 @@ const AllSAndC = (props) => {
     mallsClone[index] = { ...mall };
     setMalls(mallsClone);
     setEditPage({mall: {}, is: false})
+    getMalls()
   };
 
   const handleDialog = (message, isLoading, nameProduct) => {

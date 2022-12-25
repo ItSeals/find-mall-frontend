@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from '../../api/axios'
+import axios from 'axios';
 
 const MallCreate = (props) => {
   const [nameBody, setNameBody] = useState('')
@@ -73,8 +73,6 @@ const MallCreate = (props) => {
     }
     GetNeedMallList()
   }, [mallListBody])
-
-  console.log(SOrC)
   
   return (
     <div className={props.className} style={props.style}>
