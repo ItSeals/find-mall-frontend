@@ -7,7 +7,7 @@ const MallCreate = (props) => {
   const [categoryBody, setCategoryBody] = useState(1)
   const [SOrCCategory, setSOrCCategory] = useState({})
   const [mallList, setMallList] = useState([])
-  const [mallListBody, setMallListBody] = useState([1,2])
+  const [mallListBody, setMallListBody] = useState([1])
   const [SOrCMallList, setSOrCMallList] = useState({})
   let SOrC = {
     title: nameBody,
