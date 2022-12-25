@@ -19,17 +19,14 @@ const Malls = (props) => {
   const apiEndPoint = "http://localhost:3000/mall";
 
   useEffect(() => {
-    const getMalls = async () => {
-      const { data: res } = await axios.get(apiEndPoint)
-      setMalls(res)
-    }
     getMalls()
-  }, [malls])
+  }, [])
 
   const AddMall = async (mall) => {
     await axios.post(apiEndPoint, mall);
     setMalls([...malls, mall]);
     setCreatePage(false)
+    getMalls()
   };
 
   const EditMall = async (mall) => {
@@ -40,6 +37,7 @@ const Malls = (props) => {
     mallsClone[index] = { ...mall };
     setMalls(mallsClone);
     setEditPage({mall: {}, is: false})
+    getMalls()
   };
 
   const handleDialog = (message, isLoading, nameProduct) => {
@@ -64,10 +62,16 @@ const Malls = (props) => {
       await axios.delete(apiEndPoint + "/" + idMallRef.current);
       setMalls(malls.filter((m) => m.id !== idMallRef.current));
       handleDialog("", false);
+      getMalls()
     } else {
       handleDialog("", false);
     }
   };
+
+  const getMalls = async () => {
+    const { data: res } = await axios.get(apiEndPoint)
+    setMalls(res)
+  }
 
   if (createPage) {
     return (

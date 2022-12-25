@@ -21,7 +21,7 @@ function App() {
       <div className= 'container-fluid'>
         <div className ='row'>
           <SideBar className='col-2 min-vh-100' sAP={setActivePage}/>
-          <AllSAndC className='col gx-0 text-center'/>
+          <Malls className='col gx-0 text-center'/>
         </div>
       </div>
     )
