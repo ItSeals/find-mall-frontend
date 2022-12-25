@@ -89,13 +89,13 @@ const AllSAndC_SAndE = (props) => {
   } else {
     return (
       <div className={`${props.className} position-relative overflow-auto`} style={{height: '100vh'}}>
-        {/* <table className='admin-table position-absolute' style={{width: '100%'}}>
+        <table className='admin-table position-absolute' style={{width: '100%'}}>
           <thead>
             <tr>
-              <th style={{width: '20%'}}>
+              <th>
                 Name
               </th>
-              <th style={{width: '30%'}}>
+              <th>
                 Category
               </th>
               <th>
@@ -112,18 +112,18 @@ const AllSAndC_SAndE = (props) => {
             </tr>
           </thead>
           <tbody>
-            <tr><td>{malls[0] !== undefined ? malls[0].title : ''}</td><td>{malls[0] !== undefined ? malls[0].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[1] !== undefined ? malls[1].title : ''}</td><td>{malls[1] !== undefined ? malls[1].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[2] !== undefined ? malls[2].title : ''}</td><td>{malls[2] !== undefined ? malls[2].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[3] !== undefined ? malls[3].title : ''}</td><td>{malls[3] !== undefined ? malls[3].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[4] !== undefined ? malls[4].title : ''}</td><td>{malls[4] !== undefined ? malls[4].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[5] !== undefined ? malls[5].title : ''}</td><td>{malls[5] !== undefined ? malls[5].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[6] !== undefined ? malls[6].title : ''}</td><td>{malls[6] !== undefined ? malls[6].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[7] !== undefined ? malls[7].title : ''}</td><td>{malls[7] !== undefined ? malls[7].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[8] !== undefined ? malls[8].title : ''}</td><td>{malls[8] !== undefined ? malls[8].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[9] !== undefined ? malls[9].title : ''}</td><td>{malls[9] !== undefined ? malls[9].location : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[0] !== undefined ? malls[0].title : ''}</td><td>{malls[0] !== undefined ? malls[0].category.title : ''}</td><td>{malls[0] !== undefined ? malls[0].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[1] !== undefined ? malls[1].title : ''}</td><td>{malls[1] !== undefined ? malls[1].category.title : ''}</td><td>{malls[1] !== undefined ? malls[1].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[2] !== undefined ? malls[2].title : ''}</td><td>{malls[2] !== undefined ? malls[2].category.title : ''}</td><td>{malls[2] !== undefined ? malls[2].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[3] !== undefined ? malls[3].title : ''}</td><td>{malls[3] !== undefined ? malls[3].category.title : ''}</td><td>{malls[3] !== undefined ? malls[3].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[4] !== undefined ? malls[4].title : ''}</td><td>{malls[4] !== undefined ? malls[4].category.title : ''}</td><td>{malls[4] !== undefined ? malls[4].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[5] !== undefined ? malls[5].title : ''}</td><td>{malls[5] !== undefined ? malls[5].category.title : ''}</td><td>{malls[5] !== undefined ? malls[5].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[6] !== undefined ? malls[6].title : ''}</td><td>{malls[6] !== undefined ? malls[6].category.title : ''}</td><td>{malls[6] !== undefined ? malls[6].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[7] !== undefined ? malls[7].title : ''}</td><td>{malls[7] !== undefined ? malls[7].category.title : ''}</td><td>{malls[7] !== undefined ? malls[7].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[8] !== undefined ? malls[8].title : ''}</td><td>{malls[8] !== undefined ? malls[8].category.title : ''}</td><td>{malls[8] !== undefined ? malls[8].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <tr><td>{malls[9] !== undefined ? malls[9].title : ''}</td><td>{malls[9] !== undefined ? malls[9].category.title : ''}</td><td>{malls[9] !== undefined ? malls[9].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
           </tbody>
-        </table> */}
+        </table>
         <table className='admin-table' style={{width: '100%'}}>
           <thead>
             <tr>
