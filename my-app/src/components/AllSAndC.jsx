@@ -20,7 +20,16 @@ const AllSAndC = (props) => {
 
   const getMalls = async () => {
     const { data: res } = await axios.get(apiEndPoint)
-    setMalls(res)
+    let value = []
+    if (props.searchCat === undefined) { setMalls(res) }
+    else {
+      for (let index = 0; index < res.length; index++) {
+        if (res[index].category.title === props.searchCat) {
+          value.push(res[index])
+        }
+      }
+      setMalls(value)
+    }
   }
   
   useEffect(() => {
