@@ -24,7 +24,7 @@ const AllSAndC = (props) => {
       setMalls(res)
     }
     getMalls()
-  }, [malls])
+  }, [])
 
   const AddMall = async (mall) => {
     await axios.post(apiEndPoint, mall);

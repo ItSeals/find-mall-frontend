@@ -7,7 +7,7 @@ const MallCreate = (props) => {
   const [categoryBody, setCategoryBody] = useState(1)
   const [SOrCCategory, setSOrCCategory] = useState({})
   const [mallList, setMallList] = useState([])
-  const [mallListBody, setMallListBody] = useState(1)
+  const [mallListBody, setMallListBody] = useState([1,2])
   const [SOrCMallList, setSOrCMallList] = useState({})
   let SOrC = {
     title: nameBody,
@@ -64,16 +64,18 @@ const MallCreate = (props) => {
   
   useEffect(() => {
     const GetNeedMallList = async () => {
-      const { data: res } = await axios.get(`http://localhost:3000/mall/${mallListBody}`)
-      setSOrCMallList({
-        id: res.id,
-        title: res.title
-      })
+      var ML = []
+      for (let index = 0; index < mallListBody.length; index++) {
+        const { data: res } = await axios.get(`http://localhost:3000/mall/${mallListBody[index]}`)
+        ML.push(res)
+      }
+      setSOrCMallList(ML)
     }
     GetNeedMallList()
   }, [mallListBody])
-  
+
   console.log(SOrC)
+  
   return (
     <div className={props.className} style={props.style}>
       <table className='admin-table' style={{width: '100%'}}>
@@ -130,10 +132,21 @@ const MallCreate = (props) => {
           <tr><td></td></tr>
           <tr>
             <td className='position-relative'>
-              <div className='title-input'>MallList</div>
+              <div className='title-input'>Mall List</div>
               <select 
+                multiple={true}
+                size='2'
                 value={mallListBody}
-                onChange={event => setMallListBody(event.target.value)}
+                onChange={e => {
+                  var options = e.target.options;
+                  var value = [];
+                  for (var i = 0, l = options.length; i < l; i++) {
+                    if (options[i].selected) {
+                      value.push(options[i].value);
+                    }
+                  }
+                  setMallListBody(value)
+                }}
               >
                 {mallList.map(cat => {
                   return <option value={cat.id}>{cat.title}</option>
