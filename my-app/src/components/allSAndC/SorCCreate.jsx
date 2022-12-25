@@ -5,11 +5,14 @@ const MallCreate = (props) => {
   const [nameBody, setNameBody] = useState('')
   const [categories, setCategories] = useState([])
   const [categoryBody, setCategoryBody] = useState(1)
-  const [SOrCcategory, setSOrCCategory] = useState({})
+  const [SOrCCategory, setSOrCCategory] = useState({})
+  const [mallList, setMallList] = useState([])
+  const [mallListBody, setMallListBody] = useState(1)
+  const [SOrCMallList, setSOrCMallList] = useState({})
   let SOrC = {
     title: nameBody,
-    category: SOrCcategory,
-    malls: []
+    category: SOrCCategory,
+    malls: SOrCMallList
   }
   
   // "id": 1,
@@ -49,6 +52,26 @@ const MallCreate = (props) => {
     }
     GetNeedCategory()
   }, [categoryBody])
+
+  useEffect(() => {
+    const getMallList = async () => {
+      const { data: res } = await axios.get('http://localhost:3000/mall')
+      setMallList(res)
+    }
+    getMallList()
+  }, [])
+
+  
+  useEffect(() => {
+    const GetNeedMallList = async () => {
+      const { data: res } = await axios.get(`http://localhost:3000/mall/${mallListBody}`)
+      setSOrCMallList({
+        id: res.id,
+        title: res.title
+      })
+    }
+    GetNeedMallList()
+  }, [mallListBody])
   
   console.log(SOrC)
   return (
@@ -81,7 +104,7 @@ const MallCreate = (props) => {
           <tr><td></td></tr>
           <tr>
             <td className='position-relative'>
-            <div className='title-input'>Category:</div>
+              <div className='title-input'>Category:</div>
               <select 
                 value={categoryBody}
                 onChange={event => setCategoryBody(event.target.value)}
@@ -107,13 +130,15 @@ const MallCreate = (props) => {
           <tr><td></td></tr>
           <tr>
             <td className='position-relative'>
-            <div className='title-input'>Mall List</div>
-            <input 
-              disabled
-              value='В розробці'
-              type='text'
-              // onChange={event => setLocationBody(event.target.value)}
-            />
+              <div className='title-input'>MallList</div>
+              <select 
+                value={mallListBody}
+                onChange={event => setMallListBody(event.target.value)}
+              >
+                {mallList.map(cat => {
+                  return <option value={cat.id}>{cat.title}</option>
+                })}
+              </select>
             </td>
           </tr>
           <tr><td></td></tr>
