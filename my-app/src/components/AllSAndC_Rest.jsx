@@ -5,7 +5,7 @@ import MallCreate from './allSAndC/SorCCreate';
 import SorCEdit from './allSAndC/SorCEdit';
 import SorCItem from './allSAndC/SorCItem';
 
-const AllSAndC = (props) => {
+const AllSAndC_Rest = (props) => {
   const [malls, setMalls] = useState([])
   const [createPage, setCreatePage] = useState(false)
   const [editPage, setEditPage] = useState({is: false, mall: {}})
@@ -20,7 +20,13 @@ const AllSAndC = (props) => {
 
   const getMalls = async () => {
     const { data: res } = await axios.get(apiEndPoint)
-    setMalls(res)
+    let value = []
+    for (let index = 0; index < res.length; index++) {
+      if (res[index].category.title === "Restaurants") {
+        value.push(res[index])
+      }
+    }
+    setMalls(value)
   }
   
   useEffect(() => {
@@ -159,4 +165,4 @@ const AllSAndC = (props) => {
   }
 }
 
-export default AllSAndC
+export default AllSAndC_Rest

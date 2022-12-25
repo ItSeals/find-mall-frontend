@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const SideBar = (props) => {
   function expandCollapseCategories(){
@@ -16,39 +17,39 @@ const SideBar = (props) => {
       </div>
        <ul>
         <li>
-          <a href = '' className = 'nav-link ml px-2' onClick={() => props.sAP(1)}>
+          <Link to='/' className = 'nav-link ml px-2' onClick={() => props.sAP(1)}>
             <div className='link'>
             <i className ='bi bi-circle ms-5'></i> <span className= 'ms-2 d-none d-sm-inline'>Malls</span>
             </div>
-          </a>
+          </Link>
         </li>
         <li >
-          <a href='' className = 'nav-link ml-1 px-2' onClick={() => props.sAP(1)}>
+          <Link to="/AllSAndC" className = 'nav-link ml-1 px-2' onClick={() => props.sAP(1)}>
           <div className='link'>
             <i className ='bi bi-bag ms-5'></i> <span className = 'ms-2 d-none d-sm-inline'>All stores & cafes</span>
             </div>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='' className = 'nav-link ml px-2'>
+          <Link to='/AllSAndC/Stores' className = 'nav-link ml px-2'>
           <div className='link'>
             <i className ='bi bi-cart3 ms-5'></i> <span className = 'ms-2 d-none d-sm-inline'>Stores</span>
             </div>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href='' className = 'nav-link ml-1 px-2'>
+          <Link to='/AllSAndC/Restaurants' className = 'nav-link ml-1 px-2'>
           <div className='link'>
             <i className ='bi bi-shop ms-5'></i> <span className = 'ms-2 d-none d-sm-inline'>Restaurants</span>
             </div>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href= ''className = 'nav-link ml px-2'>
+          <Link to='/AllSAndC/Services&Entertainment' className = 'nav-link ml px-2'>
           <div className='link'>
             <i className ='bi bi-joystick ms-5' ></i> <span className= 'ms-2 d-none d-sm-inline'>Services & Entertainment</span>
             </div>
-          </a>
+          </Link>
         </li> 
         <li>
           <div className='nav-link ml-1 px-2'>
