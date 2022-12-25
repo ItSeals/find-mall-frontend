@@ -18,26 +18,6 @@
   ],
   "item": [
     {
-      "id": 1,
-      "title": "Maksym Shop",
-      "category": {
-        "id": 1,
-        "title": "Stores"
-      },
-      "malls": [
-        {
-          "id": 1,
-          "title": "Victoria gardens",
-          "location": "за львовом"
-        },
-        {
-          "id": 3,
-          "title": "Spartak",
-          "location": "Hetmana Mazepy St, 1B"
-        }
-      ]
-    },
-    {
       "id": 2,
       "title": "Concurent Restaurant",
       "category": {
@@ -61,6 +41,121 @@
           "location": "Hetmana Mazepy St, 1B"
         }
       ]
+    },
+    {
+      "id": 3,
+      "title": "Concurent Restaurant",
+      "category": {
+        "id": 2,
+        "title": "Restaurants"
+      },
+      "malls": [
+        {
+          "id": 1,
+          "title": "Victoria gardens",
+          "location": "за львовом"
+        },
+        {
+          "id": 2,
+          "title": "Forum",
+          "location": "У львові"
+        },
+        {
+          "id": 3,
+          "title": "Spartak",
+          "location": "Hetmana Mazepy St, 1B"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Maksym Shop",
+      "category": {
+        "id": 1,
+        "title": "Stores"
+      },
+      "malls": [
+        {
+          "id": 1,
+          "title": "Victoria gardens",
+          "location": "за львовом"
+        },
+        {
+          "id": 3,
+          "title": "Spartak",
+          "location": "Hetmana Mazepy St, 1B"
+        }
+      ]
+    },
+    {
+      "title": "golaha",
+      "category": {
+        "id": 3,
+        "title": "Services & Entertainment"
+      },
+      "malls": [
+        {
+          "id": 2,
+          "title": "Forum",
+          "location": "У львові"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "title": "lotyna",
+      "category": {
+        "id": 1,
+        "title": "Stores"
+      },
+      "malls": [
+        {
+          "id": 2,
+          "title": "Forum",
+          "location": "У львові"
+        },
+        {
+          "id": 3,
+          "title": "Spartak",
+          "location": "Hetmana Mazepy St, 1B"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "title": "lololoshka",
+      "category": {
+        "id": 2,
+        "title": "Restaurants"
+      },
+      "malls": [
+        {
+          "id": 2,
+          "title": "Forum",
+          "location": "У львові"
+        },
+        {
+          "id": 3,
+          "title": "Spartak",
+          "location": "Hetmana Mazepy St, 1B"
+        }
+      ],
+      "id": 6
+    },
+    {
+      "title": "Nokoya",
+      "category": {
+        "id": 3,
+        "title": "Services & Entertainment"
+      },
+      "malls": [
+        {
+          "id": 1,
+          "title": "Victoria gardens",
+          "location": "за львовом"
+        }
+      ],
+      "id": 7
     }
   ],
   "category": [

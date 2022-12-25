@@ -13,15 +13,15 @@ function App() {
   if (success == false) {
     return (
       <main className="App">
-        <Login AP={setActivePage} success={success}/>
+        <Login AP={setActivePage} success={success} />
       </main>
     );
   } else {
     return(
       <div className= 'container-fluid'>
         <div className ='row'>
-          <SideBar className='col-2 min-vh-100' sAP={setActivePage}/>
-          <AllSAndC className='col gx-0 text-center'/>
+          <SideBar className='col-2 min-vh-100' sAP={setActivePage} />
+          <AllSAndC className='col gx-0 text-center' /> {/*Додати атрибут searchCat, де значенням буде потрібна категорія, якщо потрібна лиш певна*/}
         </div>
       </div>
     )
