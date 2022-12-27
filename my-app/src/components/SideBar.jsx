@@ -4,9 +4,12 @@ import AllSAndC from './AllSAndC';
 import Malls from './Malls';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import AllSAndC_Rest from './AllSAndC_Rest';
+import AllSAndC_Stores from './AllSAndC_Stores';
+import AllSAndC_SAndE from './AllSAndC_SAndE';
 const SideBar = (props) => {
   return (
-    <div className= 'container-fluid' style={{display:'flex'}}>
+    <div style={{display:'flex'}}>
     <div className= 'col-2 min-vh-100 sidebar'>
     <div className='row pt-6'>
       <div className='col-8 admin_panel pt-2'>
@@ -57,9 +60,9 @@ const SideBar = (props) => {
         <Route path='/' element={<Malls/>}/>
         <Route path='/malls' element={<Malls/>}/>
         <Route path='/allcaffes' element={<AllSAndC/>}/>
-        <Route path='/stores' element={<Malls/>}/>
-        <Route path='/restaurants' element={<Malls/>}/>
-        <Route path='/services' element={<Malls/>}/>
+        <Route path='/stores' element={<AllSAndC_Stores/>}/>
+        <Route path='/restaurants' element={<AllSAndC_Rest/>}/>
+        <Route path='/services' element={<AllSAndC_SAndE/>}/>
       </Routes>
     </div>
   </div>
