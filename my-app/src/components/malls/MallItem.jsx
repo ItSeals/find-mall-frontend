@@ -6,10 +6,10 @@ const MallItem = ({mall, MD, ME, sEP}) => {
   return (
     <tr>
       <td>
-        {mall.title ? mall.title : "Не визначено"}
+        {mall.title ? mall.title : ""}
       </td>
       <td>
-        {mall.location ? mall.location : "Не визначено"}
+        {mall.location ? mall.location : ""}
       </td>
       <td>
         <button

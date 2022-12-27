@@ -6,10 +6,10 @@ const SorCItem = ({mall, MD, ME, sEP}) => {
   return (
     <tr>
       <td>
-        {mall.title ? mall.title : "Не визначено"}
+        {mall.title ? mall.title : ""}
       </td>
       <td>
-        {mall.category.title ? mall.category.title : "Не визначено"}
+        {mall.category.title ? mall.category.title : ""}
       </td>
       <td>
         {

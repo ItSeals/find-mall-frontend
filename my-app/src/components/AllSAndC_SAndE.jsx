@@ -80,11 +80,11 @@ const AllSAndC_SAndE = (props) => {
 
   if (createPage) {
     return (
-      <MallCreate className={`${props.className} position-fixed`} apiEndPoint={apiEndPoint} AM={AddMall} prePage={setCreatePage}/>
+      <MallCreate className={`${props.className} position-fixed`} style={{width: '100%', left: '0'}} apiEndPoint={apiEndPoint} AM={AddMall} prePage={setCreatePage}/>
     )
   } else if (editPage.is) {
     return (
-      <SorCEdit className={`${props.className} position-fixed`} ME={EditMall} prePage={setEditPage} mall={editPage.mall}/>
+      <SorCEdit className={`${props.className} position-fixed`} style={{width: '100%', left: '0'}} ME={EditMall} prePage={setEditPage} mall={editPage.mall}/>
     )
   } else {
     return (
@@ -101,7 +101,7 @@ const AllSAndC_SAndE = (props) => {
               <th>
                 Mall List
               </th>
-              <th style={{width: '230px'}}>
+              <th style={{width: '230px', maxWidth: '20%'}}>
                 <button 
                   onClick={() => setCreatePage(true)}
                   className='btn pt-1px'
