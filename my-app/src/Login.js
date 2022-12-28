@@ -62,7 +62,7 @@ const Login = (props) => {
           <h1>You are logged in!</h1>
           <br />
           <p>
-            <a href="#" class="go-to-admin-link">Go to Admin Pannel</a>
+            {/* <a href="#" class="go-to-admin-link">Go to Admin Pannel</a> */}
           </p>
         </section>
       ) : (
