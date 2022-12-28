@@ -40,7 +40,7 @@ const Login = (props) => {
       setAuth({ user, pwd, roles, accessToken });
       setUser("");
       setPwd("");
-      props.AP(true);
+      props.setSuccess(true);
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");

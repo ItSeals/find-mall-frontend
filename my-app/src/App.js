@@ -16,7 +16,7 @@ function App() {
   if (success == false) {
     return (
       <main className="App">
-        <Login success={success} />
+        <Login success={success} setSuccess={setSuccess}/>
       </main>
     );
   } else {
