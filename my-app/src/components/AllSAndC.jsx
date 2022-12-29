@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import Dialog from './Dialog';
-import MallCreate from './allSAndC/SorCCreate';
+import SorCCreate from './allSAndC/SorCCreate';
 import SorCEdit from './allSAndC/SorCEdit';
 import SorCItem from './allSAndC/SorCItem';
 
@@ -28,6 +28,7 @@ const AllSAndC = (props) => {
   }, [])
 
   const AddMall = async (mall) => {
+    console.log("dfdffdd", mall)
     await axios.post(apiEndPoint, mall);
     setMalls([...malls, mall]);
     setCreatePage(false)
@@ -74,7 +75,7 @@ const AllSAndC = (props) => {
 
   if (createPage) {
     return (
-      <MallCreate className={`${props.className} position-fixed`} style={{width: '100%', left: '0'}} apiEndPoint={apiEndPoint} AM={AddMall} prePage={setCreatePage}/>
+      <SorCCreate className={`${props.className} position-fixed`} style={{width: '100%', left: '0'}} apiEndPoint={apiEndPoint} AM={AddMall} prePage={setCreatePage}/>
     )
   } else if (editPage.is) {
     return (
