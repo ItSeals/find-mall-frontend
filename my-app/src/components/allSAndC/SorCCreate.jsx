@@ -26,8 +26,19 @@ const SorCCreate = (props) => {
       (res) => (mallListRef.current = res),
       (error) => console.log("error", error)
     );
-    setInterval(() => setUpdatedPage(true), 100);
+    setTimeout(() => {
+      setUpdatedPage(true);
+    }, 1000);
   }, []);
+
+  useEffect(() => {
+    if (updatedPage) {
+      categoryBodyRef.current.value = categoriesRef.current[0].id;
+      updateSOrCCategoryRef();
+      mallListBodyRef.current = [mallListRef.current[0].id];
+      updateSOrCMallListRef();
+    }
+  }, [updatedPage]);
 
   function getSelectedOptionsFrom(optionsData, valueCallback) {
     var value = [];
@@ -50,8 +61,7 @@ const SorCCreate = (props) => {
     );
   }
 
-  function updateSOrCMallListRef(options) {
-    getSelectedOptionsFrom(options, (val) => (mallListBodyRef.current = val));
+  function updateSOrCMallListRef() {
     var ML = [];
     for (let index = 0; index < mallListBodyRef.current.length; index++) {
       networkCall(
@@ -64,6 +74,11 @@ const SorCCreate = (props) => {
       );
     }
     SOrCMallListRef.current = ML;
+  }
+
+  function mallListBodyRefOnChange(options) {
+    getSelectedOptionsFrom(options, (value) => (mallListBodyRef.current = value));
+    updateSOrCMallListRef()
   }
 
   return (
@@ -143,7 +158,7 @@ const SorCCreate = (props) => {
                 size="2"
                 ref={mallListBodyRef}
                 onChange={(event) =>
-                  updateSOrCMallListRef(event.target.options)
+                  mallListBodyRefOnChange(event.target.options)
                 }
               >
                 {mallListRef.current.map((cat) => {
@@ -157,10 +172,10 @@ const SorCCreate = (props) => {
           </tr>
           <tr>
             <td>
-              <button
+              {updatedPage && <button
                 onClick={() =>
-                  console.log("submit", {
-                    title: nameBodyRef.current.value,
+                  props.AM({
+                    title: nameBodyRef.current.value === '' ? "unknown" : nameBodyRef.current.value,
                     category: SOrCCategoryRef.current,
                     malls: SOrCMallListRef.current,
                   })
@@ -168,7 +183,7 @@ const SorCCreate = (props) => {
                 className="btn btn-large"
               >
                 Create
-              </button>
+              </button>}
             </td>
           </tr>
           <tr>
