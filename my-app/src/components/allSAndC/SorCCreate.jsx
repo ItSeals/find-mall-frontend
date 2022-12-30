@@ -2,56 +2,32 @@ import React, { useState, useEffect, useRef } from "react";
 import { networkCall } from "../../helpers/helpers";
 
 const SorCCreate = (props) => {
-  const [categories, setCategories] = useState([]);
-  //const [categoryBody, setCategoryBody] = useState(1);
-  //const [SOrCCategory, setSOrCCategory] = useState({});
-  const [mallList, setMallList] = useState([]);
-  //const [mallListBody, setMallListBody] = useState([1]);
-  //const [SOrCMallList, setSOrCMallList] = useState({});
+  const [updatedPage, setUpdatedPage] = useState(false);
 
   const nameBodyRef = useRef("");
+  const categoriesRef = useRef([]);
   const categoryBodyRef = useRef(1);
   const SOrCCategoryRef = useRef({});
+  const mallListRef = useRef([]);
   const mallListBodyRef = useRef([1]);
   const SOrCMallListRef = useRef([]);
 
   useEffect(() => {
     networkCall(
-      { url: "http://localhost:3000/mall", type: "get" },
-      (res) => setMallList(res),
+      { url: "http://localhost:3000/category", type: "get" },
+      (res) => {
+        categoriesRef.current = res;
+        console.log("res", categoriesRef.current);
+      },
       (error) => console.log("error", error)
     );
     networkCall(
-      { url: "http://localhost:3000/category", type: "get" },
-      (res) => setCategories(res),
+      { url: "http://localhost:3000/mall", type: "get" },
+      (res) => (mallListRef.current = res),
       (error) => console.log("error", error)
     );
+    setInterval(() => setUpdatedPage(true), 100);
   }, []);
-
-  // useEffect(() => {
-  //   networkCall(
-  //     {
-  //       url: `http://localhost:3000/category/${categoryBodyRef.current.value}`,
-  //       type: "get",
-  //     },
-  //     ({ id, title }) => setSOrCCategory({ id, title }),
-  //     (error) => console.log("error", error)
-  //   );
-
-  //   console.log("cBR", categoryBodyRef.current.value);
-  // }, [nameBodyRef.current.value]);
-
-  // useEffect(() => {
-  //   var ML = [];
-  //   for (let index = 0; index < mallListBody.length; index++) {}
-  //   setSOrCMallList(ML);
-  // }, [mallListBody]);
-
-  let SOrC = {
-    title: nameBodyRef.current?.value,
-    category: SOrCCategoryRef?.current,
-    malls: SOrCMallListRef?.current,
-  };
 
   function getSelectedOptionsFrom(optionsData, valueCallback) {
     var value = [];
@@ -60,8 +36,18 @@ const SorCCreate = (props) => {
         value.push(optionsData[i].value);
       }
     }
-    console.log("value", value);
     valueCallback(value);
+  }
+
+  function updateSOrCCategoryRef() {
+    networkCall(
+      {
+        url: `http://localhost:3000/category/${categoryBodyRef.current.value}`,
+        type: "get",
+      },
+      ({ id, title }) => (SOrCCategoryRef.current = { id, title }),
+      (error) => console.log("error", error)
+    );
   }
 
   function updateSOrCMallListRef(options) {
@@ -77,9 +63,7 @@ const SorCCreate = (props) => {
         (error) => console.log("error", error)
       );
     }
-    console.log("ML", ML);
     SOrCMallListRef.current = ML;
-    console.log("SOrCMallListRef.current", SOrCMallListRef.current);
   }
 
   return (
@@ -126,19 +110,9 @@ const SorCCreate = (props) => {
               <div className="title-input">Category:</div>
               <select
                 ref={categoryBodyRef}
-                onChange={() =>
-                  networkCall(
-                    {
-                      url: `http://localhost:3000/category/${categoryBodyRef.current.value}`,
-                      type: "get",
-                    },
-                    ({ id, title }) =>
-                      (SOrCCategoryRef.current = { id, title }),
-                    (error) => console.log("error", error)
-                  )
-                }
+                onChange={() => updateSOrCCategoryRef}
               >
-                {categories.map((cat) => {
+                {categoriesRef.current.map((cat) => {
                   return <option value={cat.id}>{cat.title}</option>;
                 })}
               </select>
@@ -172,7 +146,7 @@ const SorCCreate = (props) => {
                   updateSOrCMallListRef(event.target.options)
                 }
               >
-                {mallList.map((cat) => {
+                {mallListRef.current.map((cat) => {
                   return <option value={cat.id}>{cat.title}</option>;
                 })}
               </select>
