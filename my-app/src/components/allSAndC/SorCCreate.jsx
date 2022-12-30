@@ -77,8 +77,11 @@ const SorCCreate = (props) => {
   }
 
   function mallListBodyRefOnChange(options) {
-    getSelectedOptionsFrom(options, (value) => (mallListBodyRef.current = value));
-    updateSOrCMallListRef()
+    getSelectedOptionsFrom(
+      options,
+      (value) => (mallListBodyRef.current = value)
+    );
+    updateSOrCMallListRef();
   }
 
   return (
@@ -172,18 +175,27 @@ const SorCCreate = (props) => {
           </tr>
           <tr>
             <td>
-              {updatedPage && <button
-                onClick={() =>
-                  props.AM({
-                    title: nameBodyRef.current.value === '' ? "unknown" : nameBodyRef.current.value,
-                    category: SOrCCategoryRef.current,
-                    malls: SOrCMallListRef.current,
-                  })
-                }
-                className="btn btn-large"
-              >
-                Create
-              </button>}
+              {updatedPage ? (
+                <button
+                  onClick={() =>
+                    props.AM({
+                      title:
+                        nameBodyRef.current.value === ""
+                          ? "unknown"
+                          : nameBodyRef.current.value,
+                      category: SOrCCategoryRef.current,
+                      malls: SOrCMallListRef.current,
+                    })
+                  }
+                  className="btn btn-large"
+                >
+                  Create
+                </button>
+              ) : (
+                <div class="spinner-border text-primary" role="status">
+                  <span class="sr-only"></span>
+                </div>
+              )}
             </td>
           </tr>
           <tr>
