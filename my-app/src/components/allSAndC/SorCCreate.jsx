@@ -14,9 +14,7 @@ const SorCCreate = (props) => {
   useEffect(() => {
     networkCall(
       { url: "http://localhost:3000/category", type: "get" },
-      (res) => {
-        setCategories(res);
-      },
+      (res) => setCategories(res),
       (error) => console.log("error", error)
     );
     networkCall(
@@ -39,6 +37,7 @@ const SorCCreate = (props) => {
     var value = [];
     for (var i = 0, l = optionsData.length; i < l; i++) {
       if (optionsData[i].selected) {
+        console.log(optionsData[i].selected)
         value.push(optionsData[i].value);
       }
     }
@@ -135,7 +134,7 @@ const SorCCreate = (props) => {
                 <div className="title-input">Category:</div>
                 <select
                   ref={categoryBodyRef}
-                  onChange={() => updateSOrCCategoryRef}
+                  onChange={() => updateSOrCCategoryRef()}
                 >
                   {categories.map((cat) => {
                     return <option value={cat.id}>{cat.title}</option>;
@@ -153,7 +152,6 @@ const SorCCreate = (props) => {
                   disabled
                   type="text"
                   value="В розробці"
-                  // onChange={event => setLocationBody(event.target.value)ma}
                 />
               </td>
             </tr>

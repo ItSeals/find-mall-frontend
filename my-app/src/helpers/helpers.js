@@ -1,5 +1,7 @@
 import axios from "axios";
 
+export var global = { admin: { item: {} } };
+
 export function networkCall(networkData, successCallback, errorCallback) {
   const handleSuccess = (responce) => {
     successCallback(responce.data);

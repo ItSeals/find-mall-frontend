@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
+import { global } from '.././helpers/helpers';
 import Dialog from './Dialog';
 import SorCCreate from './allSAndC/SorCCreate';
 import SorCEdit from './allSAndC/SorCEdit';
@@ -8,7 +9,7 @@ import SorCItem from './allSAndC/SorCItem';
 const AllSAndC = (props) => {
   const [malls, setMalls] = useState([])
   const [createPage, setCreatePage] = useState(false)
-  const [editPage, setEditPage] = useState({is: false, mall: {}})
+  const [editPage, setEditPage] = useState(false)
   const [dialog, setDialog] = useState({
     message: "",
     isLoading: false,
@@ -18,13 +19,13 @@ const AllSAndC = (props) => {
   const idMallRef = useRef();
   const apiEndPoint = "http://localhost:3000/item";
 
-  const getMalls = async () => {
+  const updateMalls = async () => {
     const { data: res } = await axios.get(apiEndPoint)
     setMalls(res)
   }
   
   useEffect(() => {
-    getMalls()
+    updateMalls()
   }, [])
 
   const AddMall = async (mall) => {
@@ -32,7 +33,7 @@ const AllSAndC = (props) => {
     await axios.post(apiEndPoint, mall);
     setMalls([...malls, mall]);
     setCreatePage(false)
-    getMalls()
+    updateMalls()
   };
 
   const EditMall = async (mall) => {
@@ -43,7 +44,7 @@ const AllSAndC = (props) => {
     mallsClone[index] = { ...mall };
     setMalls(mallsClone);
     setEditPage({mall: {}, is: false})
-    getMalls()
+    updateMalls()
   };
 
   const handleDialog = (message, isLoading, nameProduct) => {
@@ -75,11 +76,11 @@ const AllSAndC = (props) => {
 
   if (createPage) {
     return (
-      <SorCCreate className={`${props.className} position-fixed`} style={{width: '100%', left: '0'}} apiEndPoint={apiEndPoint} AM={AddMall} prePage={setCreatePage}/>
+      <SorCCreate className={`${props.className} position-absolute`} style={{width: '100%', left: '0'}} AM={AddMall} prePage={setCreatePage} />
     )
-  } else if (editPage.is) {
+  } else if (editPage) {
     return (
-      <SorCEdit className={`${props.className} position-fixed`} style={{width: '100%', left: '0'}} ME={EditMall} prePage={setEditPage} mall={editPage.mall}/>
+      <SorCEdit className={`${props.className} position-absolute`} style={{width: '100%', left: '0'}} ME={EditMall} prePage={setEditPage} />
     )
   } else {
     return (
