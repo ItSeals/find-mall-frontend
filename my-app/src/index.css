@@ -184,6 +184,20 @@ table.admin-table input {
   border: 1px solid #000;
 }
 
+table.admin-table input.btn-submit {
+  position: absolute;
+  top: -1vh;
+  bottom: -1vh;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+  padding: 0 29px;
+  border-radius: 30px;
+  font-size: 30px;
+}
+
 table.admin-table .title-input {
   position: absolute;
   display: flex;
