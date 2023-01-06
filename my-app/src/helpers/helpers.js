@@ -1,8 +1,11 @@
 import axios from "axios";
 
-export var global = { admin: { item: {} } };
+export var global = {
+  api: "http://localhost:3000",
+  admin: { item: {} },
+};
 
-export function networkCall(networkData, successCallback, errorCallback) {
+export async function networkCall(networkData, successCallback, errorCallback) {
   const handleSuccess = (responce) => {
     successCallback(responce.data);
   };
@@ -13,7 +16,28 @@ export function networkCall(networkData, successCallback, errorCallback) {
 
   switch (networkData.type) {
     case "get": {
-      axios.get(networkData.url).then(handleSuccess).catch(handleError);
+      await axios.get(networkData.url).then(handleSuccess).catch(handleError);
+      break;
+    }
+    case "post": {
+      await axios
+        .post(networkData.url, networkData.content)
+        .then(handleSuccess)
+        .catch(handleError);
+      break;
+    }
+    case "put": {
+      await axios
+        .put(networkData.url, networkData.content)
+        .then(handleSuccess)
+        .catch(handleError);
+      break;
+    }
+    case "delete": {
+      await axios
+        .delete(networkData.url)
+        .then(handleSuccess)
+        .catch(handleError);
       break;
     }
   }

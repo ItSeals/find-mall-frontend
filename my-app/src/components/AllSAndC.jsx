@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
-import { global } from '.././helpers/helpers';
+import { global, networkCall } from '.././helpers/helpers';
 import Dialog from './Dialog';
 import SorCCreate from './allSAndC/SorCCreate';
 import SorCEdit from './allSAndC/SorCEdit';
@@ -13,65 +13,64 @@ const AllSAndC = (props) => {
   const [dialog, setDialog] = useState({
     message: "",
     isLoading: false,
-    //Update
     nameProduct: ""
   });
-  const idMallRef = useRef();
-  const apiEndPoint = "http://localhost:3000/item";
 
-  const updateMalls = async () => {
-    const { data: res } = await axios.get(apiEndPoint)
-    setMalls(res)
-  }
-  
+  const idMallRef = useRef();
+
   useEffect(() => {
     updateMalls()
   }, [])
 
-  const AddMall = async (mall) => {
-    console.log("dfdffdd", mall)
-    await axios.post(apiEndPoint, mall);
-    setMalls([...malls, mall]);
-    setCreatePage(false)
-    updateMalls()
+  function updateMalls() {
+    networkCall(
+      { url: `${global.api}/item`, type: "get" },
+      (res) => setMalls(res),
+      (error) => console.log("error", error)
+    )
+  }
+  
+  function AddMall(mall) {
+    networkCall(
+      { url: `${global.api}/item`, type: "post", content: mall},
+      () => updateMalls(),
+      (error) => console.log("error", error)
+    )
+    setCreatePage(false);
   };
 
-  const EditMall = async (mall) => {
-    console.log(mall)
-    await axios.put(apiEndPoint + "/" + mall.id, mall);
-    const mallsClone = [...malls];
-    const index = mallsClone.indexOf(mall);
-    mallsClone[index] = { ...mall };
-    setMalls(mallsClone);
-    setEditPage({mall: {}, is: false})
-    updateMalls()
+  function EditMall(mall) {
+    networkCall(
+      { url: `${global.api}/item/${mall.id}`, type: "put", content: mall},
+      () => updateMalls(),
+      (error) => console.log("error", error)
+    )
+    setEditPage(false)
   };
 
-  const handleDialog = (message, isLoading, nameProduct) => {
+  function handleDialog(message, isLoading, nameProduct) {
     setDialog({
       message,
       isLoading,
-      //Update
       nameProduct
     });
   };
 
-  const handleDelete = (id) => {
-    //Update
+  function handleDelete(id) {
     const index = malls.findIndex((m) => m.id === id);
-
     handleDialog("Are you sure you want to delete?", true, malls[index].title);
     idMallRef.current = id;
   };
 
-  const areUSureDelete = async (choose) => {
+  function areUSureDelete(choose) {
     if (choose) {
-      await axios.delete(apiEndPoint + "/" + idMallRef.current);
-      setMalls(malls.filter((m) => m.id !== idMallRef.current));
-      handleDialog("", false);
-    } else {
-      handleDialog("", false);
+      networkCall(
+        { url: `${global.api}/item/${idMallRef.current}`, type: "delete"},
+        () => updateMalls(),
+        (error) => console.log("error", error)
+      )
     }
+    handleDialog("", false)
   };
 
   if (createPage) {
