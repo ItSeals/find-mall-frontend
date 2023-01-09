@@ -37,7 +37,7 @@ const SorCCreate = (props) => {
     var value = [];
     for (var i = 0, l = optionsData.length; i < l; i++) {
       if (optionsData[i].selected) {
-        console.log(optionsData[i].selected)
+        console.log(optionsData[i].selected);
         value.push(optionsData[i].value);
       }
     }
@@ -148,11 +148,7 @@ const SorCCreate = (props) => {
             <tr>
               <td className="position-relative">
                 <div className="title-input">Tags:</div>
-                <input
-                  disabled
-                  type="text"
-                  value="В розробці"
-                />
+                <input disabled type="text" value="В розробці" />
               </td>
             </tr>
             <tr>
