@@ -1,10 +1,10 @@
-import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import { global, networkCall } from '.././helpers/helpers';
 import Dialog from './Dialog';
 import SorCCreate from './allSAndC/SorCCreate';
 import SorCEdit from './allSAndC/SorCEdit';
 import SorCItem from './allSAndC/SorCItem';
+import SorCItemBG from './allSAndC/SorCItemBG';
 
 const AllSAndC = (props) => {
   const [malls, setMalls] = useState([])
@@ -107,16 +107,16 @@ const AllSAndC = (props) => {
             </tr>
           </thead>
           <tbody>
-            <tr><td>{malls[0] !== undefined ? malls[0].title : ''}</td><td>{malls[0] !== undefined ? malls[0].category.title : ''}</td><td>{malls[0] !== undefined ? malls[0].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[1] !== undefined ? malls[1].title : ''}</td><td>{malls[1] !== undefined ? malls[1].category.title : ''}</td><td>{malls[1] !== undefined ? malls[1].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[2] !== undefined ? malls[2].title : ''}</td><td>{malls[2] !== undefined ? malls[2].category.title : ''}</td><td>{malls[2] !== undefined ? malls[2].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[3] !== undefined ? malls[3].title : ''}</td><td>{malls[3] !== undefined ? malls[3].category.title : ''}</td><td>{malls[3] !== undefined ? malls[3].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[4] !== undefined ? malls[4].title : ''}</td><td>{malls[4] !== undefined ? malls[4].category.title : ''}</td><td>{malls[4] !== undefined ? malls[4].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[5] !== undefined ? malls[5].title : ''}</td><td>{malls[5] !== undefined ? malls[5].category.title : ''}</td><td>{malls[5] !== undefined ? malls[5].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[6] !== undefined ? malls[6].title : ''}</td><td>{malls[6] !== undefined ? malls[6].category.title : ''}</td><td>{malls[6] !== undefined ? malls[6].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[7] !== undefined ? malls[7].title : ''}</td><td>{malls[7] !== undefined ? malls[7].category.title : ''}</td><td>{malls[7] !== undefined ? malls[7].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[8] !== undefined ? malls[8].title : ''}</td><td>{malls[8] !== undefined ? malls[8].category.title : ''}</td><td>{malls[8] !== undefined ? malls[8].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
-            <tr><td>{malls[9] !== undefined ? malls[9].title : ''}</td><td>{malls[9] !== undefined ? malls[9].category.title : ''}</td><td>{malls[9] !== undefined ? malls[9].malls.map((mall, index) => { let sep = ''; if (index !== 0) {sep = ', '} return `${sep}${mall.title}` }) : ''}</td><td><button className='btn pt-1px opacity-0'></button></td></tr>
+            <SorCItemBG SorC={malls[0]}></SorCItemBG>
+            <SorCItemBG SorC={malls[1]}></SorCItemBG>
+            <SorCItemBG SorC={malls[2]}></SorCItemBG>
+            <SorCItemBG SorC={malls[3]}></SorCItemBG>
+            <SorCItemBG SorC={malls[4]}></SorCItemBG>
+            <SorCItemBG SorC={malls[5]}></SorCItemBG>
+            <SorCItemBG SorC={malls[6]}></SorCItemBG>
+            <SorCItemBG SorC={malls[7]}></SorCItemBG>
+            <SorCItemBG SorC={malls[8]}></SorCItemBG>
+            <SorCItemBG SorC={malls[9]}></SorCItemBG>
           </tbody>
         </table>
         <table className='admin-table' style={{width: '100%'}}>
@@ -149,7 +149,6 @@ const AllSAndC = (props) => {
         </table>
         {dialog.isLoading && (
           <Dialog
-            //Update
             nameProduct={dialog.nameProduct}
             onDialog={areUSureDelete}
             message={dialog.message}
