@@ -16,7 +16,7 @@ const Malls = (props) => {
     nameProduct: ""
   });
   const idMallRef = useRef();
-  const apiEndPoint = "http://localhost:3000/mall";
+  const apiEndPoint = `${global.api}/mall`;
 
   useEffect(() => {
     getMalls()

@@ -13,12 +13,12 @@ const SorCCreate = (props) => {
 
   useEffect(() => {
     networkCall(
-      { url: "http://localhost:3000/category", type: "get" },
+      { url: `${global.api}/category`, type: "get" },
       (res) => setCategories(res),
       (error) => console.log("error", error)
     );
     networkCall(
-      { url: "http://localhost:3000/mall", type: "get" },
+      { url: `${global.api}/mall`, type: "get" },
       (res) => setMallList(res),
       (error) => console.log("error", error)
     );
@@ -67,7 +67,7 @@ const SorCCreate = (props) => {
     console.log("categoryBodyRef.current.value", categoryBodyRef.current.value);
     networkCall(
       {
-        url: `http://localhost:3000/category/${categoryBodyRef.current.value}`,
+        url: `${global.api}/category/${categoryBodyRef.current.value}`,
         type: "get",
       },
       ({ id, title }) => (SOrCCategoryRef.current = { id, title }),
@@ -80,7 +80,7 @@ const SorCCreate = (props) => {
     for (let index = 0; index < mallListBodyRef.current.length; index++) {
       networkCall(
         {
-          url: `http://localhost:3000/mall/${mallListBodyRef.current[index]}`,
+          url: `${global.api}/mall/${mallListBodyRef.current[index]}`,
           type: "get",
         },
         (res) => ML.push(res),

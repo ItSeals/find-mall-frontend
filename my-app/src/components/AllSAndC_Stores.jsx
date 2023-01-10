@@ -16,7 +16,7 @@ const AllSAndC_Stores = (props) => {
     nameProduct: ""
   });
   const idMallRef = useRef();
-  const apiEndPoint = "http://localhost:3000/item";
+  const apiEndPoint = `${global.api}/item`;
 
   const getMalls = async () => {
     const { data: res } = await axios.get(apiEndPoint)
