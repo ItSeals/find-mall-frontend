@@ -7,7 +7,7 @@ import SorCItem from "./allSAndC/SorCItem";
 import SorCItemBG from "./allSAndC/SorCItemBG";
 
 const AllSAndC = (props) => {
-  const [malls, setMalls] = useState([]);
+  const [allSAndC, setAllSAndC] = useState([]);
   const [createPage, setCreatePage] = useState(false);
   const [editPage, setEditPage] = useState(false);
   const [dialog, setDialog] = useState({
@@ -19,30 +19,30 @@ const AllSAndC = (props) => {
   const idMallRef = useRef();
 
   useEffect(() => {
-    updateMalls();
+    updateAllSAndC();
   }, []);
 
-  function updateMalls() {
+  function updateAllSAndC() {
     networkCall(
       { url: `${global.api}/item`, type: "get" },
-      (res) => setMalls(res),
+      (res) => setAllSAndC(res),
       (error) => console.log("error", error)
     );
   }
 
-  function AddMall(mall) {
+  function AddSOrC(mall) {
     networkCall(
       { url: `${global.api}/item`, type: "post", content: mall },
-      () => updateMalls(),
+      () => updateAllSAndC(),
       (error) => console.log("error", error)
     );
     setCreatePage(false);
   }
 
-  function EditMall(mall) {
+  function EditSOrC(mall) {
     networkCall(
       { url: `${global.api}/item/${mall.id}`, type: "put", content: mall },
-      () => updateMalls(),
+      () => updateAllSAndC(),
       (error) => console.log("error", error)
     );
     setEditPage(false);
@@ -57,8 +57,8 @@ const AllSAndC = (props) => {
   }
 
   function handleDelete(id) {
-    const index = malls.findIndex((m) => m.id === id);
-    handleDialog("Are you sure you want to delete?", true, malls[index].title);
+    const index = allSAndC.findIndex((m) => m.id === id);
+    handleDialog("Are you sure you want to delete?", true, allSAndC[index].title);
     idMallRef.current = id;
   }
 
@@ -66,7 +66,7 @@ const AllSAndC = (props) => {
     if (choose) {
       networkCall(
         { url: `${global.api}/item/${idMallRef.current}`, type: "delete" },
-        () => updateMalls(),
+        () => updateAllSAndC(),
         (error) => console.log("error", error)
       );
     }
@@ -78,8 +78,8 @@ const AllSAndC = (props) => {
       <SorCCreate
         className={`${props.className} position-absolute`}
         style={{ width: "100%", left: "0" }}
-        AM={AddMall}
-        prePage={setCreatePage}
+        AddSOrC={AddSOrC}
+        setCreatePage={setCreatePage}
       />
     );
   } else if (editPage) {
@@ -87,8 +87,8 @@ const AllSAndC = (props) => {
       <SorCEdit
         className={`${props.className} position-absolute`}
         style={{ width: "100%", left: "0" }}
-        ME={EditMall}
-        prePage={setEditPage}
+        EditSOrC={EditSOrC}
+        setEditPage={setEditPage}
       />
     );
   } else {
@@ -117,16 +117,16 @@ const AllSAndC = (props) => {
             </tr>
           </thead>
           <tbody>
-            <SorCItemBG SorC={malls[0]}></SorCItemBG>
-            <SorCItemBG SorC={malls[1]}></SorCItemBG>
-            <SorCItemBG SorC={malls[2]}></SorCItemBG>
-            <SorCItemBG SorC={malls[3]}></SorCItemBG>
-            <SorCItemBG SorC={malls[4]}></SorCItemBG>
-            <SorCItemBG SorC={malls[5]}></SorCItemBG>
-            <SorCItemBG SorC={malls[6]}></SorCItemBG>
-            <SorCItemBG SorC={malls[7]}></SorCItemBG>
-            <SorCItemBG SorC={malls[8]}></SorCItemBG>
-            <SorCItemBG SorC={malls[9]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[0]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[1]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[2]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[3]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[4]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[5]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[6]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[7]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[8]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[9]}></SorCItemBG>
           </tbody>
         </table>
         <table className="admin-table" style={{ width: "100%" }}>
@@ -146,14 +146,12 @@ const AllSAndC = (props) => {
             </tr>
           </thead>
           <tbody>
-            {malls.map((mall) => (
+            {allSAndC.map((SOrC) => (
               <SorCItem
-                mall={mall}
-                MD={handleDelete}
-                sEP={setEditPage}
-                ME={EditMall}
-                Mlength={malls.length}
-                key={mall.id}
+                SOrC={SOrC}
+                handleDelete={handleDelete}
+                setEditPage={setEditPage}
+                key={SOrC.id}
               />
             ))}
           </tbody>

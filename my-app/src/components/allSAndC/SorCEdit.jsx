@@ -99,7 +99,7 @@ const SorCCreate = (props) => {
   }
 
   function SorCSubmit() {
-    props.ME({
+    props.EditSOrC({
       id: global.admin.item.id,
       title:
         nameBodyRef.current.value === ""
@@ -118,7 +118,7 @@ const SorCCreate = (props) => {
             <tr>
               <th style={{ position: "relative" }}>
                 <button
-                  onClick={() => props.prePage(false)}
+                  onClick={() => props.setEditPage(false)}
                   className="btn-pre-arrow"
                 >
                   <svg

@@ -79,7 +79,7 @@ const SorCCreate = (props) => {
   }
 
   function SorCSubmit() {
-    props.AM({
+    props.AddSOrC({
       title:
         nameBodyRef.current.value === ""
           ? "unknown"
@@ -97,7 +97,7 @@ const SorCCreate = (props) => {
             <tr>
               <th style={{ position: "relative" }}>
                 <button
-                  onClick={() => props.prePage(false)}
+                  onClick={() => props.setCreatePage(false)}
                   className="btn-pre-arrow"
                 >
                   <svg
