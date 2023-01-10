@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
+import { global, networkCall } from ".././helpers/helpers";
 import Dialog from './Dialog';
 import MallCreate from './malls/MallCreate';
 import MallEdit from './malls/MallEdit';
