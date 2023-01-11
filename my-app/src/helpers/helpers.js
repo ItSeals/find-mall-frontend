@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export var global = {
-  api: "http://localhost:3000",
+  api: "http://localhost:3000/api/v1",
   admin: { item: {} },
 };
 

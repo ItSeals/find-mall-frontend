@@ -5,7 +5,6 @@ const MallCreate = (props) => {
   const [locationBody, setLocationBody] = useState('')
 
   let mall = {
-    id: props.Mlength + 1,
     title: nameBody,
     location: locationBody,
   }
