@@ -5,14 +5,12 @@ const MallEdit = (props) => {
   const [nameBody, setNameBody] = useState(global.admin.mall.title)
   const [locationBody, setLocationBody] = useState(global.admin.mall.location)
   let mall = {
-    id: global.admin.mall.id,
     title: nameBody,
     location: locationBody,
   }
 
   useEffect(() => {
     mall = {
-      id: global.admin.mall.id,
       title: nameBody,
       location: locationBody,
     }

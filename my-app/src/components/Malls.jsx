@@ -34,7 +34,7 @@ const Malls = (props) => {
 
   function EditMall(mall) {
     networkCall(
-      { url: apiEndPoint + "/" + mall.id, type: "put", content: mall },
+      { url: apiEndPoint + "/" + global.admin.mall.id, type: "put", content: mall },
       () => updateMalls(),
       (error) => console.log("error", error)
     );
