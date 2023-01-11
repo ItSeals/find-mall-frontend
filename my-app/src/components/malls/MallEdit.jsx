@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import { global, networkCall } from "../../helpers/helpers";
 
 const MallEdit = (props) => {
-  const [nameBody, setNameBody] = useState(props.mall.title)
-  const [locationBody, setLocationBody] = useState(props.mall.location)
+  const [nameBody, setNameBody] = useState(global.admin.mall.title)
+  const [locationBody, setLocationBody] = useState(global.admin.mall.location)
   let mall = {
-    id: props.mall.id,
+    id: global.admin.mall.id,
     title: nameBody,
     location: locationBody,
   }
 
   useEffect(() => {
     mall = {
-      id: props.mall.id,
+      id: global.admin.mall.id,
       title: nameBody,
       location: locationBody,
     }
