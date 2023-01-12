@@ -2,7 +2,7 @@ import axios from "axios";
 
 export var global = {
   api: "http://localhost:3000/api/v1",
-  admin: { mall: {}, item: {} },
+  admin: { mall: {}, category: {}, item: {} },
 };
 
 export async function networkCall(networkData, successCallback, errorCallback) {

@@ -7,6 +7,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import AllSAndC_Rest from './AllSAndC_Rest';
 import AllSAndC_Stores from './AllSAndC_Stores';
 import AllSAndC_SAndE from './AllSAndC_SAndE';
+import Categories from './Categories';
 const SideBar = (props) => {
   return (
     <div style={{display:'flex'}}>
@@ -21,6 +22,13 @@ const SideBar = (props) => {
           <Link to={"/malls"} className = 'col-12 ml px-2'>
             <div className='link'>
             <i className ='bi bi-circle ms-5'></i> <span className= 'ms-2 d-none d-sm-inline'>Malls</span>
+            </div>
+          </Link>
+        </il>
+        <il className='row'>
+          <Link to={"/categories"} className = 'col-12 ml px-2'>
+            <div className='link'>
+            <i className ='bi bi-circle ms-5'></i> <span className= 'ms-2 d-none d-sm-inline'>Categories</span>
             </div>
           </Link>
         </il>
@@ -57,12 +65,13 @@ const SideBar = (props) => {
     </div>
     <div className='col-10'>
       <Routes>
-        <Route path='/' element={<Malls/>}/>
-        <Route path='/malls' element={<Malls/>}/>
-        <Route path='/allcaffes' element={<AllSAndC/>}/>
-        <Route path='/stores' element={<AllSAndC_Stores/>}/>
-        <Route path='/restaurants' element={<AllSAndC_Rest/>}/>
-        <Route path='/services' element={<AllSAndC_SAndE/>}/>
+        <Route path='/' element={<Malls />}/>
+        <Route path='/categories' element={<Categories />}/>
+        <Route path='/malls' element={<Malls />}/>
+        <Route path='/allcaffes' element={<AllSAndC />}/>
+        <Route path='/stores' element={<AllSAndC_Stores />}/>
+        <Route path='/restaurants' element={<AllSAndC_Rest />}/>
+        <Route path='/services' element={<AllSAndC_SAndE />}/>
       </Routes>
     </div>
   </div>
