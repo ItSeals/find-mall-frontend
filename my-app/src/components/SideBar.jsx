@@ -19,42 +19,42 @@ const SideBar = (props) => {
       </div>
        <ul className='container'>
         <il className='row'>
-          <Link to={"/malls"} className = 'col-12 ml px-2'>
+          <Link to={"/admin/malls"} className = 'col-12 ml px-2'>
             <div className='link'>
             <i className ='bi bi-circle ms-5'></i> <span className= 'ms-2 d-none d-sm-inline'>Malls</span>
             </div>
           </Link>
         </il>
         <il className='row'>
-          <Link to={"/categories"} className = 'col-12 ml px-2'>
+          <Link to={"/admin/categories"} className = 'col-12 ml px-2'>
             <div className='link'>
             <i className ='bi bi-circle ms-5'></i> <span className= 'ms-2 d-none d-sm-inline'>Categories</span>
             </div>
           </Link>
         </il>
         <il className='row'>
-          <Link to={"/allcaffes"} className = 'col-12 ml-1 px-2' >
+          <Link to={"/admin/allcaffes"} className = 'col-12 ml-1 px-2' >
           <div className='link'>
             <i className ='bi bi-bag ms-5'></i> <span className = 'ms-2 d-none d-sm-inline'>All stores & cafes</span>
             </div>
           </Link>
         </il>
         <il className='row'>
-          <Link to={"/stores"} className = 'col-12 ml px-2'>
+          <Link to={"/admin/stores"} className = 'col-12 ml px-2'>
           <div className='link'>
             <i className ='bi bi-cart3 ms-5'></i> <span className = 'ms-2 d-none d-sm-inline'>Stores</span>
             </div>
           </Link>
         </il>
         <il className='row'>
-          <Link to={"/restaurants"} className = 'col-12 ml-1 px-2'>
+          <Link to={"/admin/restaurants"} className = 'col-12 ml-1 px-2'>
           <div className='link'>
             <i className ='bi bi-shop ms-5'></i> <span className = 'ms-2 d-none d-sm-inline'>Restaurants</span>
             </div>
           </Link>
         </il>
         <il className='row'>
-          <Link to={"/services"} className = 'col-12 ml px-2'>
+          <Link to={"/admin/services"} className = 'col-12 ml px-2'>
           <div className='link'>
             <i className ='bi bi-joystick ms-5' ></i> <span className= 'ms-2 d-none d-sm-inline'>Services & Entertainment</span>
             </div>
@@ -65,7 +65,7 @@ const SideBar = (props) => {
     </div>
     <div className='col-10'>
       <Routes>
-        <Route path='/admin/' element={<Malls />}/>
+        <Route path='/' element={<Malls />}/>
         <Route path='/admin/malls' element={<Malls />}/>
         <Route path='/admin/categories' element={<Categories />}/>
         <Route path='/admin/allcaffes' element={<AllSAndC />}/>
