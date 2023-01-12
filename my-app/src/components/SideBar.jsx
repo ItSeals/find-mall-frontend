@@ -65,13 +65,13 @@ const SideBar = (props) => {
     </div>
     <div className='col-10'>
       <Routes>
-        <Route path='/' element={<Malls />}/>
-        <Route path='/categories' element={<Categories />}/>
-        <Route path='/malls' element={<Malls />}/>
-        <Route path='/allcaffes' element={<AllSAndC />}/>
-        <Route path='/stores' element={<AllSAndC_Stores />}/>
-        <Route path='/restaurants' element={<AllSAndC_Rest />}/>
-        <Route path='/services' element={<AllSAndC_SAndE />}/>
+        <Route path='/admin/' element={<Malls />}/>
+        <Route path='/admin/malls' element={<Malls />}/>
+        <Route path='/admin/categories' element={<Categories />}/>
+        <Route path='/admin/allcaffes' element={<AllSAndC />}/>
+        <Route path='/admin/stores' element={<AllSAndC_Stores />}/>
+        <Route path='/admin/restaurants' element={<AllSAndC_Rest />}/>
+        <Route path='/admin/services' element={<AllSAndC_SAndE />}/>
       </Routes>
     </div>
   </div>
