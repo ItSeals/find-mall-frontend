@@ -6,8 +6,7 @@ import CategoryItem from "./categories/CategoryItem";
 import CategoryItemBG from "./categories/CategoryItemBG";
 import Dialog from "./Dialog";
 
-const Categories = () => {
-  const [categories, setCategories] = useState([]);
+const Categories = ({ categories, updateCategories }) => {
   const [createPage, setCreatePage] = useState(false);
   const [editPage, setEditPage] = useState(false);
   const [dialog, setDialog] = useState({
@@ -72,14 +71,6 @@ const Categories = () => {
       );
     }
     handleDialog("", false);
-  }
-
-  function updateCategories() {
-    networkCall(
-      { url: apiEndPoint, type: "get" },
-      (res) => setCategories(res),
-      (error) => console.log("error", error)
-    );
   }
 
   if (createPage) {
