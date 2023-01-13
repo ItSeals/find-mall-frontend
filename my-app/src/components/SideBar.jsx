@@ -1,28 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { global, networkCall } from ".././helpers/helpers";
 import AllSAndC from "./AllSAndC";
 import Malls from "./Malls";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import AllSAndC_Rest from "./AllSAndC_Rest";
-import AllSAndC_Stores from "./AllSAndC_Stores";
-import AllSAndC_SAndE from "./AllSAndC_SAndE";
 import Categories from "./Categories";
+import SorCCategory from "./allSAndC/SorCCategory";
 
-const SideBar = () => {
-  const [categories, setCategories] = useState([{}])
-
-  function updateCategories() {
-    networkCall(
-      { type: "get", url: `${global.api}/category` },
-      (res) => setCategories(res),
-      (error) => console.log("error", error)
-    );
-  };
-
-  useEffect(() => updateCategories(), []);
-
+const SideBar = (props) => {
   return (
     <div style={{display:'flex'}}>
     <div className= 'col-2 min-vh-100 sidebar overflow-auto' style={{height: "100vh"}}>
@@ -53,7 +39,7 @@ const SideBar = () => {
             </div>
           </Link>
         </il>
-        {categories.map((category, index) => {
+        {props.categories.map((category, index) => {
           return (
             <il className="row">
               <Link
@@ -73,27 +59,10 @@ const SideBar = () => {
       </ul>
     </div>
     <div className='col-10'>
-      <Routes>
-        <Route path='/' element={<Malls />}/>
-        <Route path='/admin/malls' element={<Malls />}/>
-        <Route
-          path='/admin/categories'
-          element={
-            <Categories
-              categories={categories}
-              updateCategories={updateCategories}
-            />
-          }
-        />
-        <Route path='/admin/items' element={<AllSAndC />}/>
-        {categories.map((category) => {
-          return <Route path={`/admin/items/${category.id}`} element={<div>{category.title}</div>}/>
-        })}
-        <Route path='*' element={<Malls />}/>
-      </Routes>
+      <Outlet />
     </div>
   </div>
   )
-}
+};
 
-export default SideBar
+export default SideBar;

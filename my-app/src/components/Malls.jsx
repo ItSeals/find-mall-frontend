@@ -30,7 +30,7 @@ const Malls = (props) => {
       (error) => console.log("error", error)
     );
     setCreatePage(false);
-  };
+  }
 
   function EditMall(mall) {
     networkCall(
@@ -39,7 +39,7 @@ const Malls = (props) => {
       (error) => console.log("error", error)
     );
     setEditPage(false);
-  };
+  }
 
   function handleDialog(message, isLoading, nameProduct) {
     setDialog({
@@ -47,13 +47,13 @@ const Malls = (props) => {
       isLoading,
       nameProduct,
     });
-  };
+  }
 
   function handleDelete(id) {
     const index = malls.findIndex((m) => m.id === id);
     handleDialog("Are you sure you want to delete?", true, malls[index].title);
     idMallRef.current = id;
-  };
+  }
 
   function areUSureDelete(choose) {
     if (choose) {
@@ -64,7 +64,7 @@ const Malls = (props) => {
       );
     }
     handleDialog("", false);
-  };
+  }
 
   function updateMalls() {
     networkCall(
@@ -72,7 +72,7 @@ const Malls = (props) => {
       (res) => setMalls(res),
       (error) => console.log("error", error)
     );
-  };
+  }
 
   if (createPage) {
     return (
@@ -105,7 +105,7 @@ const Malls = (props) => {
         >
           <thead>
             <tr>
-              <th style={{ width: "20%" }}>Name</th>
+              <th>Name</th>
               <th>Location</th>
               <th style={{ width: "230px" }}>
                 <button
@@ -133,7 +133,7 @@ const Malls = (props) => {
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>
             <tr>
-              <th style={{ width: "20%" }}>Name</th>
+              <th>Name</th>
               <th>Location</th>
               <th style={{ width: "230px" }}>
                 <button

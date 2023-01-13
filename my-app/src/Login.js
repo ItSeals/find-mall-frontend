@@ -3,7 +3,7 @@ import AuthContext from "./context/AuthProvider";
 import axios from "./api/axios";
 import "./Login.css";
 const LOGIN_URL = "/auth";
-const Login = (props) => {
+const Login = () => {
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
@@ -11,7 +11,8 @@ const Login = (props) => {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  
+  const [success, setSuccess] = useState(false);
+
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -40,7 +41,7 @@ const Login = (props) => {
       setAuth({ user, pwd, roles, accessToken });
       setUser("");
       setPwd("");
-      props.setSuccess(true);
+      setSuccess(true);
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -57,12 +58,12 @@ const Login = (props) => {
 
   return (
     <>
-      {props.success ? (
+      {success ? (
         <section class="go-to-admin">
           <h1>You are logged in!</h1>
           <br />
           <p>
-            {/* <a href="#" class="go-to-admin-link">Go to Admin Pannel</a> */}
+            <a href="#" class="go-to-admin-link">Go to Admin Pannel</a>
           </p>
         </section>
       ) : (

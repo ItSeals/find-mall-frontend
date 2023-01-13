@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { global, networkCall } from ".././helpers/helpers";
-import Dialog from "./Dialog";
-import SorCCreate from "./allSAndC/SorCCreate";
-import SorCEdit from "./allSAndC/SorCEdit";
-import SorCItem from "./allSAndC/SorCItem";
-import SorCItemBG from "./allSAndC/SorCItemBG";
+import { global, networkCall } from "../../helpers/helpers";
+import Dialog from "../Dialog";
+import SorCCreate from "./SorCCreate";
+import SorCEdit from "./SorCEdit";
+import SorCItem from "./SorCItem";
+import SorCItemBG from "./SorCItemBG";
 
-const AllSAndC_Rest = (props) => {
+const SorCCategory = (props) => {
   const [allSAndC, setAllSAndC] = useState([]);
   const [createPage, setCreatePage] = useState(false);
   const [editPage, setEditPage] = useState(false);
@@ -20,20 +20,15 @@ const AllSAndC_Rest = (props) => {
 
   useEffect(() => {
     updateAllSAndC();
-  }, []);
+  }, [props.categoryId]);
 
   function updateAllSAndC() {
     networkCall(
-      { url: `${global.api}/item`, type: "get" },
-      (res) => {
-        let value = [];
-        for (let index = 0; index < res.length; index++) {
-          if (res[index].category.title === "Restaurants") {
-            value.push(res[index]);
-          }
-        }
-        setAllSAndC(value);
+      {
+        url: `${global.api}/item?category.id=${props.categoryId}`,
+        type: "get",
       },
+      (res) => setAllSAndC(res),
       (error) => console.log("error", error)
     );
   }
@@ -129,16 +124,16 @@ const AllSAndC_Rest = (props) => {
             </tr>
           </thead>
           <tbody>
-            <SorCItemBG SorC={allSAndC[0]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[1]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[2]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[3]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[4]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[5]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[6]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[7]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[8]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[9]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[0]} />
+            <SorCItemBG SorC={allSAndC[1]} />
+            <SorCItemBG SorC={allSAndC[2]} />
+            <SorCItemBG SorC={allSAndC[3]} />
+            <SorCItemBG SorC={allSAndC[4]} />
+            <SorCItemBG SorC={allSAndC[5]} />
+            <SorCItemBG SorC={allSAndC[6]} />
+            <SorCItemBG SorC={allSAndC[7]} />
+            <SorCItemBG SorC={allSAndC[8]} />
+            <SorCItemBG SorC={allSAndC[9]} />
           </tbody>
         </table>
         <table className="admin-table" style={{ width: "100%" }}>
@@ -180,4 +175,4 @@ const AllSAndC_Rest = (props) => {
   }
 };
 
-export default AllSAndC_Rest;
+export default SorCCategory;

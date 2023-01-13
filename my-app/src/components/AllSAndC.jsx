@@ -58,7 +58,11 @@ const AllSAndC = (props) => {
 
   function handleDelete(id) {
     const index = allSAndC.findIndex((m) => m.id === id);
-    handleDialog("Are you sure you want to delete?", true, allSAndC[index].title);
+    handleDialog(
+      "Are you sure you want to delete?",
+      true,
+      allSAndC[index].title
+    );
     idMallRef.current = id;
   }
 
@@ -117,16 +121,16 @@ const AllSAndC = (props) => {
             </tr>
           </thead>
           <tbody>
-            <SorCItemBG SorC={allSAndC[0]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[1]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[2]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[3]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[4]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[5]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[6]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[7]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[8]}></SorCItemBG>
-            <SorCItemBG SorC={allSAndC[9]}></SorCItemBG>
+            <SorCItemBG SorC={allSAndC[0]} />
+            <SorCItemBG SorC={allSAndC[1]} />
+            <SorCItemBG SorC={allSAndC[2]} />
+            <SorCItemBG SorC={allSAndC[3]} />
+            <SorCItemBG SorC={allSAndC[4]} />
+            <SorCItemBG SorC={allSAndC[5]} />
+            <SorCItemBG SorC={allSAndC[6]} />
+            <SorCItemBG SorC={allSAndC[7]} />
+            <SorCItemBG SorC={allSAndC[8]} />
+            <SorCItemBG SorC={allSAndC[9]} />
           </tbody>
         </table>
         <table className="admin-table" style={{ width: "100%" }}>
