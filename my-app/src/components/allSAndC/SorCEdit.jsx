@@ -100,13 +100,12 @@ const SorCCreate = (props) => {
 
   function SorCSubmit() {
     props.EditSOrC({
-      id: global.admin.item.id,
       title:
         nameBodyRef.current.value === ""
           ? "unknown"
           : nameBodyRef.current.value,
-      category: SOrCCategoryRef.current,
-      malls: SOrCMallListRef.current,
+      category: Number(categoryBodyRef.current.value),
+      malls: mallListBodyRef.current.map((mallId) => Number(mallId)),
     });
   }
 

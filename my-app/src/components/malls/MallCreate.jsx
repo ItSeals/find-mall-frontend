@@ -4,11 +4,6 @@ const MallCreate = (props) => {
   const [nameBody, setNameBody] = useState('')
   const [locationBody, setLocationBody] = useState('')
 
-  let mall = {
-    title: nameBody,
-    location: locationBody,
-  }
-
   return (
     <div className={props.className} style={props.style}>
       <table className='admin-table' style={{width: '100%'}}>
@@ -55,7 +50,10 @@ const MallCreate = (props) => {
           <tr>
             <td>
               <button 
-                onClick={() => props.AM(mall)}
+                onClick={() => props.AM({
+                  title: nameBody,
+                  location: locationBody,
+                })}
                 className='btn btn-large'
               >
                 Create
