@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { global, networkCall } from "../../helpers/helpers";
 import Dialog from "../Dialog";
+import SorCCategoryItem from "./SorCCategory/SorCCategoryItem";
+import SorCCategoryItemBG from "./SorCCategory/SorCCategoryItemBG";
 import SorCCreate from "./SorCCreate";
 import SorCEdit from "./SorCEdit";
-import SorCItem from "./SorCItem";
-import SorCItemBG from "./SorCItemBG";
 
 const SorCCategory = (props) => {
   const [allSAndC, setAllSAndC] = useState([]);
@@ -124,16 +124,16 @@ const SorCCategory = (props) => {
             </tr>
           </thead>
           <tbody>
-            <SorCItemBG SorC={allSAndC[0]} />
-            <SorCItemBG SorC={allSAndC[1]} />
-            <SorCItemBG SorC={allSAndC[2]} />
-            <SorCItemBG SorC={allSAndC[3]} />
-            <SorCItemBG SorC={allSAndC[4]} />
-            <SorCItemBG SorC={allSAndC[5]} />
-            <SorCItemBG SorC={allSAndC[6]} />
-            <SorCItemBG SorC={allSAndC[7]} />
-            <SorCItemBG SorC={allSAndC[8]} />
-            <SorCItemBG SorC={allSAndC[9]} />
+            <SorCCategoryItemBG SorC={allSAndC[0]} />
+            <SorCCategoryItemBG SorC={allSAndC[1]} />
+            <SorCCategoryItemBG SorC={allSAndC[2]} />
+            <SorCCategoryItemBG SorC={allSAndC[3]} />
+            <SorCCategoryItemBG SorC={allSAndC[4]} />
+            <SorCCategoryItemBG SorC={allSAndC[5]} />
+            <SorCCategoryItemBG SorC={allSAndC[6]} />
+            <SorCCategoryItemBG SorC={allSAndC[7]} />
+            <SorCCategoryItemBG SorC={allSAndC[8]} />
+            <SorCCategoryItemBG SorC={allSAndC[9]} />
           </tbody>
         </table>
         <table className="admin-table" style={{ width: "100%" }}>
@@ -154,7 +154,7 @@ const SorCCategory = (props) => {
           </thead>
           <tbody>
             {allSAndC.map((SOrC) => (
-              <SorCItem
+              <SorCCategoryItem
                 SOrC={SOrC}
                 handleDelete={handleDelete}
                 setEditPage={setEditPage}

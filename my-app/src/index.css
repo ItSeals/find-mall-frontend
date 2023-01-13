@@ -3,6 +3,11 @@
   src: url(./font/MacPawFixelText-SemiBold.otf);
 }
 
+@font-face {
+  font-family: 'MacPaw Fixel text thin';
+  src: url(./font/MacPawFixelText-Thin.otf);
+}
+
 /*---null---*/
 li {
   list-style-type: none;
@@ -95,6 +100,13 @@ table.admin-table th {
   text-align: center;
   font-size: 25px;
   line-height: 25px;
+}
+
+table.admin-table .category_link{
+  font-family: 'MacPaw Fixel text thin';
+  color: #000;
+  font-size: 15px;
+  line-height: 20px;
 }
 
 table.admin-table th {

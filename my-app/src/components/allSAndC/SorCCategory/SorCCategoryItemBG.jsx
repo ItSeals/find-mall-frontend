@@ -1,20 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-const SorCItemBG = (props) => {
+const SorCCategoryItemBG = (props) => {
   return (
     <tr>
       <td>{props.SorC !== undefined ? props.SorC.title : ""}</td>
-      <td>
-        <Link
-          to={`/admin/items/${
-            props.SorC !== undefined ? props.SorC.category.title : ""
-          }`}
-          className="category_link"
-        >
-          {props.SorC !== undefined ? props.SorC.category.title : ""}
-        </Link>
-      </td>
+      <td>{props.SorC !== undefined ? props.SorC.category.title : ""}</td>
       <td>
         {props.SorC !== undefined
           ? props.SorC.malls.map((mall, index) => {
@@ -33,4 +23,4 @@ const SorCItemBG = (props) => {
   );
 };
 
-export default SorCItemBG;
+export default SorCCategoryItemBG;
