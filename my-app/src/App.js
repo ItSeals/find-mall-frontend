@@ -45,7 +45,6 @@ function App() {
       </Route>
       <Route path="admin" element={<SideBar categories={categories} />}>
         <Route index={true} element={<Malls />} />
-        <Route path="login" element={<Login />} />
         <Route path="malls" element={<Malls />} />
         <Route
           path="categories"
@@ -66,6 +65,7 @@ function App() {
           );
         })}
       </Route>
+      <Route path="admin/login" element={<Login />} />
       <Route path="*" element={<div>error 404: not faund page</div>} />
     </Routes>
   );
