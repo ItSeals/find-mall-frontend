@@ -78,6 +78,21 @@ table.admin-table {
   border-spacing: 0;
 }
 
+table.admin-table .category_link{
+  font-family: 'MacPaw Fixel text thin';
+  color: #000;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+table.admin-table .underline-thin-font{
+  font-family: 'MacPaw Fixel text thin';
+  color: #000;
+  font-size: 15px;
+  line-height: 20px;
+  text-decoration: underline;
+}
+
 table.admin-table thead tr {
   background: #B2C0F8;
   height: 14.5vh;
@@ -100,13 +115,6 @@ table.admin-table th {
   text-align: center;
   font-size: 25px;
   line-height: 25px;
-}
-
-table.admin-table .category_link{
-  font-family: 'MacPaw Fixel text thin';
-  color: #000;
-  font-size: 15px;
-  line-height: 20px;
 }
 
 table.admin-table th {

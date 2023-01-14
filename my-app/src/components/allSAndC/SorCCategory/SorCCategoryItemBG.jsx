@@ -4,7 +4,22 @@ const SorCCategoryItemBG = (props) => {
   return (
     <tr>
       <td>{props.SorC !== undefined ? props.SorC.title : ""}</td>
-      <td>{props.SorC !== undefined ? props.SorC.category.title : ""}</td>
+      <td className="category_link">
+        {props.SorC !== undefined
+          ? props.SorC.tags.map((tag, index) => {
+              let sep = "";
+              if (index !== 0) {
+                sep = ", ";
+              }
+              return (
+                <>
+                  {sep}
+                  <span className="underline-thin-font">{tag.title}</span>
+                </>
+              );
+            })
+          : ""}
+      </td>
       <td>
         {props.SorC !== undefined
           ? props.SorC.malls.map((mall, index) => {

@@ -3,11 +3,14 @@ import { global, networkCall } from "../../helpers/helpers";
 
 const SorCCreate = (props) => {
   const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
   const [mallList, setMallList] = useState([]);
 
   const nameBodyRef = useRef("");
   const categoryBodyRef = useRef(1);
   const SOrCCategoryRef = useRef({});
+  const tagsBodyRef = useRef([1]);
+  const SOrCTagsRef = useRef([]);
   const mallListBodyRef = useRef([1]);
   const SOrCMallListRef = useRef([]);
 
@@ -18,6 +21,11 @@ const SorCCreate = (props) => {
       (error) => console.log("error", error)
     );
     networkCall(
+      { url: `${global.api}/tag`, type: "get" },
+      (res) => setTags(res),
+      (error) => console.log("error", error)
+    );
+    networkCall(
       { url: `${global.api}/mall`, type: "get" },
       (res) => setMallList(res),
       (error) => console.log("error", error)
@@ -25,14 +33,16 @@ const SorCCreate = (props) => {
   }, []);
 
   useEffect(() => {
-    if (categories.length !== 0 && mallList.length !== 0) {
+    if (categories.length !== 0 && mallList.length !== 0 && tags.length !== 0) {
       nameBodyRef.current.value = global.admin.item.title;
       categoryBodyRef.current.value = global.admin.item.category.id;
       updateSOrCCategoryRef();
+      tagsBodyRef.current = [tags[0].id];
+      updateSOrCTagsRef();
       mallListBodyRef.current = global.admin.item.malls.map((m) => m.id);
       updateSOrCMallListRef();
     }
-  }, [categories, mallList]);
+  }, [categories, mallList, tags]);
 
   function getSelectedOptionsFrom(optionsData, valueCallback) {
     var value = [];
@@ -44,27 +54,45 @@ const SorCCreate = (props) => {
     valueCallback(value);
   }
 
-  function getMallListOptions() {
-    return mallList.map((cat, index, ML) => {
-      let MLid = global.admin.item.malls.map((m) => m.id);
+  function getTagsOptions() {
+    return tags.map((tag, index, T) => {
+      let TId = global.admin.item.tags.map((t) => t.id);
       let isSelected = false;
-      for (let i = 0; i < MLid.length; i++) {
-        if (MLid[i] === ML[index].id) {
+      for (let i = 0; i < TId.length; i++) {
+        if (TId[i] === T[index].id) {
           isSelected = true;
         }
       }
       return isSelected ? (
-        <option selected value={cat.id}>
-          {cat.title}
+        <option selected value={tag.id}>
+          {tag.title}
         </option>
       ) : (
-        <option value={cat.id}>{cat.title}</option>
+        <option value={tag.id}>{tag.title}</option>
+      );
+    });
+  }
+
+  function getMallListOptions() {
+    return mallList.map((mall, index, ML) => {
+      let MLId = global.admin.item.malls.map((m) => m.id);
+      let isSelected = false;
+      for (let i = 0; i < MLId.length; i++) {
+        if (MLId[i] === ML[index].id) {
+          isSelected = true;
+        }
+      }
+      return isSelected ? (
+        <option selected value={mall.id}>
+          {mall.title}
+        </option>
+      ) : (
+        <option value={mall.id}>{mall.title}</option>
       );
     });
   }
 
   function updateSOrCCategoryRef() {
-    console.log("categoryBodyRef.current.value", categoryBodyRef.current.value);
     networkCall(
       {
         url: `${global.api}/category/${categoryBodyRef.current.value}`,
@@ -73,6 +101,21 @@ const SorCCreate = (props) => {
       ({ id, title }) => (SOrCCategoryRef.current = { id, title }),
       (error) => console.log("error", error)
     );
+  }
+
+  function updateSOrCTagsRef() {
+    var T = [];
+    for (let index = 0; index < tagsBodyRef.current.length; index++) {
+      networkCall(
+        {
+          url: `${global.api}/tag/${tagsBodyRef.current[index]}`,
+          type: "get",
+        },
+        (res) => T.push(res),
+        (error) => console.log("error", error)
+      );
+    }
+    SOrCTagsRef.current = T;
   }
 
   function updateSOrCMallListRef() {
@@ -88,6 +131,11 @@ const SorCCreate = (props) => {
       );
     }
     SOrCMallListRef.current = ML;
+  }
+
+  function tagsBodyRefOnChange(options) {
+    getSelectedOptionsFrom(options, (value) => (tagsBodyRef.current = value));
+    updateSOrCTagsRef();
   }
 
   function mallListBodyRefOnChange(options) {
@@ -106,6 +154,7 @@ const SorCCreate = (props) => {
           ? "unknown"
           : nameBodyRef.current.value,
       category: SOrCCategoryRef.current,
+      tags: SOrCTagsRef.current,
       malls: SOrCMallListRef.current,
     });
   }
@@ -168,8 +217,16 @@ const SorCCreate = (props) => {
             </tr>
             <tr>
               <td className="position-relative">
-                <div className="title-input">Tags:</div>
-                <input disabled type="text" value="В розробці" />
+                <div className="title-input">Tags</div>
+                <select
+                  multiple={true}
+                  ref={tagsBodyRef}
+                  onChange={(event) =>
+                    tagsBodyRefOnChange(event.target.options)
+                  }
+                >
+                  {getTagsOptions()}
+                </select>
               </td>
             </tr>
             <tr>

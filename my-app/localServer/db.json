@@ -46,6 +46,12 @@
         "id": 2,
         "title": "Restaurants"
       },
+      "tags": [
+        {
+          "id": 1,
+          "title": "Одяг і взуття"
+        }
+      ],
       "malls": [
         {
           "id": 1,
@@ -71,7 +77,26 @@
         "id": 2,
         "title": "Restaurants"
       },
+      "tags": [
+        {
+          "id": 1,
+          "title": "Одяг і взуття"
+        },
+        {
+          "id": 3,
+          "title": "Доставка"
+        },
+        {
+          "id": 5,
+          "title": "Хімчистка"
+        }
+      ],
       "malls": [
+        {
+          "id": 3,
+          "title": "Spartak",
+          "location": "Hetmana Mazepy St, 1B"
+        },
         {
           "id": 1,
           "title": "Victoria gardens",
@@ -81,11 +106,6 @@
           "id": 2,
           "title": "Forum",
           "location": "У львові"
-        },
-        {
-          "id": 3,
-          "title": "Spartak",
-          "location": "Hetmana Mazepy St, 1B"
         }
       ]
     },
@@ -96,6 +116,16 @@
         "id": 1,
         "title": "Stores"
       },
+      "tags": [
+        {
+          "id": 1,
+          "title": "Одяг і взуття"
+        },
+        {
+          "id": 4,
+          "title": "Кінотеатр"
+        }
+      ],
       "malls": [
         {
           "id": 1,
@@ -110,26 +140,39 @@
       ]
     },
     {
+      "id": 4,
       "title": "golaha",
       "category": {
         "id": 3,
         "title": "Services & Entertainment"
       },
+      "tags": [
+        {
+          "id": 2,
+          "title": "Бургерна"
+        }
+      ],
       "malls": [
         {
           "id": 2,
           "title": "Forum",
           "location": "У львові"
         }
-      ],
-      "id": 4
+      ]
     },
     {
+      "id": 5,
       "title": "lotyna",
       "category": {
         "id": 1,
         "title": "Stores"
       },
+      "tags": [
+        {
+          "id": 5,
+          "title": "Хімчистка"
+        }
+      ],
       "malls": [
         {
           "id": 2,
@@ -141,15 +184,37 @@
           "title": "Spartak",
           "location": "Hetmana Mazepy St, 1B"
         }
-      ],
-      "id": 5
+      ]
     },
     {
+      "id": 6,
       "title": "lololoshka",
       "category": {
         "id": 2,
         "title": "Restaurants"
       },
+      "tags": [
+        {
+          "id": 1,
+          "title": "Одяг і взуття"
+        },
+        {
+          "id": 2,
+          "title": "Бургерна"
+        },
+        {
+          "id": 3,
+          "title": "Доставка"
+        },
+        {
+          "id": 4,
+          "title": "Кінотеатр"
+        },
+        {
+          "id": 5,
+          "title": "Хімчистка"
+        }
+      ],
       "malls": [
         {
           "id": 2,
@@ -161,23 +226,66 @@
           "title": "Spartak",
           "location": "Hetmana Mazepy St, 1B"
         }
-      ],
-      "id": 6
+      ]
     },
     {
+      "id": 7,
       "title": "Nokoya",
       "category": {
         "id": 3,
         "title": "Services & Entertainment"
       },
+      "tags": [
+        {
+          "id": 2,
+          "title": "Бургерна"
+        },
+        {
+          "id": 3,
+          "title": "Доставка"
+        }
+      ],
       "malls": [
         {
           "id": 1,
           "title": "Victoria gardens",
           "location": "за львовом"
         }
+      ]
+    },
+    {
+      "title": "hjhjhjhj",
+      "category": {
+        "id": 2,
+        "title": "Restaurants"
+      },
+      "tags": [
+        {
+          "id": 1,
+          "title": "Одяг і взуття"
+        },
+        {
+          "id": 4,
+          "title": "Кінотеатр"
+        },
+        {
+          "id": 2,
+          "title": "Бургерна"
+        }
       ],
-      "id": 7
+      "malls": [
+        {
+          "id": 1,
+          "title": "Victoria gardens",
+          "location": "за львовом"
+        },
+        {
+          "id": 2,
+          "title": "Forum",
+          "location": "У львові"
+        }
+      ],
+      "id": 8
     }
   ],
   "category": [

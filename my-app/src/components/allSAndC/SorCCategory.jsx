@@ -111,7 +111,7 @@ const SorCCategory = (props) => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Category</th>
+              <th>Tags</th>
               <th>Mall List</th>
               <th style={{ width: "230px", maxWidth: "20%" }}>
                 <button
@@ -140,7 +140,7 @@ const SorCCategory = (props) => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Category</th>
+              <th>Tags</th>
               <th>Mall List</th>
               <th style={{ width: "230px", maxWidth: "20%" }}>
                 <button
