@@ -10,6 +10,7 @@ import Malls from "./components/Malls";
 import Categories from "./components/Categories";
 import AllSAndC from "./components/AllSAndC";
 import SorCCategory from "./components/allSAndC/SorCCategory";
+import Tags from "./components/Tags";
 
 function App() {
   //const [success, setSuccess] = useState(true);
@@ -55,6 +56,7 @@ function App() {
             />
           }
         />
+        <Route path="tags" element={<Tags />} />
         <Route path="items" element={<AllSAndC />} />
         {categories.map((category) => {
           return (

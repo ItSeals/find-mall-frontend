@@ -33,7 +33,14 @@ const SideBar = (props) => {
           </Link>
         </il>
         <il className='row'>
-          <Link to={"/admin/items"} className = 'col-12 ml px-2' >
+          <Link to={"/admin/tags"} className = 'col-12 ml px-2' >
+          <div className='link'>
+            <i className ='bi bi-circle ms-5'></i> <span className = 'ms-2 d-none d-sm-inline'>Tags</span>
+            </div>
+          </Link>
+        </il>
+        <il className='row'>
+          <Link to={"/admin/items"} className = 'col-12 ml-1 px-2' >
           <div className='link'>
             <i className ='bi bi-bag ms-5'></i> <span className = 'ms-2 d-none d-sm-inline'>All stores & cafes</span>
             </div>
@@ -44,7 +51,7 @@ const SideBar = (props) => {
             <il className="row">
               <Link
                 to={`/admin/items/${category.id}`}
-                className={`col-12 ${index % 2 === 0 ? "ml-1" : "ml"} px-2`}
+                className={`col-12 ${index % 2 === 0 ? "ml" : "ml-1"} px-2`}
               >
                 <div className="link">
                   <i className="bi bi-cart3 ms-5"></i>{" "}
