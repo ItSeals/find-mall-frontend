@@ -1,22 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { global, networkCall } from "../../helpers/helpers";
+import React, { useState } from 'react'
+import { global } from "../../helpers/helpers";
 
 const MallEdit = (props) => {
   const [nameBody, setNameBody] = useState(global.admin.mall.title)
   const [locationBody, setLocationBody] = useState(global.admin.mall.location)
-  let mall = {
-    id: global.admin.mall.id,
-    title: nameBody,
-    location: locationBody,
-  }
-
-  useEffect(() => {
-    mall = {
-      id: global.admin.mall.id,
-      title: nameBody,
-      location: locationBody,
-    }
-  }, [nameBody])
 
   return (
     <div className={props.className} style={props.style}>
@@ -64,7 +51,10 @@ const MallEdit = (props) => {
           <tr>
             <td>
               <button 
-                onClick={() => props.ME(mall)}
+                onClick={() => props.ME({
+                  title: nameBody,
+                  location: locationBody,
+                })}
                 className='btn btn-large'
               >
                 Edit

@@ -41,7 +41,7 @@ const AllSAndC = (props) => {
 
   function EditSOrC(mall) {
     networkCall(
-      { url: `${global.api}/item/${mall.id}`, type: "put", content: mall },
+      { url: `${global.api}/item/${global.admin.item.id}`, type: "put", content: mall },
       () => updateAllSAndC(),
       (error) => console.log("error", error)
     );
