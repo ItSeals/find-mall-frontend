@@ -27,7 +27,7 @@ function App() {
   //   )
   // }
 
-  const [categories, setCategories] = useState([{}]);
+  const [categories, setCategories] = useState([]);
 
   function updateCategories() {
     networkCall(
@@ -36,6 +36,8 @@ function App() {
       (error) => console.log("error", error)
     );
   }
+
+  console.log(categories);
 
   useEffect(() => updateCategories(), []);
 
