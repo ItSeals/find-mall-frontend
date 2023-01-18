@@ -27,7 +27,7 @@ function App() {
   //   )
   // }
 
-  const [categories, setCategories] = useState([{}]);
+  const [categories, setCategories] = useState([]);
 
   function updateCategories() {
     networkCall(
