@@ -6,8 +6,6 @@ export var global = {
   admin: { mall: {}, category: {}, tag: {}, item: {} },
 };
 
-console.log("process.env.API_URL", process.env.REACT_APP_HOST)
-
 export async function networkCall(networkData, successCallback, errorCallback) {
   const handleSuccess = (responce) => {
     successCallback(responce.data);
