@@ -108,15 +108,26 @@ const SorCCreate = (props) => {
   }
 
   function SorCSubmit() {
-    props.AddSOrC({
-      title:
-        nameBodyRef.current.value === ""
-          ? "unknown"
-          : nameBodyRef.current.value,
-      category: SOrCCategoryRef.current,
-      tags: SOrCTagsRef.current,
-      malls: SOrCMallListRef.current,
-    });
+    console.log("global.testServer", global.testServer)
+    global.testServer == "true"
+      ? props.AddSOrC({
+          title:
+            nameBodyRef.current.value === ""
+              ? "unknown"
+              : nameBodyRef.current.value,
+          category: SOrCCategoryRef.current,
+          tags: SOrCTagsRef.current,
+          malls: SOrCMallListRef.current,
+        })
+      : props.AddSOrC({
+          title:
+            nameBodyRef.current.value === ""
+              ? "unknown"
+              : nameBodyRef.current.value,
+          category: Number(categoryBodyRef.current.value),
+          tags: tagsBodyRef.current.map((tagId) => Number(tagId)),
+          malls: mallListBodyRef.current.map((mallId) => Number(mallId)),
+        });
   }
 
   return (

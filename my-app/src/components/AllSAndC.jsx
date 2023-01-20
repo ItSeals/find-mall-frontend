@@ -16,7 +16,7 @@ const AllSAndC = (props) => {
     nameProduct: "",
   });
 
-  const idMallRef = useRef();
+  const idSOrCRef = useRef();
 
   useEffect(() => {
     updateAllSAndC();
@@ -30,18 +30,18 @@ const AllSAndC = (props) => {
     );
   }
 
-  function AddSOrC(mall) {
+  function AddSOrC(SOrC) {
     networkCall(
-      { url: `${global.api}/item`, type: "post", content: mall },
+      { url: `${global.api}/item`, type: "post", content: SOrC },
       () => updateAllSAndC(),
       (error) => console.log("error", error)
     );
     setCreatePage(false);
   }
 
-  function EditSOrC(mall) {
+  function EditSOrC(SOrC) {
     networkCall(
-      { url: `${global.api}/item/${mall.id}`, type: "put", content: mall },
+      { url: `${global.api}/item/${global.admin.item.id}`, type: "put", content: SOrC },
       () => updateAllSAndC(),
       (error) => console.log("error", error)
     );
@@ -57,19 +57,19 @@ const AllSAndC = (props) => {
   }
 
   function handleDelete(id) {
-    const index = allSAndC.findIndex((m) => m.id === id);
+    const index = allSAndC.findIndex((i) => i.id === id);
     handleDialog(
       "Are you sure you want to delete?",
       true,
       allSAndC[index].title
     );
-    idMallRef.current = id;
+    idSOrCRef.current = id;
   }
 
   function areUSureDelete(choose) {
     if (choose) {
       networkCall(
-        { url: `${global.api}/item/${idMallRef.current}`, type: "delete" },
+        { url: `${global.api}/item/${idSOrCRef.current}`, type: "delete" },
         () => updateAllSAndC(),
         (error) => console.log("error", error)
       );

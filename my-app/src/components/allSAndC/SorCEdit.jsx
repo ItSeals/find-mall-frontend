@@ -147,16 +147,25 @@ const SorCCreate = (props) => {
   }
 
   function SorCSubmit() {
-    props.EditSOrC({
-      id: global.admin.item.id,
-      title:
-        nameBodyRef.current.value === ""
-          ? "unknown"
-          : nameBodyRef.current.value,
-      category: SOrCCategoryRef.current,
-      tags: SOrCTagsRef.current,
-      malls: SOrCMallListRef.current,
-    });
+    global.testServer == "true"
+      ? props.EditSOrC({
+          title:
+            nameBodyRef.current.value === ""
+              ? "unknown"
+              : nameBodyRef.current.value,
+          category: SOrCCategoryRef.current,
+          tags: SOrCTagsRef.current,
+          malls: SOrCMallListRef.current,
+        })
+      : props.EditSOrC({
+          title:
+            nameBodyRef.current.value === ""
+              ? "unknown"
+              : nameBodyRef.current.value,
+          category: Number(categoryBodyRef.current.value),
+          tags: tagsBodyRef.current.map((tagId) => Number(tagId)),
+          malls: mallListBodyRef.current.map((mallId) => Number(mallId)),
+        });
   }
 
   return (

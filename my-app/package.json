@@ -21,7 +21,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "LS": "json-server -w ./localServer/db.json -p 3000 --routes ./localServer/routes.json"
+    "LS": "json-server -w ./localServer/db.json -p 3000 --routes ./localServer/routes.json",
+    "dev": "webpack --config webpack.config.dev.js",
+    "buildPack": "webpack --env.API_URL=https://www.myapi.com --config webpack.config.build.js"
   },
   "eslintConfig": {
     "extends": [
@@ -40,5 +42,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }

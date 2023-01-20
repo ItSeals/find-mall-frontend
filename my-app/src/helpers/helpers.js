@@ -1,9 +1,12 @@
 import axios from "axios";
 
 export var global = {
-  api: `http://${window.location.hostname}:3000/api/v1`,
+  api: `http://${process.env.REACT_APP_HOST}:3000/api/v1`,
+  testServer: process.env.REACT_APP_TEST,
   admin: { mall: {}, category: {}, tag: {}, item: {} },
 };
+
+console.log("process.env.API_URL", process.env.REACT_APP_HOST)
 
 export async function networkCall(networkData, successCallback, errorCallback) {
   const handleSuccess = (responce) => {
