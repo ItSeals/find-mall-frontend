@@ -14,7 +14,7 @@ const SideBar = (props) => {
     <div className= 'col-2 min-vh-100 sidebar overflow-auto' style={{height: "100vh"}}>
     <div className='row pt-6' style={{marginRight: "0"}}>
       <div className='col-8 admin_panel pt-2'>
-      <img className='alt' src={require('../img/MaksymAvatar.jpg')} width="50" height="50" style={{borderRadius: "50%"}}></img> <span className='ms-2' >admin pannel</span>
+      <img className='alt' src={require('../img/TonyStarkPhoto.PNG')} width="50" height="50" style={{borderRadius: "50%"}}></img> <span className='ms-2' >admin pannel</span>
       </div>
       </div>
        <ul className='container'>
