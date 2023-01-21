@@ -16,13 +16,13 @@ const SorCItemBG = (props) => {
         </Link>
       </td>
       <td>
-        {props.SorC !== undefined
+        {props.SorC !== undefined && props.SorC.malls.length > 0
           ? props.SorC.malls.map((mall, index) => {
               let sep = "";
               if (index !== 0) {
                 sep = ", ";
               }
-              return `${sep}${mall.title}`;
+              return <span className="opacity-0">{`${sep}${mall.title}`}</span>;
             })
           : ""}
       </td>
