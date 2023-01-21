@@ -9,9 +9,9 @@ const SorCCategoryItem = ({ SOrC, handleDelete, setEditPage }) => {
 
   return (
     <tr>
-      <td>{SOrC.title ? SOrC.title : ""}</td>
+      <td>{SOrC !== undefined ? SOrC.title : ""}</td>
       <td className="category_link">
-        {SOrC.tags[0].title
+        {SOrC !== undefined && SOrC.tags.length > 0
           ? SOrC.tags.map((tag, index) => {
               let sep = "";
               if (index !== 0) {
@@ -24,10 +24,10 @@ const SorCCategoryItem = ({ SOrC, handleDelete, setEditPage }) => {
                 </>
               );
             })
-          : "Не визначено"}
+          : ""}
       </td>
       <td>
-        {SOrC.malls[0].title
+        {SOrC !== undefined && SOrC.malls.length > 0
           ? SOrC.malls.map((mall, index) => {
               let sep = "";
               if (index !== 0) {
@@ -35,7 +35,7 @@ const SorCCategoryItem = ({ SOrC, handleDelete, setEditPage }) => {
               }
               return `${sep}${mall.title}`;
             })
-          : "Не визначено"}
+          : ""}
       </td>
       <td>
         <button onClick={() => OpenEditPage()} className="btn pt-1px">

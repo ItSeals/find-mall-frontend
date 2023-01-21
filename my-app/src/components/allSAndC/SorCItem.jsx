@@ -13,11 +13,11 @@ const SorCItem = ({ SOrC, handleDelete, setEditPage }) => {
       <td>{SOrC.title ? SOrC.title : ""}</td>
       <td>
         <Link to={`/admin/items/${SOrC.category.id}`} className="category_link">
-          {SOrC.category.title ? SOrC.category.title : ""}
+          {SOrC !== undefined ? SOrC.category.title : ""}
         </Link>
       </td>
       <td>
-        {SOrC.malls[0].title
+        {SOrC !== undefined && SOrC.malls.length > 0
           ? SOrC.malls.map((mall, index) => {
               let sep = "";
               if (index !== 0) {
@@ -25,7 +25,7 @@ const SorCItem = ({ SOrC, handleDelete, setEditPage }) => {
               }
               return `${sep}${mall.title}`;
             })
-          : "Не визначено"}
+          : ""}
       </td>
       <td>
         <button onClick={() => OpenEditPage()} className="btn pt-1px">
