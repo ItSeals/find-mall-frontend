@@ -9,53 +9,53 @@
 }
 
 /*---null---*/
-li {
+.admin_sidebar li {
   list-style-type: none;
 }
 
-ul {
+.admin_sidebar ul {
   margin-left: 0;
   padding-left: 0;
 }
 
-body {
+.admin_sidebar body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 /*----------*/
 
-body {
+.admin_sidebar body {
   font-family: 'MacPaw Fixel text', sans-serif;
 }
 
-.col-12{
+.admin_sidebar .col-12{
   height:60px;
   text-decoration: none;
 }
-.col-12:active{
+.admin_sidebar .col-12:active{
   background-color: #0F24D4;
 }
-.ml{
+.admin_sidebar .ml{
   background-color: #3457ED;
 }
-.ml-1{
+.admin_sidebar .ml-1{
   background-color: #2039A5;
 }
-.ms-2{
+.admin_sidebar .ms-2{
 font-family: 'MacPaw Fixel';
 font-style: normal;
 font-size: 18px;
 line-height: 20px;
 color: #FFFFFF;
 }
-.link{
+.admin_sidebar .link{
   padding-top:16px;
 }
-.sidebar{
+.admin_sidebar .sidebar{
   background-color: 	#284EEF;
 }
-.admin_panel{
+.admin_sidebar .admin_panel{
   background-color: #3457ED;
   height:60px;
   margin:80px 0px 59px 40px;
@@ -63,10 +63,10 @@ color: #FFFFFF;
   border-radius: 3px;
   
 }
-.pt-6{
+.admin_sidebar .pt-6{
   padding-top:69px;
 }
-.ms-5{
+.admin_sidebar .ms-5{
   font-size:25px;
   color:black;
   margin-right:10px;

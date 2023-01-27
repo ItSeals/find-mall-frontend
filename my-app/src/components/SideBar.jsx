@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { global, networkCall } from ".././helpers/helpers";
-import AllSAndC from "./AllSAndC";
-import Malls from "./Malls";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import Categories from "./Categories";
-import SorCCategory from "./allSAndC/SorCCategory";
+require("../reactBootstrap.css");
+require("../bootstrapBody.css");
 
 const SideBar = (props) => {
   return (
-    <div style={{display:'flex'}}>
+    <div className="reactbootstrap">
+    <div className="admin_sidebar" style={{display:'flex'}}>
     <div className= 'col-2 min-vh-100 sidebar overflow-auto' style={{height: "100vh"}}>
     <div className='row pt-6' style={{marginRight: "0"}}>
       <div className='col-8 admin_panel pt-2'>
@@ -68,7 +64,7 @@ const SideBar = (props) => {
     <div className='col-10'>
       <Outlet />
     </div>
-  </div>
+  </div></div>
   )
 };
 

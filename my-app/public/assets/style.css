@@ -1,0 +1,321 @@
+@font-face {
+    font-family: FixelText-Black;
+    src: url(fonts/MacPawFixelText-Black.woff2);
+   
+}
+@font-face {
+    font-family: FixelText-Bold;
+    src: url(fonts/MacPawFixelText-Bold.woff2);
+   
+}
+@font-face {
+    font-family: FixelText-ExtraBold;
+    src: url(fonts/MacPawFixelText-ExtraBold.woff2);
+  
+}
+@font-face {
+    font-family: FixelText-ExtraLight;
+    src: url(fonts/MacPawFixelText-ExtraLight.woff2);
+   
+}
+@font-face {
+    font-family: FixelText-Light;
+    src: url(fonts/MacPawFixelText-Light.woff2);
+}
+@font-face {
+    font-family: FixelText-Medium;
+    src: url(fonts/MacPawFixelText-Medium.woff2);
+   
+}
+
+@font-face {
+    font-family: FixelText-Regular;
+    src: url(fonts/MacPawFixelText-Regular.woff2);
+   
+}
+@font-face {
+    font-family: FixelText-SemiBold;
+    src: url(fonts/MacPawFixelText-SemiBold.woff2);
+}
+@font-face {
+    font-family: FixelText-Thin;
+    src: url(fonts/MacPawFixelText-Thin.woff2);
+}
+
+.home .body {
+  width: 360px;
+}
+.home h3, .home p {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 11px;
+  font-family: FixelText-Regular;
+}
+.home h2 {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  color: #F5F5F5;
+}
+.home .outline-row h2 {
+  color: #000;
+}
+.home .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  height: 30px;
+}
+.home .info {
+  font-family: FixelText-Regular;
+  font-size: 8;
+  margin-left: 10px;
+}
+.home .fill-background {
+  background-color: #fcaa58;
+}
+.home .button {
+  margin-left: 10px;
+  background: none;
+  border: none;
+}
+.home .form-control {
+  position: absolute;
+  width: 220px;
+  top: 5%;
+  left: 80px;
+  margin-left: 20px;
+  background-color: #FCAA58;
+  border: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 6px;
+  line-height: 8px;
+  text-align: center;
+  color: #FFFFFF;
+  font-family: FixelText-Regular;
+}
+.home .dostupni-trc-text {
+  font-weight: 300;
+  font-size: 6px;
+  line-height: 8px;
+  font-family: FixelText-Light;
+  color: #000;
+}
+.home .guide-text {
+  font-family: FixelText-Regular;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.5px #F5F5F5;
+}
+.home .start-search-button {
+  position: absolute;
+  font-family: FixelText-Medium;
+  width: 103px;
+  height: 16.5px;
+  top: 100px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  text-decoration: underline;
+  color: #F5F5F5;
+  border: transparent;
+  background: none;
+  border-color: none;
+  outline: 0 !important;
+}
+.home .start-search-button:hover {
+  -webkit-text-stroke: 0.4px #fcaa58;
+}
+.home .start-search-button:active {
+  color: #fcaa58;
+}
+.home .trc-labels {
+  height: 115px;
+  margin: 13px 32px;
+}
+.home .choose-category {
+  width: 87px;
+  height: 30px;
+  font-family: FixelText-Regular;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  text-align: center;
+  color: #F5F5F5;
+  margin: 0 auto;
+  margin-top: 80px;
+  background: rgba(59, 45, 70, 0.6);
+  border: none;
+}
+.home .choose-category:hover {
+  cursor: pointer;
+  background: rgba(255, 87, 51, 0.5);
+  border: transparent;
+  transition: all 0.7s;
+  border-radius: 5px;
+}
+.home .choose-category:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(255, 87, 51, 0.5);
+}
+.home .category-div {
+  display: flex;
+  height: 205px;
+}
+.home .vg-div {
+  display: flex;
+  height: 115px;
+  width: 138px;
+}
+.home .choose-trc {
+  width: 94px;
+  height: 25px;
+  font-style: normal;
+  font-family: FixelText-Medium;
+  font-weight: 500;
+  font-size: 8px;
+  line-height: 12px;
+  text-align: center;
+  color: #F5F5F5;
+  margin-left: 21px;
+  margin-top: 46px;
+  background-color: rgba(217, 217, 217, 0.35);
+  border: none;
+}
+.home .choose-trc:hover {
+  cursor: pointer;
+  background: rgba(255, 87, 51, 0.5);
+  border: transparent;
+  transition: all 0.7s;
+  border-radius: 5px;
+}
+.home .choose-trc:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(255, 87, 51, 0.5);
+}
+.home .srch-btn {
+  width: 146px;
+  height: 37px;
+  display: block;
+  background: rgba(252, 170, 88, 0.45);
+  border: 1px solid #FCAA58;
+  margin: 0 auto;
+  font-style: normal;
+  font-weight: 400;
+  font-family: FixelText-Regular;
+  font-size: 6px;
+  line-height: 8px;
+  text-align: center;
+  color: #000000;
+  top: 50%;
+  left: 50%;
+  transform: translate -50%, -50%;
+}
+.home .outline-row {
+  border: solid 2px #fcaa58;
+  height: 75px;
+  margin-top: 30px;
+  margin-bottom: 4px;
+}
+.home .container {
+  display: flex;
+  flex-direction: column;
+  min-width: 360px;
+}
+.home .categories-photo-block {
+  height: 205px;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+}
+.home .name-search-type-field {
+  height: 40px;
+}
+.home .map-block {
+  padding: 27px 43px;
+}
+.home .footer {
+  height: 110px;
+}
+.home .entry-page {
+  height: 248px;
+  background: linear-gradient(rgba(12, 11, 11, 0.5), rgba(53, 51, 51, 0.6)), url(images/1.jpg);
+  background-size: cover;
+}
+.home .guide-text {
+  padding: 45px;
+  text-transform: uppercase;
+}
+.home .trc-text {
+  font-family: FixelText-Medium;
+}
+.home .dostupni-trc {
+  height: 48px;
+}
+.home .btn-style {
+  width: 55px;
+  height: 20px;
+  font-weight: 700;
+  font-family: FixelText-Medium;
+  font-size: 6px;
+  line-height: 20px;
+  color: #000;
+  border: transparent;
+  background: #fcaa58;
+}
+.home .btn-style:hover {
+  cursor: pointer;
+  background: rgba(255, 87, 51, 0.5);
+  border: transparent;
+  transition: all 0.7s;
+  border-radius: 5px;
+}
+.home .btn-style:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(255, 87, 51, 0.5);
+}
+.home .footer-wrap {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.home .footer-paragraph {
+  margin-left: 35px;
+  width: 95px;
+  font-style: normal;
+  font-weight: 400;
+  font-family: FixelText-Regular;
+  font-size: 6px;
+  line-height: 8px;
+  letter-spacing: 0.05em;
+  color: #000000;
+}
+.home .footer-mall-item {
+  display: flex;
+  font-style: normal;
+  font-weight: 400;
+  font-family: FixelText-Regular;
+  font-size: 5px;
+  line-height: 7px;
+  color: #000000;
+  margin-bottom: 7px;
+}
+.home .footer-mall-item:last-child {
+  margin-bottom: 0;
+}
+.home .mall-name {
+  width: 50px;
+  margin-left: 10px;
+}
+.home .mall-link {
+  color: inherit;
+  text-decoration: underline;
+  margin-left: 10px;
+}
