@@ -1,0 +1,455 @@
+
+ :root .resPage{
+	--background-color: #f5f5f5;
+	--accent-color: #fcaa58;
+}
+
+@font-face {
+  font-family: FixelText-ExtraLight;
+  src: url(../fonts/MacPawFixelText-ExtraLight.woff2);
+ 
+}
+@font-face {
+  font-family: FixelText-Light;
+  src: url(../fonts/MacPawFixelText-Light.woff2);
+}
+@font-face {
+  font-family: FixelText-Medium;
+  src: url(../fonts/MacPawFixelText-Medium.woff2);
+ 
+}
+
+@font-face {
+  font-family: FixelText-Regular;
+  src: url(../fonts/MacPawFixelText-Regular.woff2);
+ 
+}
+@font-face {
+  font-family: FixelText-SemiBold;
+  src: url(../fonts/MacPawFixelText-SemiBold.woff2);
+}
+
+.resPage {
+	margin: 0;
+  /* font-family: 'MacPaw Fixel Display'; */
+	background-color: var(--background-color);
+	width: 360px;
+	font-family: 'FixelText-Regular', sans-serif;
+}
+
+.resPage p,
+.resPage h1,
+.resPage h2,
+.resPage h3,
+.resPage h4,
+.resPage h5,
+.resPage h6 {
+	margin: 0;
+}
+
+.resPage img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.resPage a {
+	text-decoration: none;
+}
+
+.resPage button {
+	display: block;
+	cursor: pointer;
+	border: none;
+}
+
+.resPage header {
+	position: relative;
+	display: flex;
+	position: relative;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 12px 4px;
+}
+
+.resPage .bi-arrow-90deg-left {
+	position: absolute;
+	left: 18px;
+}
+
+.resPage .go-to-main-btn {
+	width: 101px;
+	background-color: transparent;
+	border: none;
+	font-style: normal;
+	font-family: 'FixelText-Regular', sans-serif;
+	font-weight: 400;
+	font-size: 6px;
+	line-height: 8px;
+	color: #000000;
+}
+
+.resPage .bi-search {
+	position: absolute;
+	left: 260px;
+	top: 7px;
+}
+
+.resPage .logo {
+	font-style: normal;
+	font-family: 'FixelText-Medium', sans-serif;
+	font-weight: 500;
+	font-size: 8px;
+	line-height: 11px;
+  /* identical to box height */
+	color: #000000;
+  z-index: 1;
+}
+
+.resPage .logo::after {
+	content: "";
+	display: flex;
+	height: 1px;
+	width: 50px;
+	position: absolute;
+	background-color: var(--accent-color);
+	z-index: -1;
+	top: 11px;
+	left: 150px;
+}
+
+.resPage .search-input {
+	display: flex;
+	width: 60px;
+	padding-left: 9px;
+	height: 10px;
+	font-style: normal;
+	font-family: 'FixelText-Regular', sans-serif;
+	font-weight: 400;
+	font-size: 6px;
+	line-height: 8px;
+	color: #000000;
+	outline: none;
+	background-color: transparent;
+	border: none;
+}
+
+.resPage .search-input::placeholder {
+	font-style: normal;
+	font-weight: 400;
+	font-family: 'FixelText-Regular', sans-serif;
+	font-size: 6px;
+	line-height: 8px;
+	color: #000000;
+}
+
+.resPage .results {
+	display: flex;
+	justify-content: end;
+	position: relative;
+	padding: 23px 13px 13px 18px;
+	background-color: var(--accent-color);
+	margin-bottom: 20px;
+}
+
+.resPage .results-title {
+	font-style: normal;
+	font-weight: 200;
+	font-family: 'FixelText-ExtraLight', sans-serif;
+	font-size: 15px;
+	line-height: 21px;
+	color: #f5f5f5;
+}
+
+.resPage .results-title::before {
+	content: "";
+	display: flex;
+	height: 2px;
+	width: 163px;
+	background-color: var(--background-color);
+	position: absolute;
+	top: 11px;
+	left: 0;
+}
+
+.resPage .results-title::after {
+	content: "";
+	display: flex;
+	height: 2px;
+	width: 175px;
+	background-color: var(--background-color);
+	position: absolute;
+	bottom: 12px;
+	right: 0;
+}
+
+.resPage .categories-forms {
+	background-color: var(--background-color);
+	width: 89px;
+	height: 925px;
+	border: 0.5px solid #3b2d46;
+	padding: 10px 0 0 0;
+	position: relative;
+}
+
+.resPage .form-title {
+	display: block;
+	background-color: var(--accent-color);
+	width: 69px;
+	padding: 4px 0 3px 8px;
+	font-style: normal;
+	font-family: 'FixelText-Medium', sans-serif;
+	font-weight: 500;
+	font-size: 8px;
+	line-height: 11px;
+  /* identical to box height */
+	margin-bottom: 11px;
+	color: #000000;
+}
+
+.resPage .category-label {
+	display: flex;
+  /* font-family: 'MacPaw Fixel Display'; */
+	width: 100%;
+	font-style: normal;
+	font-weight: 400;
+	font-family: 'FixelText-Regular', sans-serif;
+	font-size: 6px;
+	line-height: 8px;
+  /* identical to box height */
+	color: #000000;
+	margin-bottom: 11px;
+}
+
+.resPage .category-label::before {
+	content: "";
+	display: block;
+	width: 5px;
+	height: 5px;
+	background-color: transparent;
+	border: 1px solid var(--accent-color);
+	margin-right: 7px;
+}
+
+.resPage .form-title:first-child {
+	margin-bottom: 13px;
+}
+
+.resPage .category-checkbox:checked + .category-label::before {
+	background-color: var(--accent-color);
+}
+
+.resPage .main-section {
+	display: flex;
+	position: relative;
+}
+
+.resPage form {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: 18px;
+	width: 89px;
+}
+
+.resPage .visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	white-space: nowrap;
+	clip-path: inset(100%);
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+}
+
+.resPage .shops-section {
+	padding-left: 27px;
+	padding-right: 12px;
+}
+
+.resPage .shops-section::before {
+	content: "";
+	display: flex;
+	height: 100%;
+	width: 33px;
+	background-color: var(--accent-color);
+	position: absolute;
+	top: 0;
+	left: 21px;
+	z-index: -1;
+}
+
+.resPage .shops-section::after {
+	content: "";
+	display: flex;
+	height: 100%;
+	width: 2px;
+	background-color: var(--accent-color);
+	position: absolute;
+	top: 0;
+	left: 60px;
+	z-index: -1;
+}
+
+.resPage .mall-title {
+	font-style: normal;
+	font-weight: 300;
+	font-family: 'FixelText-Light',sans-serif;
+	font-size: 15px;
+	line-height: 21px;
+	text-transform: uppercase;
+	color: #000000;
+}
+
+.resPage .shop-title {
+	font-style: normal;
+	font-weight: 200;
+	font-family: 'FixelText-ExtraLight', sans-serif;
+	font-size: 10px;
+	line-height: 14px;
+	color: #000000;
+}
+
+.resPage .category-title {
+	font-style: normal;
+	font-weight: 200;
+	font-family: 'FixelText-ExtraLight', sans-serif;
+	font-size: 8px;
+	line-height: 11px;
+	color: #000000;
+	text-align: end;
+}
+
+.resPage .shop-title {
+	font-style: normal;
+	font-weight: 200;
+	font-family: 'FixelText-ExtraLight', sans-serif;
+	font-size: 10px;
+	line-height: 14px;
+	color: #000000;
+	margin: 5px 0;
+}
+
+.resPage .category-title {
+	font-style: normal;
+	font-weight: 200;
+	font-family: 'FixelText-ExtraLight', sans-serif;
+	font-size: 8px;
+	line-height: 11px;
+	margin-bottom: 20px;
+	color: #000000;
+}
+
+.resPage .items-wrap {
+	display: flex;
+	gap: 17px;
+	flex-wrap: wrap;
+}
+
+.resPage .image-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 65px;
+	height: 65px;
+}
+
+.resPage .shop-item {
+	margin-bottom: 18px;
+}
+
+.resPage .shop-text {
+	width: 65px;
+	margin-top: 6px;
+}
+
+.resPage .shop-name {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 6px;
+	text-transform: uppercase;
+	font-style: normal;
+	font-weight: 400;
+	font-family: 'FixelText-Regular', sans-serif;
+	font-size: 6px;
+	line-height: 8px;
+	color: #000000;
+}
+
+.resPage .other-tags {
+	display: flex;
+	justify-content: center;
+	font-style: normal;
+	font-weight: 300;
+	font-family: 'FixelText-Light',sans-serif;
+	font-size: 5px;
+	line-height: 7px;
+	text-align: center;
+	color: #000000;
+}
+
+.resPage footer {
+	margin: 0;
+	background-color: var(--accent-color);
+	padding-top: 17px;
+  /* padding-left: 35px; */
+	margin-top: 43px;
+	padding-bottom: 22px;
+}
+
+.resPage .footer-wrap {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.resPage .footer-title {
+	display: block;
+	font-style: normal;
+	font-weight: 600;
+	font-family: 'FixelText-SemiBold',sans-serif;
+	font-size: 6px;
+	line-height: 8px;
+	text-transform: uppercase;
+	margin-bottom: 19px;
+	color: var(--background-color);
+	text-align: center;
+}
+
+.resPage .footer-paragraph {
+	margin-left: 35px;
+	width: 95px;
+	font-style: normal;
+	font-weight: 400;
+	font-family: 'FixelText-Regular', sans-serif;
+	font-size: 6px;
+	line-height: 8px;
+	letter-spacing: 0.05em;
+	color: #000000;
+}
+
+.resPage .footer-mall-item {
+	display: flex;
+	font-style: normal;
+	font-weight: 400;
+	font-family: 'FixelText-Regular', sans-serif;
+	font-size: 5px;
+	line-height: 7px;
+	color: #000000;
+	margin-bottom: 7px;
+}
+
+.resPage .footer-mall-item:last-child {
+	margin-bottom: 0;
+}
+
+.resPage .mall-name {
+	width: 50px;
+}
+
+.resPage .mall-link {
+	color: inherit;
+	text-decoration: underline;
+}

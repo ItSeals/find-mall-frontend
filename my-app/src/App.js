@@ -9,6 +9,7 @@ import AllSAndC from "./components/AllSAndC";
 import SorCCategory from "./components/allSAndC/SorCCategory";
 import Tags from "./components/Tags";
 import Home from "./pages/Home";
+import Result from "./pages/Result";
 
 function App() {
   //const [success, setSuccess] = useState(true);
@@ -40,6 +41,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="result" element={<Result />} />
       <Route path="admin" element={<SideBar categories={categories} />}>
         <Route index={true} element={<Malls />} />
         <Route path="malls" element={<Malls />} />

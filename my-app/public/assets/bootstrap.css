@@ -5,7 +5,7 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-.home :root {
+ :root .home{
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -52,7 +52,7 @@
 .home article, .home aside, .home dialog, .home figcaption, .home figure, .home footer, .home header, .home hgroup, .home main, .home nav, .home section {
   display: block;
 }
-.home body {
+.home {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
@@ -7352,7 +7352,7 @@
   @page {
     size: a3;
   }
-  .home body {
+  .home {
     min-width: 992px !important;
   }
   .home .container {
