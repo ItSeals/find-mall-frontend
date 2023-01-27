@@ -242,6 +242,7 @@
 .resPage .main-section {
 	display: flex;
 	position: relative;
+  z-index: 1;
 }
 
 .resPage form {
