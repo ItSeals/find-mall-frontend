@@ -33,7 +33,6 @@
 	margin: 0;
   /* font-family: 'MacPaw Fixel Display'; */
 	background-color: var(--background-color);
-	width: 360px;
 	font-family: 'FixelText-Regular', sans-serif;
 }
 
@@ -91,8 +90,12 @@
 
 .resPage .bi-search {
 	position: absolute;
-	left: 260px;
-	top: 7px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.resPage .label-bi-search {
+	position: relative;
 }
 
 .resPage .logo {
@@ -103,6 +106,7 @@
 	line-height: 11px;
   /* identical to box height */
 	color: #000000;
+	position: relative;
   z-index: 1;
 }
 
@@ -114,8 +118,8 @@
 	position: absolute;
 	background-color: var(--accent-color);
 	z-index: -1;
-	top: 11px;
-	left: 150px;
+	top: 41%;
+	left: -10px;
 }
 
 .resPage .search-input {
