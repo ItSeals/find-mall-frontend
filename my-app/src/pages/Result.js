@@ -23,7 +23,7 @@ function Result() {
           </button>
           <h3 className="logo">FindMall</h3>
           <form>
-            <label>
+            <label className="label-bi-search">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={6}
