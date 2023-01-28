@@ -258,11 +258,11 @@ const Home = () => {
             </svg>
           </div>
 
-          <div
+          {/* <div
             className="row name-search-type-field fill-background"
             style={{ alignItems: "center", display: "flex" }}
           >
-            <div className="col-12">
+             <div className="col-12">
               <form className="searchbar" role="search">
                 <input
                   type="search"
@@ -295,6 +295,39 @@ const Home = () => {
                 </g>
               </svg>
             </button>
+          </div> */}
+          <div className="row name-search-type-field fill-background div-search">
+            <form className="searchbar form-search-field" role="search">
+              <input
+                type="search"
+                className="search-field"
+                placeholder="Введіть назву магазину/кафе/послуги та натисніть на знак пошуку..."
+                aria-label="Search"
+              />
+              <button className="button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  xmlnsSvgjs="http://svgjs.com/svgjs"
+                  version="1.1"
+                  width="12px"
+                  height="12px"
+                  x="0"
+                  y="0"
+                  viewBox="0 0 24 24"
+                  style={{ enableBackground: "new 0 0 512 512" }}
+                  xmlSpace="preserve"
+                >
+                  <g>
+                    <path
+                      d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"
+                      fill="#ffffff"
+                      data-original="#000000"
+                    />
+                  </g>
+                </svg>
+              </button>
+            </form>
           </div>
 
           <div className="row map-block">
