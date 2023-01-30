@@ -1,6 +1,18 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { global } from "../helpers/helpers";
 
 const Home = () => {
+  const searchNameRef = useRef("");
+
+  const navigate = useNavigate()
+
+  function SearchNameSubmit(e, searchName) {
+    e.preventDefault();
+    global.searchName = searchName;
+    navigate("/result");
+  }
+
   return (
     <Fragment>
       <div className="home">
@@ -299,12 +311,14 @@ const Home = () => {
           <div className="row name-search-type-field fill-background div-search">
             <form className="searchbar form-search-field" role="search">
               <input
+                ref={searchNameRef}
                 type="search"
                 className="search-field"
                 placeholder="Введіть назву магазину/кафе/послуги та натисніть на знак пошуку..."
                 aria-label="Search"
+                onChange={() => console.log("searchNameRef", searchNameRef.current.value)}
               />
-              <button className="button">
+              <button className="button" onClick={(e) => SearchNameSubmit(e, searchNameRef.current.value)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   xmlnsXlink="http://www.w3.org/1999/xlink"

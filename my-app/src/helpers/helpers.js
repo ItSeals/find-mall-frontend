@@ -10,6 +10,7 @@ export var global = {
     process.env.REACT_APP_TEST_SERVER !== undefined
       ? process.env.REACT_APP_TEST_SERVER
       : "false",
+  searchName: "",
   admin: { mall: {}, category: {}, tag: {}, item: {} },
 };
 
