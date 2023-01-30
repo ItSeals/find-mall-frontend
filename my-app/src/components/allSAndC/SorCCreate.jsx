@@ -5,6 +5,7 @@ const SorCCreate = (props) => {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const [mallList, setMallList] = useState([]);
+  const [file, setFile] = useState(null);
 
   const imgBodyRef = useRef(null);
   const nameBodyRef = useRef("");
@@ -55,14 +56,17 @@ const SorCCreate = (props) => {
   }
   
   function updateImgBodyRef(e) {
-    let files = e.target.files;
+    // let files = e.target.files;
 
-    let reader = new FileReader();
-    reader.readAsDataURL(files[0])
+    // let reader = new FileReader();
+    // reader.readAsDataURL(files[0])
 
-    reader.onload = (e) => {
-      imgBodyRef.current = e.target.result;
-    }
+    // reader.onload = (e) => {
+    //   imgBodyRef.current = e.target.result;
+    // }
+
+    let file = e.target.files[0];
+    setFile(file);
   }
 
   function updateSOrCCategoryRef() {
@@ -121,6 +125,25 @@ const SorCCreate = (props) => {
 
   function SorCSubmit(e) {
     e.preventDefault();
+    
+    let img = file;
+    let formData = new FormData();
+
+    formData.append("item_image", img);
+    formData.append(
+      "title",
+      nameBodyRef.current.value === "" ? "unknown" : nameBodyRef.current.value
+    );
+    formData.append("category", Number(categoryBodyRef.current.value));
+    formData.append(
+      "tags",
+      JSON.stringify(tagsBodyRef.current.map((tagId) => Number(tagId)))
+    );
+    formData.append(
+      "malls",
+      JSON.stringify(mallListBodyRef.current.map((mallId) => Number(mallId)))
+    );
+    
     global.testServer == "true"
       ? props.AddSOrC({
           title:
@@ -131,16 +154,7 @@ const SorCCreate = (props) => {
           tags: SOrCTagsRef.current,
           malls: SOrCMallListRef.current,
         })
-      : props.AddSOrC({
-          title:
-            nameBodyRef.current.value === ""
-              ? "unknown"
-              : nameBodyRef.current.value,
-          category: Number(categoryBodyRef.current.value),
-          tags: tagsBodyRef.current.map((tagId) => Number(tagId)),
-          malls: mallListBodyRef.current.map((mallId) => Number(mallId)),
-          item_image: imgBodyRef.current,
-        });
+      : props.AddSOrC(formData);
   }
 
   return (

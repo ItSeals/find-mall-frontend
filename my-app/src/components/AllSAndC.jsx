@@ -34,7 +34,7 @@ const AllSAndC = (props) => {
     networkCall(
       { url: `${global.api}/item`, type: "post", content: SOrC },
       () => updateAllSAndC(),
-      (error) => console.log("error", error)
+      (error) => console.log("AddSOrC(SOrC) error", error)
     );
     setCreatePage(false);
   }
