@@ -12,26 +12,58 @@ function Result() {
   const searchNameBodyRef = useRef(global.searchName);
 
   useEffect(() => {
-    networkCall({url: `${global.api}/mall`, type: "get"},
-    (res) => setMalls(res),
-    (error) => console.log("ResultPageGetError/mall", error));
-    networkCall({url: `${global.api}/category`, type: "get"},
-    (res) => setCategories(res),
-    (error) => console.log("ResultPageGetError/category", error));
-    networkCall({url: `${global.api}/tag`, type: "get"},
-    (res) => setTags(res),
-    (error) => console.log("ResultPageGetError/tag", error));
-    networkCall({url: `${global.api}/item?title_like=${searchName === null ? "" : searchName}`, type: "get"},
-    (res) => setItems(res),
-    (error) => console.log("ResultPageGetError/item?title_like=", error));
+    networkCall(
+      { url: `${global.api}/mall`, type: "get" },
+      (res) => setMalls(res),
+      (error) => console.log("ResultPageGetError/mall", error)
+    );
+    networkCall(
+      { url: `${global.api}/category`, type: "get" },
+      (res) => setCategories(res),
+      (error) => console.log("ResultPageGetError/category", error)
+    );
+    networkCall(
+      { url: `${global.api}/tag`, type: "get" },
+      (res) => setTags(res),
+      (error) => console.log("ResultPageGetError/tag", error)
+    );
+    networkCall(
+      {
+        url: `${global.api}/item?${
+          global.testServer === "true" ? "title_like" : "search"
+        }=${searchName === null ? "" : searchName}`,
+        type: "get",
+      },
+      (res) => setItems(res),
+      (error) =>
+        console.log(
+          `ResultPageGetError/item?${
+            global.testServer === "true" ? "title_like" : "search"
+          }=`,
+          error
+        )
+    );
   }, []);
 
   useEffect(() => {
-    networkCall({url: `${global.api}/item?title_like=${searchName}`, type: "get"},
-    (res) => setItems(res),
-    (error) => console.log("ResultPageGetError/item?title_like=", error));
-  }, [searchName])
-  
+    networkCall(
+      {
+        url: `${global.api}/item?${
+          global.testServer === "true" ? "title_like" : "search"
+        }=${searchName}`,
+        type: "get",
+      },
+      (res) => setItems(res),
+      (error) =>
+        console.log(
+          `ResultPageGetError/item?${
+            global.testServer === "true" ? "title_like" : "search"
+          }=`,
+          error
+        )
+    );
+  }, [searchName]);
+
   function submitSearchName(e) {
     e.preventDefault();
     setSearchName(searchNameBodyRef.current.value);
