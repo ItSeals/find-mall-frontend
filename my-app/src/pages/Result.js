@@ -1,9 +1,31 @@
-import React, { Fragment, useRef } from 'react'
-import { global } from '../helpers/helpers'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
+import ResultShopItem from '../components/ResultShopItem';
+import { global, networkCall } from '../helpers/helpers'
 
 function Result() {
-  const searchNameRef = useRef(global.searchName)
+  const [searchName, setSearchName] = useState(global.searchName);
+  const [malls, setMalls] = useState([])
+  const [categories, setCategories] = useState([])
+  const [tags, setTags] = useState([])
+  const [items, setItems] = useState([])
 
+  const searchNameRef = useRef(global.searchName);
+
+  useEffect(() => {
+    networkCall({url: `${global.api}/mall`, type: "get"},
+    (res) => setMalls(res),
+    (error) => console.log("ResultPageGetMallsError", error));
+    networkCall({url: `${global.api}/category`, type: "get"},
+    (res) => setCategories(res),
+    (error) => console.log("ResultPageGetCategoriesError", error));
+    networkCall({url: `${global.api}/tag`, type: "get"},
+    (res) => setTags(res),
+    (error) => console.log("ResultPageGetTagsError", error));
+    networkCall({url: `${global.api}/item`, type: "get"},
+    (res) => setItems(res),
+    (error) => console.log("ResultPageGetItemsError", error));
+  }, []);
+  
   return (
     <Fragment>
       <div className="resPage">
@@ -480,6 +502,34 @@ function Result() {
             </div>
             <div className="shops-section">
               {/* pdsl */}
+              {malls.map(mall => {
+                return (
+                  <Fragment>
+                    <h1 className="mall-title">{mall.title}</h1>
+                    <div className="shop-category-wrap">
+                      {categories.map(category => {
+                        return (
+                          <Fragment>
+                            <h2 className="shop-title">{category.title}</h2>
+                            {tags.map(tag => {
+                              return (
+                                <Fragment>
+                                  <h3 className="category-title">{tag.title}</h3>
+                                  <div className="items-wrap">
+                                    {items.map(item => {
+                                      return <ResultShopItem name={item.title} tags={item.tags}/>
+                                    })}
+                                  </div>
+                                </Fragment>
+                              )
+                            })}
+                          </Fragment>
+                        )
+                      })}
+                    </div>
+                  </Fragment>
+                )
+              })}
               <h1 className="mall-title">spartak</h1>
               <div className="shop-category-wrap">
                 <h2 className="shop-title">Магазини</h2>
