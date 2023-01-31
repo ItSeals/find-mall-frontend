@@ -9,22 +9,33 @@ function Result() {
   const [tags, setTags] = useState([])
   const [items, setItems] = useState([])
 
-  const searchNameRef = useRef(global.searchName);
+  const searchNameBodyRef = useRef(global.searchName);
 
   useEffect(() => {
     networkCall({url: `${global.api}/mall`, type: "get"},
     (res) => setMalls(res),
-    (error) => console.log("ResultPageGetMallsError", error));
+    (error) => console.log("ResultPageGetError/mall", error));
     networkCall({url: `${global.api}/category`, type: "get"},
     (res) => setCategories(res),
-    (error) => console.log("ResultPageGetCategoriesError", error));
+    (error) => console.log("ResultPageGetError/category", error));
     networkCall({url: `${global.api}/tag`, type: "get"},
     (res) => setTags(res),
-    (error) => console.log("ResultPageGetTagsError", error));
-    networkCall({url: `${global.api}/item`, type: "get"},
+    (error) => console.log("ResultPageGetError/tag", error));
+    networkCall({url: `${global.api}/item?title_like=${searchName === null ? "" : searchName}`, type: "get"},
     (res) => setItems(res),
-    (error) => console.log("ResultPageGetItemsError", error));
+    (error) => console.log("ResultPageGetError/item?title_like=", error));
   }, []);
+
+  useEffect(() => {
+    networkCall({url: `${global.api}/item?title_like=${searchName}`, type: "get"},
+    (res) => setItems(res),
+    (error) => console.log("ResultPageGetError/item?title_like=", error));
+  }, [searchName])
+  
+  function submitSearchName(e) {
+    e.preventDefault();
+    setSearchName(searchNameBodyRef.current.value);
+  }
   
   return (
     <Fragment>
@@ -47,7 +58,7 @@ function Result() {
             Повернутися на головну
           </button>
           <h3 className="logo">FindMall</h3>
-          <form>
+          <form onSubmit={(e) => submitSearchName(e)}>
             <label className="label-bi-search">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +72,7 @@ function Result() {
               </svg>
               <input
                 defaultValue={global.searchName}
-                ref={searchNameRef}
+                ref={searchNameBodyRef}
                 type="text"
                 name="name-search"
                 placeholder="Пошук за назвою"
