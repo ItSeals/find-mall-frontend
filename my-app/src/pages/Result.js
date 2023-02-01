@@ -50,7 +50,7 @@ function Result() {
       {
         url: `${global.api}/item?${
           global.testServer === "true" ? "title_like" : "search"
-        }=${searchName}`,
+        }=${searchName === null ? "" : searchName}`,
         type: "get",
       },
       (res) => setItems(res),
@@ -546,32 +546,57 @@ function Result() {
             <div className="shops-section">
               {/* pdsl */}
               {malls.map(mall => {
-                return (
-                  <Fragment>
-                    <h1 className="mall-title">{mall.title}</h1>
-                    <div className="shop-category-wrap">
-                      {categories.map(category => {
-                        return (
-                          <Fragment>
-                            <h2 className="shop-title">{category.title}</h2>
-                            {tags.map(tag => {
-                              return (
-                                <Fragment>
-                                  <h3 className="category-title">{tag.title}</h3>
-                                  <div className="items-wrap">
-                                    {items.map(item => {
-                                      return <ResultShopItem name={item.title} tags={item.tags}/>
-                                    })}
-                                  </div>
-                                </Fragment>
-                              )
-                            })}
-                          </Fragment>
-                        )
-                      })}
-                    </div>
-                  </Fragment>
-                )
+                let itemsWithNeedMall = items.filter((item) => {
+                  let isMallItem = false;
+                  for (let i = 0; i < item.malls.length; i++) {
+                    if (mall.id === item.malls[i].id) {
+                      isMallItem = true;
+                    }
+                  }
+                  return isMallItem;
+                });
+                if (itemsWithNeedMall.length > 0) {
+                  return (
+                    <Fragment>
+                      <h1 className="mall-title">{mall.title}</h1>
+                      <div className="shop-category-wrap">
+                        {categories.map(category => {
+                          let itemsWithNeedCategory = items.filter((item) => category.id === item.category.id);
+                          if (itemsWithNeedCategory.length > 0) {
+                            return (
+                              <Fragment>
+                                <h2 className="shop-title">{category.title}</h2>
+                                {tags.map(tag => {
+                                  let itemsWithNeedTag = items.filter((item) => {
+                                    let isTagItem = false;
+                                    for (let i = 0; i < item.tags.length; i++) {
+                                      if (tag.id === item.tags[i].id) {
+                                        isTagItem = true;
+                                      }
+                                    }
+                                    return isTagItem;
+                                  });
+                                  if (itemsWithNeedTag.length > 0) {
+                                    return (
+                                      <Fragment>
+                                        <h3 className="category-title">{tag.title}</h3>
+                                        <div className="items-wrap">
+                                          {itemsWithNeedTag.map(item => {
+                                            return <ResultShopItem name={item.title} tags={item.tags} unnecessaryTag={tag} />
+                                          })}
+                                        </div>
+                                      </Fragment>
+                                    )
+                                  }
+                                })}
+                              </Fragment>
+                            )
+                          }
+                        })}
+                      </div>
+                    </Fragment>
+                  )
+                }
               })}
               {/* gfojp */}
             </div>
