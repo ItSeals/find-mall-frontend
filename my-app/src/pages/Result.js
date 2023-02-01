@@ -561,13 +561,13 @@ function Result() {
                       <h1 className="mall-title">{mall.title}</h1>
                       <div className="shop-category-wrap">
                         {categories.map(category => {
-                          let itemsWithNeedCategory = items.filter((item) => category.id === item.category.id);
+                          let itemsWithNeedCategory = itemsWithNeedMall.filter((item) => category.id === item.category.id);
                           if (itemsWithNeedCategory.length > 0) {
                             return (
                               <Fragment>
                                 <h2 className="shop-title">{category.title}</h2>
                                 {tags.map(tag => {
-                                  let itemsWithNeedTag = items.filter((item) => {
+                                  let itemsWithNeedTag = itemsWithNeedCategory.filter((item) => {
                                     let isTagItem = false;
                                     for (let i = 0; i < item.tags.length; i++) {
                                       if (tag.id === item.tags[i].id) {

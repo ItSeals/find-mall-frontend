@@ -2,7 +2,6 @@ import React from 'react';
 
 function ResultShopItem({name, tags, unnecessaryTag}) {
   function OutputOtherTags() {
-    console.log("tags.length", tags.length)
     if (tags.length === 1) { return "-" }
     else {
       return (tags.filter(tag => tag.title !== unnecessaryTag.title)).map((tag, index) => {
