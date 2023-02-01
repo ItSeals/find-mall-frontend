@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { global, networkCall } from "../../helpers/helpers";
 
@@ -7,7 +8,6 @@ const SorCCreate = (props) => {
   const [mallList, setMallList] = useState([]);
   const [file, setFile] = useState(null);
 
-  const imgBodyRef = useRef(null);
   const nameBodyRef = useRef("");
   const categoryBodyRef = useRef(1);
   const SOrCCategoryRef = useRef({});
@@ -55,7 +55,7 @@ const SorCCreate = (props) => {
     valueCallback(value);
   }
   
-  function updateImgBodyRef(e) {
+  function handleImageChange(e) {
     // let files = e.target.files;
 
     // let reader = new FileReader();
@@ -126,35 +126,48 @@ const SorCCreate = (props) => {
   function SorCSubmit(e) {
     e.preventDefault();
     
-    let img = file;
-    let formData = new FormData();
+    let form_data = new FormData();
 
-    formData.append("item_image", img);
-    formData.append(
+    console.log("file.name", file.name)
+
+    form_data.append("item_image", file, file.name);
+    form_data.append(
       "title",
       nameBodyRef.current.value === "" ? "unknown" : nameBodyRef.current.value
     );
-    formData.append("category", Number(categoryBodyRef.current.value));
-    formData.append(
+    form_data.append("category", Number(categoryBodyRef.current.value));
+    form_data.append(
       "tags",
       JSON.stringify(tagsBodyRef.current.map((tagId) => Number(tagId)))
     );
-    formData.append(
+    form_data.append(
       "malls",
       JSON.stringify(mallListBodyRef.current.map((mallId) => Number(mallId)))
     );
-    
-    global.testServer == "true"
-      ? props.AddSOrC({
-          title:
-            nameBodyRef.current.value === ""
-              ? "unknown"
-              : nameBodyRef.current.value,
-          category: SOrCCategoryRef.current,
-          tags: SOrCTagsRef.current,
-          malls: SOrCMallListRef.current,
-        })
-      : props.AddSOrC(formData);
+    const postFormData = async () => {
+      await axios
+        .post(`${global.api}/item`, form_data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        }).then((res) => {
+            return res;
+        }).catch((error) => {
+            return error.response;
+        });
+    }
+    postFormData();
+    // global.testServer == "true"
+    //   ? props.AddSOrC({
+    //       title:
+    //         nameBodyRef.current.value === ""
+    //           ? "unknown"
+    //           : nameBodyRef.current.value,
+    //       category: SOrCCategoryRef.current,
+    //       tags: SOrCTagsRef.current,
+    //       malls: SOrCMallListRef.current,
+    //     })
+    //   : props.AddSOrC(formData);
   }
 
   return (
@@ -191,7 +204,12 @@ const SorCCreate = (props) => {
             <tr>
               <td>
                 <div className="title-input">Img:</div>
-                <input type="file" onChange={(e) => updateImgBodyRef(e)}/>
+                <input 
+                  type="file"  
+                  name="item_image"
+                  accept="image/jpeg,image/png,image/gif"
+                  onChange={(e) => {handleImageChange(e)}}
+                />
               </td>
             </tr>
             <tr>
