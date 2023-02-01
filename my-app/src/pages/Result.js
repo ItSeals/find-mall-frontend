@@ -87,10 +87,10 @@ function Result() {
             />
           </svg>
           <button type="button" className="go-to-main-btn">
-            Повернутися на головну
+            Повернутися на головну сторінку
           </button>
           <h3 className="logo">FindMall</h3>
-          <form onSubmit={(e) => submitSearchName(e)}>
+          <form class="header-search-form" onSubmit={(e) => submitSearchName(e)}>
             <label className="label-bi-search">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +120,7 @@ function Result() {
           <section className="main-section">
             <div className="categories-forms">
               <p className="form-title">ТРЦ:</p>
-              <form>
+              <form class="check-form">
                 <input
                   type="checkbox"
                   name="mall-name"
@@ -163,7 +163,7 @@ function Result() {
                 </label>
               </form>
               <p className="form-title">Магазини:</p>
-              <form>
+              <form class="check-form">
                 <input
                   type="checkbox"
                   name="shop-category"
@@ -303,7 +303,7 @@ function Result() {
                 <br />
                 ресторани:
               </p>
-              <form>
+              <form class="check-form">
                 <input
                   type="checkbox"
                   name="cafe-restaurants"
@@ -440,7 +440,7 @@ function Result() {
                 <br />
                 послуги:
               </p>
-              <form>
+              <form class="check-form">
                 <input
                   type="checkbox"
                   name="entertainment-services"
