@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
 import { global, networkCall } from "../../helpers/helpers";
 
@@ -5,6 +6,7 @@ const SorCCreate = (props) => {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const [mallList, setMallList] = useState([]);
+  const [file, setFile] = useState(null);
 
   const nameBodyRef = useRef("");
   const categoryBodyRef = useRef(1);
@@ -51,6 +53,20 @@ const SorCCreate = (props) => {
       }
     }
     valueCallback(value);
+  }
+  
+  function handleImageChange(e) {
+    // let files = e.target.files;
+
+    // let reader = new FileReader();
+    // reader.readAsDataURL(files[0])
+
+    // reader.onload = (e) => {
+    //   imgBodyRef.current = e.target.result;
+    // }
+
+    let file = e.target.files[0];
+    setFile(file);
   }
 
   function updateSOrCCategoryRef() {
@@ -107,8 +123,27 @@ const SorCCreate = (props) => {
     updateSOrCMallListRef();
   }
 
-  function SorCSubmit() {
-    console.log("global.testServer", global.testServer)
+  function SorCSubmit(e) {
+    e.preventDefault();
+    
+    let form_data = new FormData();
+
+    console.log("file.name", file.name)
+
+    form_data.append("item_image", file, file.name);
+    form_data.append(
+      "title",
+      nameBodyRef.current.value === "" ? "unknown" : nameBodyRef.current.value
+    );
+    form_data.append("category", Number(categoryBodyRef.current.value));
+    form_data.append(
+      "tags",
+      JSON.stringify(tagsBodyRef.current.map((tagId) => Number(tagId)))
+    );
+    form_data.append(
+      "malls",
+      JSON.stringify(mallListBodyRef.current.map((mallId) => Number(mallId)))
+    );
     global.testServer == "true"
       ? props.AddSOrC({
           title:
@@ -119,20 +154,12 @@ const SorCCreate = (props) => {
           tags: SOrCTagsRef.current,
           malls: SOrCMallListRef.current,
         })
-      : props.AddSOrC({
-          title:
-            nameBodyRef.current.value === ""
-              ? "unknown"
-              : nameBodyRef.current.value,
-          category: Number(categoryBodyRef.current.value),
-          tags: tagsBodyRef.current.map((tagId) => Number(tagId)),
-          malls: mallListBodyRef.current.map((mallId) => Number(mallId)),
-        });
+      : props.AddSOrC(form_data);
   }
 
   return (
     <div className={props.className} style={props.style}>
-      <form onSubmit={() => SorCSubmit()}>
+      <form onSubmit={(e) => SorCSubmit(e)}>
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>
             <tr>
@@ -162,6 +189,20 @@ const SorCCreate = (props) => {
           </thead>
           <tbody>
             <tr>
+              <td>
+                <div className="title-input">Img:</div>
+                <input 
+                  type="file"  
+                  name="item_image"
+                  accept="image/jpeg,image/png,image/gif"
+                  onChange={(e) => {handleImageChange(e)}}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
               <td className="position-relative">
                 <div className="title-input">Name:</div>
                 <input type="text" ref={nameBodyRef} />
@@ -188,7 +229,7 @@ const SorCCreate = (props) => {
             </tr>
             <tr>
               <td className="position-relative">
-                <div className="title-input">Tags</div>
+                <div className="title-input">Tags:</div>
                 <select
                   multiple={true}
                   ref={tagsBodyRef}
@@ -213,7 +254,7 @@ const SorCCreate = (props) => {
             </tr>
             <tr>
               <td className="position-relative">
-                <div className="title-input">Mall List</div>
+                <div className="title-input">Mall List:</div>
                 <select
                   multiple={true}
                   ref={mallListBodyRef}
