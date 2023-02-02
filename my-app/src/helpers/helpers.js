@@ -6,6 +6,11 @@ export var global = {
       ? process.env.REACT_APP_IPV4
       : "localhost"
   }:3000/api/v1`,
+  apiWithoutURLPattern: `http://${
+    process.env.REACT_APP_IPV4 !== undefined
+      ? process.env.REACT_APP_IPV4
+      : "localhost"
+  }:3000`,
   testServer:
     process.env.REACT_APP_TEST_SERVER !== undefined
       ? process.env.REACT_APP_TEST_SERVER

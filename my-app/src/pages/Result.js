@@ -590,7 +590,7 @@ function Result() {
                                         <h3 className="category-title">{tag.title}</h3>
                                         <div className="items-wrap">
                                           {itemsWithNeedTag.map(item => {
-                                            return <ResultShopItem name={item.title} tags={item.tags} unnecessaryTag={tag} />
+                                            return <ResultShopItem item={item} unnecessaryTag={tag} />
                                           })}
                                         </div>
                                       </Fragment>
