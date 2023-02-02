@@ -129,6 +129,46 @@ function Result() {
             <div className="categories-forms">
               <p className="form-title">ТРЦ:</p>
               <form class="check-form">
+                {malls.map(mall => {
+                  return (
+                    <Fragment>
+                      <input
+                        type="checkbox"
+                        name="mall-name"
+                        defaultValue={mall.title}
+                        className="category-checkbox visually-hidden"
+                        id={`mallId-${mall.id}`}
+                      />
+                      <label className="category-label" htmlFor={`mallId-${mall.id}`}>
+                        {mall.title}
+                      </label>
+                    </Fragment>
+                  )
+                })}
+              </form>
+              <p className="form-title">Теги:</p>
+              <form class="check-form">
+                {tags.map(tag => {
+                  return (
+                    <Fragment>
+                      <input
+                        type="checkbox"
+                        name="tags"
+                        defaultValue={tag.id}
+                        className="category-checkbox visually-hidden"
+                        id={`tagId-${tag.id}`}
+                      />
+                      <label className="category-label" htmlFor={`tagId-${tag.id}`}>
+                        {tag.title}
+                      </label>
+                    </Fragment>
+                  )
+                })}
+              </form>
+            </div>
+            {/* <div className="categories-forms">
+              <p className="form-title">ТРЦ:</p>
+              <form class="check-form">
                 <input
                   type="checkbox"
                   name="mall-name"
@@ -550,7 +590,7 @@ function Result() {
                   Послуги
                 </label>
               </form>
-            </div>
+            </div> */}
             <div className="shops-section">
               {/* pdsl */}
               {malls.map(mall => {
