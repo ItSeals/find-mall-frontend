@@ -144,30 +144,17 @@ const SorCCreate = (props) => {
       "malls",
       JSON.stringify(mallListBodyRef.current.map((mallId) => Number(mallId)))
     );
-    const postFormData = async () => {
-      await axios
-        .post(`${global.api}/item`, form_data, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        }).then((res) => {
-            return res;
-        }).catch((error) => {
-            return error.response;
-        });
-    }
-    postFormData();
-    // global.testServer == "true"
-    //   ? props.AddSOrC({
-    //       title:
-    //         nameBodyRef.current.value === ""
-    //           ? "unknown"
-    //           : nameBodyRef.current.value,
-    //       category: SOrCCategoryRef.current,
-    //       tags: SOrCTagsRef.current,
-    //       malls: SOrCMallListRef.current,
-    //     })
-    //   : props.AddSOrC(formData);
+    global.testServer == "true"
+      ? props.AddSOrC({
+          title:
+            nameBodyRef.current.value === ""
+              ? "unknown"
+              : nameBodyRef.current.value,
+          category: SOrCCategoryRef.current,
+          tags: SOrCTagsRef.current,
+          malls: SOrCMallListRef.current,
+        })
+      : props.AddSOrC(form_data);
   }
 
   return (

@@ -30,14 +30,21 @@ export async function networkCall(networkData, successCallback, errorCallback) {
     }
     case "post": {
       await axios
-        .post(networkData.url, networkData.content)
+        .post(networkData.url, networkData.content, {headers: networkData.headers})
         .then(handleSuccess)
         .catch(handleError);
       break;
     }
     case "put": {
       await axios
-        .put(networkData.url, networkData.content)
+        .put(networkData.url, networkData.content, {headers: networkData.headers})
+        .then(handleSuccess)
+        .catch(handleError);
+      break;
+    }
+    case "patch": {
+      await axios
+        .patch(networkData.url, networkData.content, {headers: networkData.headers})
         .then(handleSuccess)
         .catch(handleError);
       break;

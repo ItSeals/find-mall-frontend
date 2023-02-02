@@ -146,7 +146,8 @@ const SorCCreate = (props) => {
     updateSOrCMallListRef();
   }
 
-  function SorCSubmit() {
+  function SorCSubmit(e) {
+    e.preventDefault();
     global.testServer == "true"
       ? props.EditSOrC({
           title:
@@ -170,7 +171,7 @@ const SorCCreate = (props) => {
 
   return (
     <div className={props.className} style={props.style}>
-      <form onSubmit={() => SorCSubmit()}>
+      <form onSubmit={(e) => SorCSubmit(e)}>
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>
             <tr>

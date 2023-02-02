@@ -5,6 +5,7 @@ import SorCCreate from "./allSAndC/SorCCreate";
 import SorCEdit from "./allSAndC/SorCEdit";
 import SorCItem from "./allSAndC/SorCItem";
 import SorCItemBG from "./allSAndC/SorCItemBG";
+import axios from "../api/axios";
 
 const AllSAndC = (props) => {
   const [allSAndC, setAllSAndC] = useState([]);
@@ -32,7 +33,9 @@ const AllSAndC = (props) => {
 
   function AddSOrC(SOrC) {
     networkCall(
-      { url: `${global.api}/item`, type: "post", content: SOrC },
+      { url: `${global.api}/item`, type: "post", content: SOrC, headers: {
+        "Content-Type": "multipart/form-data",
+      }},
       () => updateAllSAndC(),
       (error) => console.log("AddSOrC(SOrC) error", error)
     );
