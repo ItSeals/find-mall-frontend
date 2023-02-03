@@ -5,6 +5,7 @@ const SorCCreate = (props) => {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const [mallList, setMallList] = useState([]);
+  const [file, setFile] = useState(global.admin.item.item_image);
 
   const nameBodyRef = useRef("");
   const categoryBodyRef = useRef(1);
@@ -52,6 +53,17 @@ const SorCCreate = (props) => {
       }
     }
     valueCallback(value);
+  }
+
+  function handleImageChange(e) {
+    let imgInp = document.getElementById("imgInp");
+    let blah = document.getElementById("blah");
+    let file = e.target.files[0];
+    const [filePrew] = imgInp.files
+    if (filePrew) {
+      blah.src = URL.createObjectURL(file)
+    }
+    setFile(file);
   }
 
   function getTagsOptions() {
@@ -148,6 +160,22 @@ const SorCCreate = (props) => {
 
   function SorCSubmit(e) {
     e.preventDefault();
+    let form_data = new FormData();
+
+    form_data.append("item_image", file, file.name);
+    form_data.append(
+      "title",
+      nameBodyRef.current.value === "" ? "unknown" : nameBodyRef.current.value
+    );
+    form_data.append("category", Number(categoryBodyRef.current.value));
+    form_data.append(
+      "tags",
+      JSON.stringify(tagsBodyRef.current.map((tagId) => Number(tagId)))
+    );
+    form_data.append(
+      "malls",
+      JSON.stringify(mallListBodyRef.current.map((mallId) => Number(mallId)))
+    );
     global.testServer == "true"
       ? props.EditSOrC({
           title:
@@ -158,15 +186,7 @@ const SorCCreate = (props) => {
           tags: SOrCTagsRef.current,
           malls: SOrCMallListRef.current,
         })
-      : props.EditSOrC({
-          title:
-            nameBodyRef.current.value === ""
-              ? "unknown"
-              : nameBodyRef.current.value,
-          category: Number(categoryBodyRef.current.value),
-          tags: tagsBodyRef.current.map((tagId) => Number(tagId)),
-          malls: mallListBodyRef.current.map((mallId) => Number(mallId)),
-        });
+      : props.EditSOrC(form_data);
   }
 
   return (
@@ -200,6 +220,37 @@ const SorCCreate = (props) => {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>
+                <img 
+                  id="blah"
+                  src={
+                    global.admin.item.item_image !== null
+                    ? `${global.apiWithoutURLPattern}${global.admin.item.item_image}`
+                    : "assets/images/white-image.png"
+                  }
+                  alt="Вибрана картинка" height="200"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div className="title-input">Img:</div>
+                <input 
+                  id="imgInp"
+                  type="file"  
+                  name="item_image"
+                  accept="image/jpeg,image/png,image/gif"
+                  onChange={(e) => {handleImageChange(e)}}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
             <tr>
               <td className="position-relative">
                 <div className="title-input">Name:</div>

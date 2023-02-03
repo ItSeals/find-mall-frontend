@@ -56,16 +56,13 @@ const SorCCreate = (props) => {
   }
   
   function handleImageChange(e) {
-    // let files = e.target.files;
-
-    // let reader = new FileReader();
-    // reader.readAsDataURL(files[0])
-
-    // reader.onload = (e) => {
-    //   imgBodyRef.current = e.target.result;
-    // }
-
+    let imgInp = document.getElementById("imgInp");
+    let blah = document.getElementById("blah");
     let file = e.target.files[0];
+    const [filePrew] = imgInp.files
+    if (filePrew) {
+      blah.src = URL.createObjectURL(file)
+    }
     setFile(file);
   }
 
@@ -128,8 +125,6 @@ const SorCCreate = (props) => {
     
     let form_data = new FormData();
 
-    console.log("file.name", file.name)
-
     form_data.append("item_image", file, file.name);
     form_data.append(
       "title",
@@ -190,8 +185,17 @@ const SorCCreate = (props) => {
           <tbody>
             <tr>
               <td>
+                <img id="blah" src="#" alt="Вибрана картинка" height="200"/>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
                 <div className="title-input">Img:</div>
-                <input 
+                <input
+                  id="imgInp"
                   type="file"  
                   name="item_image"
                   accept="image/jpeg,image/png,image/gif"

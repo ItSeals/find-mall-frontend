@@ -44,7 +44,9 @@ const AllSAndC = (props) => {
 
   function EditSOrC(SOrC) {
     networkCall(
-      { url: `${global.api}/item/${global.admin.item.id}`, type: "put", content: SOrC },
+      { url: `${global.api}/item/${global.admin.item.id}`, type: "put", content: SOrC, headers: {
+        "Content-Type": "multipart/form-data",
+      }},
       () => updateAllSAndC(),
       (error) => console.log("error", error)
     );
