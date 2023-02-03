@@ -82,6 +82,57 @@ const Tags = () => {
     );
   }
 
+  function outputTableLines() {
+    if (tags.length > 0) {
+      return (
+        tags.map((tag, index, arr) => {
+          if (index + 1 < arr.length) {
+            return (
+              <TagItem
+                tag={tag}
+                handleDelete={handleDelete}
+                setEditPage={setEditPage}
+                key={tag.id}
+              />
+            )
+          }
+          else if (arr.length < 10) {
+            let tempArr = [];
+            tempArr.push(
+              <TagItem
+                tag={tag}
+                handleDelete={handleDelete}
+                setEditPage={setEditPage}
+                key={tag.id}
+              />
+            );
+            for (let i = 0; i < 8 - index + 1; i++) {
+              tempArr.push(
+                <tr>
+                  <td></td>
+                  <td></td>
+                </tr>
+              );
+            }
+            return tempArr.map((element) => element);
+          }
+        })
+      )
+    }
+    else {
+      let tempArr = [];
+      for (let i = 0; i < 10; i++) {
+        tempArr.push(
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        );
+      }
+      return tempArr.map((element) => element);
+    }
+  }
+
   if (createPage) {
     return (
       <TagCreate
@@ -106,36 +157,6 @@ const Tags = () => {
         className="position-relative overflow-auto"
         style={{ height: "100vh" }}
       >
-        <table
-          className="admin-table position-absolute"
-          style={{ width: "100%" }}
-        >
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th style={{ width: "230px" }}>
-                <button
-                  onClick={() => setCreatePage(true)}
-                  className="btn pt-1px"
-                >
-                  Create
-                </button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <TagItemBG tag={tags[0]} />
-            <TagItemBG tag={tags[1]} />
-            <TagItemBG tag={tags[2]} />
-            <TagItemBG tag={tags[3]} />
-            <TagItemBG tag={tags[4]} />
-            <TagItemBG tag={tags[5]} />
-            <TagItemBG tag={tags[6]} />
-            <TagItemBG tag={tags[7]} />
-            <TagItemBG tag={tags[8]} />
-            <TagItemBG tag={tags[9]} />
-          </tbody>
-        </table>
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>
             <tr>
@@ -151,6 +172,7 @@ const Tags = () => {
             </tr>
           </thead>
           <tbody>
+            {outputTableLines()}
             {tags.map((tag) => (
               <TagItem
                 tag={tag}

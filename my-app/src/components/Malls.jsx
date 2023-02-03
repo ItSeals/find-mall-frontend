@@ -74,6 +74,63 @@ const Malls = (props) => {
     );
   }
 
+  function outputTableLines() {
+    if (malls.length > 0) {
+      return (
+        malls.map((mall, index, arr) => {
+          if (index + 1 < arr.length) {
+            return (
+              <MallItem
+                mall={mall}
+                MD={handleDelete}
+                sEP={setEditPage}
+                ME={EditMall}
+                Mlength={malls.length}
+                key={mall.id}
+              />
+            )
+          }
+          else if (arr.length < 10) {
+            let tempArr = [];
+            tempArr.push(
+              <MallItem
+                mall={mall}
+                MD={handleDelete}
+                sEP={setEditPage}
+                ME={EditMall}
+                Mlength={malls.length}
+                key={mall.id}
+              />
+            );
+            for (let i = 0; i < 8 - index + 1; i++) {
+              tempArr.push(
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              );
+            }
+            return tempArr.map((element) => element);
+          }
+        })
+      )
+    }
+    else {
+      let tempArr = [];
+      for (let i = 0; i < 10; i++) {
+        tempArr.push(
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        );
+      }
+      return tempArr.map((element) => element);
+    }
+  }
+
   if (createPage) {
     return (
       <MallCreate
@@ -99,37 +156,6 @@ const Malls = (props) => {
         className={`${props.className} position-relative overflow-auto`}
         style={{ height: "100vh" }}
       >
-        <table
-          className="admin-table position-absolute"
-          style={{ width: "100%" }}
-        >
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Location</th>
-              <th style={{ width: "230px" }}>
-                <button
-                  onClick={() => setCreatePage(true)}
-                  className="btn pt-1px"
-                >
-                  Create
-                </button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <MallItemBG mall={malls[0]} />
-            <MallItemBG mall={malls[1]} />
-            <MallItemBG mall={malls[2]} />
-            <MallItemBG mall={malls[3]} />
-            <MallItemBG mall={malls[4]} />
-            <MallItemBG mall={malls[5]} />
-            <MallItemBG mall={malls[6]} />
-            <MallItemBG mall={malls[7]} />
-            <MallItemBG mall={malls[8]} />
-            <MallItemBG mall={malls[9]} />
-          </tbody>
-        </table>
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>
             <tr>
@@ -146,16 +172,7 @@ const Malls = (props) => {
             </tr>
           </thead>
           <tbody>
-            {malls.map((mall) => (
-              <MallItem
-                mall={mall}
-                MD={handleDelete}
-                sEP={setEditPage}
-                ME={EditMall}
-                Mlength={malls.length}
-                key={mall.id}
-              />
-            ))}
+            {outputTableLines()}
           </tbody>
         </table>
         {dialog.isLoading && (

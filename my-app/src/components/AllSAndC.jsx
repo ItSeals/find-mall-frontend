@@ -82,6 +82,61 @@ const AllSAndC = (props) => {
     handleDialog("", false);
   }
 
+  function outputTableLines() {
+    if (allSAndC.length > 0) {
+      return (
+        allSAndC.map((SOrC, index, arr) => {
+          if (index + 1 < arr.length) {
+            return (
+              <SorCItem
+                SOrC={SOrC}
+                handleDelete={handleDelete}
+                setEditPage={setEditPage}
+                key={SOrC.id}
+              />
+            )
+          }
+          else if (arr.length < 10) {
+            let tempArr = [];
+            tempArr.push(
+              <SorCItem
+                SOrC={SOrC}
+                handleDelete={handleDelete}
+                setEditPage={setEditPage}
+                key={SOrC.id}
+              />
+            );
+            for (let i = 0; i < 8 - index + 1; i++) {
+              tempArr.push(
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              );
+            }
+            return tempArr.map((element) => element);
+          }
+        })
+      )
+    }
+    else {
+      let tempArr = [];
+      for (let i = 0; i < 10; i++) {
+        tempArr.push(
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        );
+      }
+      return tempArr.map((element) => element);
+    }
+  }
+
   if (createPage) {
     return (
       <SorCCreate
@@ -106,38 +161,6 @@ const AllSAndC = (props) => {
         className={`${props.className} position-relative overflow-auto`}
         style={{ height: "100vh" }}
       >
-        <table
-          className="admin-table position-absolute"
-          style={{ width: "100%" }}
-        >
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Mall List</th>
-              <th style={{ width: "230px", maxWidth: "20%" }}>
-                <button
-                  onClick={() => setCreatePage(true)}
-                  className="btn pt-1px"
-                >
-                  Create
-                </button>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <SorCItemBG SorC={allSAndC[0]} />
-            <SorCItemBG SorC={allSAndC[1]} />
-            <SorCItemBG SorC={allSAndC[2]} />
-            <SorCItemBG SorC={allSAndC[3]} />
-            <SorCItemBG SorC={allSAndC[4]} />
-            <SorCItemBG SorC={allSAndC[5]} />
-            <SorCItemBG SorC={allSAndC[6]} />
-            <SorCItemBG SorC={allSAndC[7]} />
-            <SorCItemBG SorC={allSAndC[8]} />
-            <SorCItemBG SorC={allSAndC[9]} />
-          </tbody>
-        </table>
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>
             <tr>
@@ -155,14 +178,7 @@ const AllSAndC = (props) => {
             </tr>
           </thead>
           <tbody>
-            {allSAndC.map((SOrC) => (
-              <SorCItem
-                SOrC={SOrC}
-                handleDelete={handleDelete}
-                setEditPage={setEditPage}
-                key={SOrC.id}
-              />
-            ))}
+            {outputTableLines()}
           </tbody>
         </table>
         {dialog.isLoading && (
