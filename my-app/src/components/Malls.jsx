@@ -4,7 +4,6 @@ import Dialog from "./Dialog";
 import MallCreate from "./malls/MallCreate";
 import MallEdit from "./malls/MallEdit";
 import MallItem from "./malls/MallItem";
-import MallItemBG from "./malls/MallItemBG";
 
 const Malls = (props) => {
   const [malls, setMalls] = useState([]);

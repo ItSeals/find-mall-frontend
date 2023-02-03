@@ -4,8 +4,6 @@ import Dialog from "./Dialog";
 import SorCCreate from "./allSAndC/SorCCreate";
 import SorCEdit from "./allSAndC/SorCEdit";
 import SorCItem from "./allSAndC/SorCItem";
-import SorCItemBG from "./allSAndC/SorCItemBG";
-import axios from "../api/axios";
 
 const AllSAndC = (props) => {
   const [allSAndC, setAllSAndC] = useState([]);

@@ -3,7 +3,6 @@ import { global, networkCall } from "../helpers/helpers";
 import TagCreate from "./tags/TagCreate";
 import TagEdit from "./tags/TagEdit";
 import TagItem from "./tags/TagItem";
-import TagItemBG from "./tags/TagItemBG";
 import Dialog from "./Dialog";
 
 const Tags = () => {

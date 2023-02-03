@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { global, networkCall } from "../../helpers/helpers";
 import Dialog from "../Dialog";
 import SorCCategoryItem from "./SorCCategory/SorCCategoryItem";
-import SorCCategoryItemBG from "./SorCCategory/SorCCategoryItemBG";
 import SorCCreate from "./SorCCreate";
 import SorCEdit from "./SorCEdit";
 

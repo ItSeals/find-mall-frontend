@@ -3,7 +3,6 @@ import { global, networkCall } from ".././helpers/helpers";
 import CategoryCreate from "./categories/CategoryCreate";
 import CategoryEdit from "./categories/CategoryEdit";
 import CategoryItem from "./categories/CategoryItem";
-import CategoryItemBG from "./categories/CategoryItemBG";
 import Dialog from "./Dialog";
 
 const Categories = ({ categories, updateCategories }) => {
