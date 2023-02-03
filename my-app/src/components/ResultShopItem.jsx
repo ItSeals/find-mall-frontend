@@ -19,7 +19,7 @@ function ResultShopItem({item, unnecessaryTag}) {
     <div className="shop-item">
       <div className="image-wrap">
         <img
-          src={item.item_image !== null ? `${global.apiWithoutURLPattern}/find-mall-backend/src/malls/find_mall${item.item_image}` : "assets/images/white-image.png"}
+          src={item.item_image !== null ? `${global.apiWithoutURLPattern}${item.item_image}` : "assets/images/white-image.png"}
           alt="shop-icon"
           width={65}
           height={65}
