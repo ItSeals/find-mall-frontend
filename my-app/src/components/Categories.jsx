@@ -76,7 +76,7 @@ const Categories = ({ categories, updateCategories }) => {
     if (categories.length > 0) {
       return (
         categories.map((category, index, arr) => {
-          if (index + 1 < arr.length) {
+          if (index + 1 < arr.length || arr.length >= 10) {
             return (
               <CategoryItem
                 category={category}

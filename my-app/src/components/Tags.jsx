@@ -85,7 +85,7 @@ const Tags = () => {
     if (tags.length > 0) {
       return (
         tags.map((tag, index, arr) => {
-          if (index + 1 < arr.length) {
+          if (index + 1 < arr.length || arr.length >= 10) {
             return (
               <TagItem
                 tag={tag}

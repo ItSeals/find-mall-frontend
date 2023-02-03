@@ -77,7 +77,7 @@ const Malls = (props) => {
     if (malls.length > 0) {
       return (
         malls.map((mall, index, arr) => {
-          if (index + 1 < arr.length) {
+          if (index + 1 < arr.length || arr.length >= 10) {
             return (
               <MallItem
                 mall={mall}

@@ -84,7 +84,7 @@ const AllSAndC = (props) => {
     if (allSAndC.length > 0) {
       return (
         allSAndC.map((SOrC, index, arr) => {
-          if (index + 1 < arr.length) {
+          if (index + 1 < arr.length || arr.length >= 10) {
             return (
               <SorCItem
                 SOrC={SOrC}
