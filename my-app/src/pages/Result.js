@@ -183,6 +183,27 @@ function Result() {
                   )
                 })}
               </form>
+              <p className="form-title">Категорії:</p>
+              <form class="check-form">
+                {categories.map(category => {
+                  pushFilterData({name: "categories", id: category.id});
+                  return (
+                    <Fragment>
+                      <input
+                        type="checkbox"
+                        name="categories"
+                        defaultValue={`categoryDV-${category.id}`}
+                        className="category-checkbox visually-hidden"
+                        id={`categoryId-${category.id}`}
+                        onChange={() => changeFilterData({name: "categories", id: category.id})}
+                      />
+                      <label className="category-label" htmlFor={`categoryId-${category.id}`}>
+                        {category.title}
+                      </label>
+                    </Fragment>
+                  )
+                })}
+              </form>
               <p className="form-title">Теги:</p>
               <form class="check-form">
                 {tags.map(tag => {
@@ -231,7 +252,20 @@ function Result() {
                       <h1 className="mall-title">{mall.title}</h1>
                       <div className="shop-category-wrap">
                         {categories.map(category => {
-                          let itemsWithNeedCategory = itemsWithNeedMall.filter((item) => category.id === item.category.id);
+                          let itemsWithNeedCategory = itemsWithNeedMall.filter((item) => {
+                            let isCategoryItem = false;
+                            if (allNoChecked(filterData["categories"])) {
+                              if (category.id === item.category.id) {
+                                isCategoryItem = true
+                              }
+                            } else {
+                              let pos = filterData["categories"].map(e => e.id).indexOf(category.id);
+                              if (category.id === item.category.id && filterData["categories"][pos].isChecked) {
+                                isCategoryItem = true
+                              }
+                            }
+                            return isCategoryItem;
+                          });
                           if (itemsWithNeedCategory.length > 0) {
                             return (
                               <Fragment>
