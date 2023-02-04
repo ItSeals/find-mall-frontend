@@ -5,12 +5,14 @@ import { global, networkCall } from '../helpers/helpers'
 
 function Result() {
   const [searchName, setSearchName] = useState(global.searchName);
+  const [filterData, setFilterData] = useState({})
   const [malls, setMalls] = useState([])
   const [categories, setCategories] = useState([])
   const [tags, setTags] = useState([])
   const [items, setItems] = useState([])
 
   const searchNameBodyRef = useRef(global.searchName);
+  const filterDataRef = useRef({});
 
   const navigate = useNavigate()
 
@@ -77,6 +79,39 @@ function Result() {
     setSearchName(searchNameBodyRef.current.value);
   }
   
+  function pushFilterData(obj) {
+    filterDataRef.current[obj.name] = filterDataRef.current[obj.name] === undefined ? [] : [...filterDataRef.current[obj.name]];
+    let found = false;
+    for(let i = 0; i < filterDataRef.current[obj.name].length; i++) {
+        if (filterDataRef.current[obj.name][i].id === obj.id) {
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+      filterDataRef.current[obj.name].push({
+        id: obj.id,
+        isChecked: false
+      });
+    }
+  }
+
+  function changeFilterData(obj) {
+    const pos = filterDataRef.current[obj.name].map(e => e.id).indexOf(obj.id);
+    filterDataRef.current[obj.name][pos].isChecked = !filterDataRef.current[obj.name][pos].isChecked;
+    setFilterData({...filterDataRef.current});
+  }
+  
+  function allNoChecked(arr) {
+    let found = false;
+    if (arr !== undefined) {
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i].isChecked) found = true
+      }
+    }
+    return !found;
+  }
+
   return (
     <Fragment>
       <div className="resPage">
@@ -130,14 +165,16 @@ function Result() {
               <p className="form-title">ТРЦ:</p>
               <form class="check-form">
                 {malls.map(mall => {
+                  pushFilterData({name: "malls", id: mall.id});
                   return (
                     <Fragment>
                       <input
                         type="checkbox"
-                        name="mall-name"
-                        defaultValue={mall.title}
+                        name="malls"
+                        defaultValue={`mallDV-${mall.id}`}
                         className="category-checkbox visually-hidden"
                         id={`mallId-${mall.id}`}
+                        onChange={() => changeFilterData({name: "malls", id: mall.id})}
                       />
                       <label className="category-label" htmlFor={`mallId-${mall.id}`}>
                         {mall.title}
@@ -149,14 +186,16 @@ function Result() {
               <p className="form-title">Теги:</p>
               <form class="check-form">
                 {tags.map(tag => {
+                  pushFilterData({name: "tags", id: tag.id});
                   return (
                     <Fragment>
                       <input
                         type="checkbox"
                         name="tags"
-                        defaultValue={tag.id}
+                        defaultValue={`tagDV-${tag.id}`}
                         className="category-checkbox visually-hidden"
                         id={`tagId-${tag.id}`}
+                        onChange={() => changeFilterData({name: "tags", id: tag.id})}
                       />
                       <label className="category-label" htmlFor={`tagId-${tag.id}`}>
                         {tag.title}
@@ -168,12 +207,20 @@ function Result() {
             </div>
             <div className="shops-section">
               {/* pdsl */}
+              {console.log("rendered", filterData)}
               {malls.map(mall => {
                 let itemsWithNeedMall = items.filter((item) => {
                   let isMallItem = false;
                   for (let i = 0; i < item.malls.length; i++) {
-                    if (mall.id === item.malls[i].id) {
-                      isMallItem = true;
+                    if (allNoChecked(filterData["malls"])) {
+                      if (mall.id === item.malls[i].id) {
+                        isMallItem = true;
+                      }
+                    } else {
+                      let pos = filterData["malls"].map(e => e.id).indexOf(mall.id);
+                      if (mall.id === item.malls[i].id && filterData["malls"][pos].isChecked) {
+                        isMallItem = true;
+                      }
                     }
                   }
                   return isMallItem;
@@ -193,8 +240,15 @@ function Result() {
                                   let itemsWithNeedTag = itemsWithNeedCategory.filter((item) => {
                                     let isTagItem = false;
                                     for (let i = 0; i < item.tags.length; i++) {
-                                      if (tag.id === item.tags[i].id) {
-                                        isTagItem = true;
+                                      if (allNoChecked(filterData["tags"])) {
+                                        if (tag.id === item.tags[i].id) {
+                                          isTagItem = true;
+                                        }
+                                      } else {
+                                        let pos = filterData["tags"].map(e => e.id).indexOf(tag.id);
+                                        if (tag.id === item.tags[i].id && filterData["tags"][pos].isChecked) {
+                                          isTagItem = true;
+                                        }
                                       }
                                     }
                                     return isTagItem;
