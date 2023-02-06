@@ -23,6 +23,7 @@ function ResultShopItem({item, unnecessaryTag}) {
           alt="shop-icon"
           width={65}
           height={65}
+          style={{maxHeight: "65px", maxWidth: "65px"}}
         />
       </div>
       <div className="shop-text">
