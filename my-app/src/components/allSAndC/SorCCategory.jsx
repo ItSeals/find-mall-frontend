@@ -95,7 +95,15 @@ const SorCCategory = (props) => {
           }
           else if (arr.length < 10) {
             let tempArr = [];
-            for (let i = 0; i < arr.length - index + 1; i++) {
+            tempArr.push(
+              <SorCCategoryItem
+                SOrC={SOrC}
+                handleDelete={handleDelete}
+                setEditPage={setEditPage}
+                key={SOrC.id}
+              />
+            );
+            for (let i = 0; i < 8 - index + 1; i++) {
               tempArr.push(
                 <tr>
                   <td></td>
