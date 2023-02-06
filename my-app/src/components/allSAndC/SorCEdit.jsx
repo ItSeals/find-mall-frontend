@@ -5,7 +5,7 @@ const SorCCreate = (props) => {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const [mallList, setMallList] = useState([]);
-  const [file, setFile] = useState(global.admin.item.item_image);
+  const [file, setFile] = useState(null);
 
   const nameBodyRef = useRef("");
   const categoryBodyRef = useRef(1);
@@ -38,7 +38,7 @@ const SorCCreate = (props) => {
       nameBodyRef.current.value = global.admin.item.title;
       categoryBodyRef.current.value = global.admin.item.category.id;
       updateSOrCCategoryRef();
-      tagsBodyRef.current = [tags[0].id];
+      tagsBodyRef.current = global.admin.item.tags.map((t) => t.id);
       updateSOrCTagsRef();
       mallListBodyRef.current = global.admin.item.malls.map((m) => m.id);
       updateSOrCMallListRef();
@@ -162,7 +162,11 @@ const SorCCreate = (props) => {
     e.preventDefault();
     let form_data = new FormData();
 
-    form_data.append("item_image", file, file.name);
+    if (file !== null) form_data.append("item_image", file, file.name);
+    form_data.append(
+      "title",
+      nameBodyRef.current.value === "" ? "unknown" : nameBodyRef.current.value
+    );
     form_data.append(
       "title",
       nameBodyRef.current.value === "" ? "unknown" : nameBodyRef.current.value
