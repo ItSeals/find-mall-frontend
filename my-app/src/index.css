@@ -25,12 +25,12 @@ body {
 }
 /*----------*/
 
-.admin_sidebar body {
+.admin_sidebar {
   font-family: 'MacPaw Fixel text', sans-serif;
 }
 
 .admin_sidebar .col-12{
-  height:60px;
+  min-height:60px;
   text-decoration: none;
 }
 .admin_sidebar .col-12:active{
@@ -43,7 +43,6 @@ body {
   background-color: #2039A5;
 }
 .admin_sidebar .ms-2{
-font-family: 'MacPaw Fixel';
 font-style: normal;
 font-size: 18px;
 line-height: 20px;
@@ -57,19 +56,20 @@ color: #FFFFFF;
 }
 .admin_sidebar .admin_panel{
   background-color: #3457ED;
-  height:60px;
+  min-height:60px;
   margin:80px 0px 59px 40px;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #3457ED;
   border-radius: 3px;
+  
   
 }
 .admin_sidebar .pt-6{
   padding-top:69px;
 }
-.admin_sidebar .ms-5{
+.admin_sidebar .admin_sidebar-ms-5{
   font-size:25px;
   color:black;
-  margin-right:10px;
+  margin-left: 20px;
 }
 
 /* admin-table */
