@@ -34,6 +34,9 @@
   /* font-family: 'MacPaw Fixel Display'; */
 	background-color: var(--background-color);
 	font-family: 'FixelText-Regular', sans-serif;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 .resPage p,
@@ -78,6 +81,7 @@
 
 .resPage main {
   margin-top: 21px;
+	flex: 1;
 }
 
 .resPage .bi-arrow-90deg-left {
@@ -205,6 +209,7 @@
 .resPage .categories-forms {
 	background-color: var(--background-color);
 	width: 89px;
+	min-width: 89px;
 	height: min-content;
 	border: 0.5px solid #3b2d46;
 	padding: 10px 0 0 0;
@@ -244,7 +249,9 @@
 	content: "";
 	display: block;
 	width: 5px;
+	min-width: 5px;
 	height: 5px;
+	min-height: 5px;
 	background-color: transparent;
 	border: 1px solid var(--accent-color);
 	margin-right: 7px;
@@ -267,7 +274,8 @@
 .resPage .check-form {
 	display: flex;
 	flex-wrap: wrap;
-	margin-left: 18px;
+	margin-left: 10px;
+	margin-right: 5px;
 }
 
 .resPage .visually-hidden {

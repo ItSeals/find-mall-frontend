@@ -228,12 +228,16 @@ function Result() {
             </div>
             <div className="shops-section">
               {/* pdsl */}
-              {console.log("rendered", filterData)}
               {malls.map(mall => {
+                let aNC = {
+                  malls: allNoChecked(filterData["malls"]), 
+                  categories: allNoChecked(filterData["categories"]),
+                  tags: allNoChecked(filterData["tags"])
+                }
                 let itemsWithNeedMall = items.filter((item) => {
                   let isMallItem = false;
                   for (let i = 0; i < item.malls.length; i++) {
-                    if (allNoChecked(filterData["malls"])) {
+                    if (aNC.malls) {
                       if (mall.id === item.malls[i].id) {
                         isMallItem = true;
                       }
@@ -254,7 +258,7 @@ function Result() {
                         {categories.map(category => {
                           let itemsWithNeedCategory = itemsWithNeedMall.filter((item) => {
                             let isCategoryItem = false;
-                            if (allNoChecked(filterData["categories"])) {
+                            if (aNC.categories) {
                               if (category.id === item.category.id) {
                                 isCategoryItem = true
                               }
@@ -274,7 +278,7 @@ function Result() {
                                   let itemsWithNeedTag = itemsWithNeedCategory.filter((item) => {
                                     let isTagItem = false;
                                     for (let i = 0; i < item.tags.length; i++) {
-                                      if (allNoChecked(filterData["tags"])) {
+                                      if (aNC.tags) {
                                         if (tag.id === item.tags[i].id) {
                                           isTagItem = true;
                                         }
