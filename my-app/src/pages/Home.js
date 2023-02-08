@@ -19,9 +19,9 @@ const Home = () => {
         <div className="container">
           <div className="row">
             <div className="col-12 header fill-background">
-              <button className="golovna-button btn-style">Головна</button>
-              <button className="trc-button btn-style">ТРЦ</button>
-              <button className="categories-button btn-style">Категорії</button>
+              <a href="#golovna" className="golovna-button btn-style">Головна</a>
+              <a href="#trc" className="trc-button btn-style">ТРЦ</a>
+              <a href="#categories" className="categories-button btn-style">Категорії</a>
               <span
                 className="main-name"
                 style={{ fontFamily: "FixelText-Medium" }}
@@ -34,16 +34,17 @@ const Home = () => {
                 width="25"
                 height="25"
               />
-              <button
+              <a
+                href="#searchByName" 
                 className="name-search-button btn-style"
                 style={{ lineHeight: "9px" }}
               >
                 Пошук за назвою
-              </button>
-              <button className="map-button btn-style">Мапа</button>
+              </a>
+              <a href="#mape" className="map-button btn-style">Мапа</a>
             </div>
           </div>
-          <div className="row background">
+          <div id="golovna" className="row background">
             <div className="col-12 entry-page" style={{ display: "flex" }}>
               <div className="col guide-text">
                 твій гід <br />
@@ -51,12 +52,13 @@ const Home = () => {
                 м. львів
               </div>
               <div className="col">
-                <button className="start-search-button"> Почати пошук</button>
+                <a href="#trc" className="start-search-button"> Почати пошук</a>
               </div>
             </div>
           </div>
           <div className="row dostupni-trc">
             <div
+              id="trc"
               className="col-6 fill-background"
               style={{ marginTop: "25px", width: "222px", height: "48px" }}
             >
@@ -176,7 +178,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="row outline-row">
+          <div id="categories" className="row outline-row">
             <div className="col-12">
               <h2>Оберіть категорії пошуку</h2>
               <p>
@@ -236,6 +238,7 @@ const Home = () => {
             <div className="col-12" style={{ marginTop: "32px" }}>
               <button className="srch-btn">Почати пошук</button>
               <h2
+                id="searchByName"
                 style={{
                   textAlign: "center",
                   fontStyle: "normal",
@@ -270,44 +273,6 @@ const Home = () => {
             </svg>
           </div>
 
-          {/* <div
-            className="row name-search-type-field fill-background"
-            style={{ alignItems: "center", display: "flex" }}
-          >
-             <div className="col-12">
-              <form className="searchbar" role="search">
-                <input
-                  type="search"
-                  className="form-control"
-                  placeholder="Введіть назву магазину/кафе/послуги та натисніть на знак пошуку..."
-                  aria-label="Search"
-                />
-              </form>
-            </div>
-            <button className="button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlnsXlink="http://www.w3.org/1999/xlink"
-                xmlnsSvgjs="http://svgjs.com/svgjs"
-                version="1.1"
-                width="12px"
-                height="12px"
-                x="0"
-                y="0"
-                viewBox="0 0 24 24"
-                style={{ enableBackground: "new 0 0 512 512" }}
-                xmlSpace="preserve"
-              >
-                <g>
-                  <path
-                    d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"
-                    fill="#ffffff"
-                    data-original="#000000"
-                  />
-                </g>
-              </svg>
-            </button>
-          </div> */}
           <div className="row name-search-type-field fill-background div-search">
             <form className="searchbar form-search-field" role="search">
               <input
@@ -344,7 +309,7 @@ const Home = () => {
             </form>
           </div>
 
-          <div className="row map-block">
+          <div id="mape" className="row map-block">
             {/* <!-- tyt mapa --> */}
             <button className="my-location"></button>
           </div>
