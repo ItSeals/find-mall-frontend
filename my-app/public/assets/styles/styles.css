@@ -405,6 +405,20 @@
 	color: #000000;
 }
 
+.resPage .request-search-name {
+	font-family: "FixelText-ExtraLight";
+	font-size: 15px;
+	line-height: 21px;
+}
+
+.resPage .request-search-name-small {
+	font-family: "FixelText-ExtraLight";
+	font-size: 8px;
+	line-height: 11px;
+	margin-top: 6px;
+	margin-bottom: 22px;
+}
+
 .resPage .other-tags {
 	display: flex;
 	justify-content: center;

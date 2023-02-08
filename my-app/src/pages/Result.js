@@ -228,6 +228,12 @@ function Result() {
             </div>
             <div className="shops-section">
               {/* pdsl */}
+              {searchName !== "" && searchName !== null ? (
+                <>
+                  <div className="request-search-name">Ви ввели: “{searchName}”</div>
+                  <div className="request-search-name-small">Шукаємо по запиту: “{searchName}”</div>
+                </>
+              ) : null}
               {malls.map(mall => {
                 let aNC = {
                   malls: allNoChecked(filterData["malls"]), 
