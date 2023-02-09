@@ -13,6 +13,19 @@ const Home = () => {
     navigate("/result");
   }
 
+  function onClickMall(e, img, mallName) {
+    console.log("e", e.target.innerText)
+    if (e.currentTarget.parentNode.style.background === `linear-gradient(rgba(59, 45, 70, 0.55), rgba(59, 45, 70, 0.55)) 0% 0% / cover, url(\"assets/images/${img}\")`) {
+      e.currentTarget.parentNode.style.background = `linear-gradient(rgba(252, 170, 88, 0.45), rgba(252, 170, 88, 0.45)), url(assets/images/${img})`;
+      e.currentTarget.parentNode.style.backgroundSize = "cover";
+      e.target.innerText = `ШУКАЄМО В\n${mallName}`;
+    } else {
+      e.currentTarget.parentNode.style.background = `linear-gradient(rgba(59, 45, 70, 0.55), rgba(59, 45, 70, 0.55)), url(assets/images/${img})`;
+      e.currentTarget.parentNode.style.backgroundSize = "cover";
+      e.target.innerText = `ОБРАТИ\n${mallName}`;
+    }
+  }
+
   return (
     <Fragment>
       <div className="home">
@@ -72,7 +85,7 @@ const Home = () => {
           <div className="row trc-labels" style={{ marginTop: "40px" }}>
             <div className="col-6">
               {/* <!-- image VICTORIA GARDENS --> */}
-              <div
+              <div 
                 className="vg-div"
                 style={{
                   background:
@@ -80,7 +93,7 @@ const Home = () => {
                   backgroundSize: "cover",
                 }}
               >
-                <button className="choose-trc">ОБРАТИ VICTORIA GARDENS</button>
+                <button className="choose-trc" onClick={e => onClickMall(e, "2.jpg", "VICTORIA GARDENS")}>ОБРАТИ<br />VICTORIA GARDENS</button>
               </div>
             </div>
             <div className="col-6">
@@ -118,8 +131,8 @@ const Home = () => {
                   backgroundSize: "cover",
                 }}
               >
-                <button className="choose-trc">
-                  ОБРАТИ KING CROSS LEOPOLIS
+                <button className="choose-trc" onClick={(e) => onClickMall(e, "3.jpg", "KING CROSS LEOPOLIS")}>
+                  ОБРАТИ<br />KING CROSS LEOPOLIS
                 </button>
               </div>
             </div>
@@ -134,7 +147,9 @@ const Home = () => {
                   backgroundSize: "cover",
                 }}
               >
-                <button className="choose-trc">ОБРАТИ SPARTAK</button>
+                <button className="choose-trc" onClick={(e) => onClickMall(e, "4.jpg", "SPARTAK")}>
+                  ОБРАТИ<br />SPARTAK
+                </button>
               </div>
             </div>
             <div className="col-6">
@@ -173,7 +188,9 @@ const Home = () => {
                   backgroundSize: "cover",
                 }}
               >
-                <button className="choose-trc">ОБРАТИ FORUM LVIV</button>
+                <button className="choose-trc" onClick={(e) => onClickMall(e, "5.jpg", "FORUM LVIV")}>
+                  ОБРАТИ<br />FORUM LVIV
+                </button>
               </div>
             </div>
           </div>
