@@ -114,7 +114,6 @@ const Home = () => {
               <a
                 href="#searchByName" 
                 className="name-search-button btn-style"
-                style={{ lineHeight: "9px" }}
               >
                 Пошук за назвою
               </a>

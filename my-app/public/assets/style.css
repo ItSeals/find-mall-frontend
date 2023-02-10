@@ -167,7 +167,7 @@
 }
 .home .choose-category {
   width: 87px;
-  height: 30px;
+  height: min-content;
   font-family: FixelText-Regular;
   font-style: normal;
   font-weight: 400;
@@ -175,8 +175,7 @@
   line-height: 14px;
   text-align: center;
   color: #F5F5F5;
-  margin: 0 auto;
-  margin-top: 80px;
+  margin: auto;
   background: rgba(59, 45, 70, 0.6);
   border: none;
 }
@@ -202,7 +201,7 @@
 }
 .home .choose-trc {
   width: 94px;
-  height: 25px;
+  height: min-content;
   font-style: normal;
   font-family: FixelText-Medium;
   font-weight: 500;
@@ -210,8 +209,7 @@
   line-height: 12px;
   text-align: center;
   color: #F5F5F5;
-  margin-left: 21px;
-  margin-top: 46px;
+  margin: auto;
   background-color: rgba(217, 217, 217, 0.35);
   border: none;
 }
@@ -292,11 +290,13 @@
   font-family: FixelText-Medium;
   font-size: 6px;
   line-height: 20px;
+  text-align: center;
   color: #000;
   border: transparent;
   background: #fcaa58;
 }
 .home .btn-style:hover {
+  color: #000;
   cursor: pointer;
   background: rgba(255, 87, 51, 0.5);
   border: transparent;
