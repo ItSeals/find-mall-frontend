@@ -14,7 +14,6 @@ const Home = () => {
   }
 
   function onClickMall(e, img, mallName) {
-    console.log("e", e.target.innerText)
     if (e.currentTarget.parentNode.style.background === `linear-gradient(rgba(59, 45, 70, 0.55), rgba(59, 45, 70, 0.55)) 0% 0% / cover, url(\"assets/images/${img}\")`) {
       e.currentTarget.parentNode.style.background = `linear-gradient(rgba(252, 170, 88, 0.45), rgba(252, 170, 88, 0.45)), url(assets/images/${img})`;
       e.currentTarget.parentNode.style.backgroundSize = "cover";
@@ -23,6 +22,22 @@ const Home = () => {
       e.currentTarget.parentNode.style.background = `linear-gradient(rgba(59, 45, 70, 0.55), rgba(59, 45, 70, 0.55)), url(assets/images/${img})`;
       e.currentTarget.parentNode.style.backgroundSize = "cover";
       e.target.innerText = `ОБРАТИ\n${mallName}`;
+    }
+  }
+
+  function onClickCategory(e, img, categotyName) {
+    if (e.target.innerText === `Обрати ${categotyName}`) {
+      e.currentTarget.parentNode.style.background = `linear-gradient(rgba(252, 170, 88, 0.45), rgba(252, 170, 88, 0.45)), url(assets/images/${img})`;
+      e.currentTarget.parentNode.style.backgroundSize = "cover";
+      e.currentTarget.parentNode.style.backgroundPosition = "center";
+      e.currentTarget.parentNode.style.backgroundRepeat = "no-repeat";
+      e.target.innerText = `Шукаємо в ${categotyName}`;
+    } else {
+      e.currentTarget.parentNode.style.background = `linear-gradient(rgba(59, 45, 70, 0.6), rgba(59, 45, 70, 0.068)), url(assets/images/${img})`;
+      e.currentTarget.parentNode.style.backgroundSize = "cover";
+      e.currentTarget.parentNode.style.backgroundPosition = "center";
+      e.currentTarget.parentNode.style.backgroundRepeat = "no-repeat";
+      e.target.innerText = `Обрати ${categotyName}`;
     }
   }
 
@@ -218,7 +233,7 @@ const Home = () => {
                   backgroundRepeat: "no-repeat",
                 }}
               >
-                <button className="choose-category">Магазини</button>
+                <button className="choose-category" onClick={(e) => onClickCategory(e, "6.jpg", "магазини")}>Обрати магазини</button>
               </div>
             </div>
             <div className="col-4" style={{ padding: "0" }}>
@@ -232,7 +247,7 @@ const Home = () => {
                   backgroundRepeat: "no-repeat",
                 }}
               >
-                <button className="choose-category">Кафе та ресторани</button>
+                <button className="choose-category" onClick={(e) => onClickCategory(e, "7.jpg", "кафе та ресторани")}>Обрати кафе та ресторани</button>
               </div>
             </div>
             <div className="col-4" style={{ padding: "0" }}>
@@ -246,7 +261,7 @@ const Home = () => {
                   backgroundRepeat: "no-repeat",
                 }}
               >
-                <button className="choose-category">Розваги та послуги</button>
+                <button className="choose-category" onClick={(e) => onClickCategory(e, "8.jpg", "розваги та послуги")}>Обрати розваги та послуги</button>
               </div>
             </div>
           </div>
