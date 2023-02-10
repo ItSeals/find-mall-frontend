@@ -16,6 +16,7 @@ export var global = {
       ? process.env.REACT_APP_TEST_SERVER
       : "false",
   searchName: null,
+  filterData: {},
   admin: { mall: {}, category: {}, tag: {}, item: {} },
 };
 

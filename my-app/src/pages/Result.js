@@ -5,14 +5,14 @@ import { global, networkCall } from '../helpers/helpers'
 
 function Result() {
   const [searchName, setSearchName] = useState(global.searchName);
-  const [filterData, setFilterData] = useState({})
+  const [filterData, setFilterData] = useState(global.filterData)
   const [malls, setMalls] = useState([])
   const [categories, setCategories] = useState([])
   const [tags, setTags] = useState([])
   const [items, setItems] = useState([])
 
   const searchNameBodyRef = useRef(global.searchName);
-  const filterDataRef = useRef({});
+  const filterDataRef = useRef(global.filterData);
 
   const navigate = useNavigate()
 
@@ -67,7 +67,8 @@ function Result() {
           error
         )
     );
-  }, [searchName]);
+    console.log("filterData", filterData)
+  }, [searchName, filterData]);
 
   function backToHome(e) {
     e.preventDefault();
@@ -110,6 +111,11 @@ function Result() {
       }
     }
     return !found;
+  }
+
+  function isCheckedValue(obj) {
+    const pos = filterDataRef.current[obj.name].map(e => e.id).indexOf(obj.id);
+    return filterDataRef.current[obj.name][pos].isChecked;
   }
 
   return (
@@ -174,6 +180,7 @@ function Result() {
                         defaultValue={`mallDV-${mall.id}`}
                         className="category-checkbox visually-hidden"
                         id={`mallId-${mall.id}`}
+                        defaultChecked={isCheckedValue({name: "malls", id: mall.id})}
                         onChange={() => changeFilterData({name: "malls", id: mall.id})}
                       />
                       <label className="category-label" htmlFor={`mallId-${mall.id}`}>
@@ -195,6 +202,7 @@ function Result() {
                         defaultValue={`categoryDV-${category.id}`}
                         className="category-checkbox visually-hidden"
                         id={`categoryId-${category.id}`}
+                        defaultChecked={isCheckedValue({name: "categories", id: category.id})}
                         onChange={() => changeFilterData({name: "categories", id: category.id})}
                       />
                       <label className="category-label" htmlFor={`categoryId-${category.id}`}>
@@ -216,6 +224,7 @@ function Result() {
                         defaultValue={`tagDV-${tag.id}`}
                         className="category-checkbox visually-hidden"
                         id={`tagId-${tag.id}`}
+                        defaultChecked={isCheckedValue({name: "tags", id: tag.id})}
                         onChange={() => changeFilterData({name: "tags", id: tag.id})}
                       />
                       <label className="category-label" htmlFor={`tagId-${tag.id}`}>

@@ -4,6 +4,40 @@ import { global } from "../helpers/helpers";
 
 const Home = () => {
   const searchNameRef = useRef("");
+  const filterDataRef = useRef({
+    malls: [
+      {
+        id: 1,
+        isChecked: false,
+      },
+      {
+        id: 11,
+        isChecked: false,
+      },
+      {
+        id: 12,
+        isChecked: false,
+      },
+      {
+        id: 13,
+        isChecked: false,
+      },
+    ],
+    categories: [
+      {
+        id: 1,
+        isChecked: false,
+      },
+      {
+        id: 2,
+        isChecked: false,
+      },
+      {
+        id: 3,
+        isChecked: false,
+      },
+    ],
+  });
 
   const navigate = useNavigate()
 
@@ -13,7 +47,13 @@ const Home = () => {
     navigate("/result");
   }
 
-  function onClickMall(e, img, mallName) {
+  function filterDataSubmit(e) {
+    e.preventDefault();
+    global.filterData = filterDataRef.current;
+    navigate("/result");
+  }
+
+  function onClickMall(e, img, mallName, obj) {
     if (e.currentTarget.parentNode.style.background === `linear-gradient(rgba(59, 45, 70, 0.55), rgba(59, 45, 70, 0.55)) 0% 0% / cover, url(\"assets/images/${img}\")`) {
       e.currentTarget.parentNode.style.background = `linear-gradient(rgba(252, 170, 88, 0.45), rgba(252, 170, 88, 0.45)), url(assets/images/${img})`;
       e.currentTarget.parentNode.style.backgroundSize = "cover";
@@ -23,9 +63,11 @@ const Home = () => {
       e.currentTarget.parentNode.style.backgroundSize = "cover";
       e.target.innerText = `ОБРАТИ\n${mallName}`;
     }
+    changeFilterDataRef(obj);
+    console.log("filterDataRef.current", filterDataRef.current);
   }
 
-  function onClickCategory(e, img, categotyName) {
+  function onClickCategory(e, img, categotyName, obj) {
     if (e.target.innerText === `Обрати ${categotyName}`) {
       e.currentTarget.parentNode.style.background = `linear-gradient(rgba(252, 170, 88, 0.45), rgba(252, 170, 88, 0.45)), url(assets/images/${img})`;
       e.currentTarget.parentNode.style.backgroundSize = "cover";
@@ -39,8 +81,15 @@ const Home = () => {
       e.currentTarget.parentNode.style.backgroundRepeat = "no-repeat";
       e.target.innerText = `Обрати ${categotyName}`;
     }
+    changeFilterDataRef(obj);
+    console.log("filterDataRef.current", filterDataRef.current);
   }
 
+  function changeFilterDataRef(obj) {
+    const pos = filterDataRef.current[obj.name].map(e => e.id).indexOf(obj.id);
+    filterDataRef.current[obj.name][pos].isChecked = !filterDataRef.current[obj.name][pos].isChecked;
+  }
+  
   return (
     <Fragment>
       <div className="home">
@@ -108,7 +157,7 @@ const Home = () => {
                   backgroundSize: "cover",
                 }}
               >
-                <button className="choose-trc" onClick={e => onClickMall(e, "2.jpg", "VICTORIA GARDENS")}>ОБРАТИ<br />VICTORIA GARDENS</button>
+                <button className="choose-trc" onClick={e => onClickMall(e, "2.jpg", "VICTORIA GARDENS", {id: 1, name: "malls"})}>ОБРАТИ<br />VICTORIA GARDENS</button>
               </div>
             </div>
             <div className="col-6">
@@ -146,7 +195,7 @@ const Home = () => {
                   backgroundSize: "cover",
                 }}
               >
-                <button className="choose-trc" onClick={(e) => onClickMall(e, "3.jpg", "KING CROSS LEOPOLIS")}>
+                <button className="choose-trc" onClick={(e) => onClickMall(e, "3.jpg", "KING CROSS LEOPOLIS", {id: 11, name: "malls"})}>
                   ОБРАТИ<br />KING CROSS LEOPOLIS
                 </button>
               </div>
@@ -162,7 +211,7 @@ const Home = () => {
                   backgroundSize: "cover",
                 }}
               >
-                <button className="choose-trc" onClick={(e) => onClickMall(e, "4.jpg", "SPARTAK")}>
+                <button className="choose-trc" onClick={(e) => onClickMall(e, "4.jpg", "SPARTAK", {id: 12, name: "malls"})}>
                   ОБРАТИ<br />SPARTAK
                 </button>
               </div>
@@ -203,7 +252,7 @@ const Home = () => {
                   backgroundSize: "cover",
                 }}
               >
-                <button className="choose-trc" onClick={(e) => onClickMall(e, "5.jpg", "FORUM LVIV")}>
+                <button className="choose-trc" onClick={(e) => onClickMall(e, "5.jpg", "FORUM LVIV", {id: 13, name: "malls"})}>
                   ОБРАТИ<br />FORUM LVIV
                 </button>
               </div>
@@ -233,7 +282,7 @@ const Home = () => {
                   backgroundRepeat: "no-repeat",
                 }}
               >
-                <button className="choose-category" onClick={(e) => onClickCategory(e, "6.jpg", "магазини")}>Обрати магазини</button>
+                <button className="choose-category" onClick={(e) => onClickCategory(e, "6.jpg", "магазини", {id: 1, name: "categories"})}>Обрати магазини</button>
               </div>
             </div>
             <div className="col-4" style={{ padding: "0" }}>
@@ -247,7 +296,7 @@ const Home = () => {
                   backgroundRepeat: "no-repeat",
                 }}
               >
-                <button className="choose-category" onClick={(e) => onClickCategory(e, "7.jpg", "кафе та ресторани")}>Обрати кафе та ресторани</button>
+                <button className="choose-category" onClick={(e) => onClickCategory(e, "7.jpg", "кафе та ресторани", {id: 2, name: "categories"})}>Обрати кафе та ресторани</button>
               </div>
             </div>
             <div className="col-4" style={{ padding: "0" }}>
@@ -261,14 +310,14 @@ const Home = () => {
                   backgroundRepeat: "no-repeat",
                 }}
               >
-                <button className="choose-category" onClick={(e) => onClickCategory(e, "8.jpg", "розваги та послуги")}>Обрати розваги та послуги</button>
+                <button className="choose-category" onClick={(e) => onClickCategory(e, "8.jpg", "розваги та послуги", {id: 3, name: "categories"})}>Обрати розваги та послуги</button>
               </div>
             </div>
           </div>
 
           <div className="row">
             <div className="col-12" style={{ marginTop: "32px" }}>
-              <button className="srch-btn">Почати пошук</button>
+              <button className="srch-btn" onClick={(e) => filterDataSubmit(e)}>Почати пошук</button>
               <h2
                 id="searchByName"
                 style={{
