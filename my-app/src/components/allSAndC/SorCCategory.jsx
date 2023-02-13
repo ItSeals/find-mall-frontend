@@ -24,7 +24,7 @@ const SorCCategory = (props) => {
   function updateAllSAndC() {
     networkCall(
       {
-        url: `${global.api}/item?category${global.testServer === "true" ? "." : "_"}id=${props.categoryId}`,
+        url: `${global.api}/item?category${global.testServer === "true" ? "." : "_"}ids=${props.categoryId}`,
         type: "get",
       },
       (res) => setAllSAndC(res),
