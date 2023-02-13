@@ -26,10 +26,10 @@ function MyGoogleMap() {
       center={center}
       mapContainerClassName="map-container"
     >
-      <MarkerF position={mallsMarkers[0]} />
-      <MarkerF position={mallsMarkers[1]} />
-      <MarkerF position={mallsMarkers[2]} />
-      <MarkerF position={mallsMarkers[3]} />
+      <MarkerF label="VICTORIA GARDENS" position={mallsMarkers[0]} />
+      <MarkerF label="KING CROSS LEOPOLIS" position={mallsMarkers[1]} />
+      <MarkerF label="SPARTAK" position={mallsMarkers[2]} />
+      <MarkerF label="FORUM LVIV" position={mallsMarkers[3]} />
     </GoogleMap>
   );
 }
