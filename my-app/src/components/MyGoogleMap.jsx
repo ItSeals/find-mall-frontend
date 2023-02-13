@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 
 function MyGoogleMap() {
   const { isLoaded } = useLoadScript({
@@ -7,6 +7,12 @@ function MyGoogleMap() {
   });
 
   const center = useMemo(() => ({ lat: 49.83826, lng: 24.02324 }), []);
+  const mallsMarkers = useMemo(() => ([
+    {lat: 49.807368, lng: 23.978039},
+    {lat: 49.773515, lng: 24.009919},
+    {lat: 49.870072, lng: 24.023141},
+    {lat: 49.849902, lng: 24.022299},
+  ]), []);
 
   if (!isLoaded) return <div>Loading...</div>;
   return (
@@ -16,11 +22,14 @@ function MyGoogleMap() {
     //   <button className="my-location">Моє місцезнаходження</button>
     // </div>
     <GoogleMap
-      zoom={11}
+      zoom={10}
       center={center}
       mapContainerClassName="map-container"
     >
-      <Marker position={center}/>
+      <MarkerF position={mallsMarkers[0]} />
+      <MarkerF position={mallsMarkers[1]} />
+      <MarkerF position={mallsMarkers[2]} />
+      <MarkerF position={mallsMarkers[3]} />
     </GoogleMap>
   );
 }
