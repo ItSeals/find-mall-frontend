@@ -1,5 +1,6 @@
 import React, { Fragment, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import MyGoogleMap from "../components/MyGoogleMap";
 import { global } from "../helpers/helpers";
 
 const Home = () => {
@@ -389,10 +390,7 @@ const Home = () => {
             </form>
           </div>
 
-          <div id="mape" className="row map-block">
-            {/* <!-- tyt mapa --> */}
-            <button className="my-location"></button>
-          </div>
+          <MyGoogleMap />
 
           <div className="row fill-background">
             <div className="col-12 fill-background">
