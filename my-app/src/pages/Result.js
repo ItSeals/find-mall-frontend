@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import ResultShopItem from '../components/ResultShopItem';
-import { global, networkCall } from '../helpers/helpers'
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ResultShopItem from "../components/ResultShopItem";
+import { global, networkCall } from "../helpers/helpers";
 
 function Result() {
   const [searchName, setSearchName] = useState(global.searchName);
@@ -14,7 +14,7 @@ function Result() {
   const searchNameBodyRef = useRef(global.searchName);
   const filterDataRef = useRef(global.filterData);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     networkCall(
@@ -50,12 +50,28 @@ function Result() {
     );
   }, []);
 
+  // &mall_ids=[1]
+  // &category_ids=[1]
+  // &tag_ids=[1]
+
   useEffect(() => {
     networkCall(
       {
         url: `${global.api}/item?${
           global.testServer === "true" ? "title_like" : "search"
-        }=${searchName === null ? "" : searchName}`,
+        }=${searchName === null ? "" : searchName}${
+          !allNoChecked(filterData["malls"])
+            ? getArrChecked(filterData["malls"], "&mall_ids=")
+            : ""
+        }${
+          !allNoChecked(filterData["categories"])
+            ? getArrChecked(filterData["categories"], "&category_ids=")
+            : ""
+        }${
+          !allNoChecked(filterData["tags"])
+            ? getArrChecked(filterData["tags"], "&tag_ids=")
+            : ""
+        }`,
         type: "get",
       },
       (res) => setItems(res),
@@ -67,7 +83,6 @@ function Result() {
           error
         )
     );
-    console.log("filterData", filterData)
   }, [searchName, filterData]);
 
   function backToHome(e) {
@@ -79,38 +94,52 @@ function Result() {
     e.preventDefault();
     setSearchName(searchNameBodyRef.current.value);
   }
-  
+
   function pushFilterData(obj) {
-    filterDataRef.current[obj.name] = filterDataRef.current[obj.name] === undefined ? [] : [...filterDataRef.current[obj.name]];
+    filterDataRef.current[obj.name] =
+      filterDataRef.current[obj.name] === undefined
+        ? []
+        : [...filterDataRef.current[obj.name]];
     let found = false;
-    for(let i = 0; i < filterDataRef.current[obj.name].length; i++) {
-        if (filterDataRef.current[obj.name][i].id === obj.id) {
-            found = true;
-            break;
-        }
+    for (let i = 0; i < filterDataRef.current[obj.name].length; i++) {
+      if (filterDataRef.current[obj.name][i].id === obj.id) {
+        found = true;
+        break;
+      }
     }
     if (!found) {
       filterDataRef.current[obj.name].push({
         id: obj.id,
-        isChecked: false
+        isChecked: false,
       });
     }
   }
 
   function changeFilterData(obj) {
-    const pos = filterDataRef.current[obj.name].map(e => e.id).indexOf(obj.id);
-    filterDataRef.current[obj.name][pos].isChecked = !filterDataRef.current[obj.name][pos].isChecked;
-    setFilterData({...filterDataRef.current});
+    const pos = filterDataRef.current[obj.name]
+      .map((e) => e.id)
+      .indexOf(obj.id);
+    filterDataRef.current[obj.name][pos].isChecked =
+      !filterDataRef.current[obj.name][pos].isChecked;
+    setFilterData({ ...filterDataRef.current });
   }
-  
+
   function allNoChecked(arr) {
     let found = false;
     if (arr !== undefined) {
       for (let i = 0; i < arr.length; i++) {
-        if (arr[i].isChecked) found = true
+        if (arr[i].isChecked) found = true;
       }
     }
     return !found;
+  }
+
+  function getArrChecked(arr, prefixStr) {
+    let checkedArrElements = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].isChecked) checkedArrElements.push(arr[i].id);
+    }
+    return `${prefixStr}[${checkedArrElements}]`;
   }
 
   function isCheckedValue(obj) {
@@ -135,11 +164,18 @@ function Result() {
               d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"
             />
           </svg>
-          <button type="button" className="go-to-main-btn" onClick={(e) => backToHome(e)}>
+          <button
+            type="button"
+            className="go-to-main-btn"
+            onClick={(e) => backToHome(e)}
+          >
             Повернутися на головну сторінку
           </button>
           <h3 className="logo">FindMall</h3>
-          <form class="header-search-form" onSubmit={(e) => submitSearchName(e)}>
+          <form
+            class="header-search-form"
+            onSubmit={(e) => submitSearchName(e)}
+          >
             <label className="label-bi-search">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -170,8 +206,8 @@ function Result() {
             <div className="categories-forms">
               <p className="form-title">ТРЦ:</p>
               <form class="check-form">
-                {malls.map(mall => {
-                  pushFilterData({name: "malls", id: mall.id});
+                {malls.map((mall) => {
+                  pushFilterData({ name: "malls", id: mall.id });
                   return (
                     <Fragment>
                       <input
@@ -181,19 +217,24 @@ function Result() {
                         className="category-checkbox visually-hidden"
                         id={`mallId-${mall.id}`}
                         defaultChecked={isCheckedValue({name: "malls", id: mall.id})}
-                        onChange={() => changeFilterData({name: "malls", id: mall.id})}
+                        onChange={() =>
+                          changeFilterData({ name: "malls", id: mall.id })
+                        }
                       />
-                      <label className="category-label" htmlFor={`mallId-${mall.id}`}>
+                      <label
+                        className="category-label"
+                        htmlFor={`mallId-${mall.id}`}
+                      >
                         {mall.title}
                       </label>
                     </Fragment>
-                  )
+                  );
                 })}
               </form>
               <p className="form-title">Категорії:</p>
               <form class="check-form">
-                {categories.map(category => {
-                  pushFilterData({name: "categories", id: category.id});
+                {categories.map((category) => {
+                  pushFilterData({ name: "categories", id: category.id });
                   return (
                     <Fragment>
                       <input
@@ -203,19 +244,27 @@ function Result() {
                         className="category-checkbox visually-hidden"
                         id={`categoryId-${category.id}`}
                         defaultChecked={isCheckedValue({name: "categories", id: category.id})}
-                        onChange={() => changeFilterData({name: "categories", id: category.id})}
+                        onChange={() =>
+                          changeFilterData({
+                            name: "categories",
+                            id: category.id,
+                          })
+                        }
                       />
-                      <label className="category-label" htmlFor={`categoryId-${category.id}`}>
+                      <label
+                        className="category-label"
+                        htmlFor={`categoryId-${category.id}`}
+                      >
                         {category.title}
                       </label>
                     </Fragment>
-                  )
+                  );
                 })}
               </form>
               <p className="form-title">Теги:</p>
               <form class="check-form">
-                {tags.map(tag => {
-                  pushFilterData({name: "tags", id: tag.id});
+                {tags.map((tag) => {
+                  pushFilterData({ name: "tags", id: tag.id });
                   return (
                     <Fragment>
                       <input
@@ -225,13 +274,18 @@ function Result() {
                         className="category-checkbox visually-hidden"
                         id={`tagId-${tag.id}`}
                         defaultChecked={isCheckedValue({name: "tags", id: tag.id})}
-                        onChange={() => changeFilterData({name: "tags", id: tag.id})}
+                        onChange={() =>
+                          changeFilterData({ name: "tags", id: tag.id })
+                        }
                       />
-                      <label className="category-label" htmlFor={`tagId-${tag.id}`}>
+                      <label
+                        className="category-label"
+                        htmlFor={`tagId-${tag.id}`}
+                      >
                         {tag.title}
                       </label>
                     </Fragment>
-                  )
+                  );
                 })}
               </form>
             </div>
@@ -239,28 +293,20 @@ function Result() {
               {/* pdsl */}
               {searchName !== "" && searchName !== null ? (
                 <>
-                  <div className="request-search-name">Ви ввели: “{searchName}”</div>
-                  <div className="request-search-name-small">Шукаємо по запиту: “{searchName}”</div>
+                  <div className="request-search-name">
+                    Ви ввели: “{searchName}”
+                  </div>
+                  <div className="request-search-name-small">
+                    Шукаємо по запиту: “{searchName}”
+                  </div>
                 </>
               ) : null}
-              {malls.map(mall => {
-                let aNC = {
-                  malls: allNoChecked(filterData["malls"]), 
-                  categories: allNoChecked(filterData["categories"]),
-                  tags: allNoChecked(filterData["tags"])
-                }
+              {malls.map((mall) => {
                 let itemsWithNeedMall = items.filter((item) => {
                   let isMallItem = false;
                   for (let i = 0; i < item.malls.length; i++) {
-                    if (aNC.malls) {
-                      if (mall.id === item.malls[i].id) {
-                        isMallItem = true;
-                      }
-                    } else {
-                      let pos = filterData["malls"].map(e => e.id).indexOf(mall.id);
-                      if (mall.id === item.malls[i].id && filterData["malls"][pos].isChecked) {
-                        isMallItem = true;
-                      }
+                    if (mall.id === item.malls[i].id) {
+                      isMallItem = true;
                     }
                   }
                   return isMallItem;
@@ -270,62 +316,56 @@ function Result() {
                     <Fragment>
                       <h1 className="mall-title">{mall.title}</h1>
                       <div className="shop-category-wrap">
-                        {categories.map(category => {
-                          let itemsWithNeedCategory = itemsWithNeedMall.filter((item) => {
-                            let isCategoryItem = false;
-                            if (aNC.categories) {
-                              if (category.id === item.category.id) {
-                                isCategoryItem = true
-                              }
-                            } else {
-                              let pos = filterData["categories"].map(e => e.id).indexOf(category.id);
-                              if (category.id === item.category.id && filterData["categories"][pos].isChecked) {
-                                isCategoryItem = true
-                              }
-                            }
-                            return isCategoryItem;
-                          });
+                        {categories.map((category) => {
+                          let itemsWithNeedCategory = itemsWithNeedMall.filter(
+                            (item) => category.id === item.category.id
+                          );
                           if (itemsWithNeedCategory.length > 0) {
                             return (
                               <Fragment>
                                 <h2 className="shop-title">{category.title}</h2>
-                                {tags.map(tag => {
-                                  let itemsWithNeedTag = itemsWithNeedCategory.filter((item) => {
-                                    let isTagItem = false;
-                                    for (let i = 0; i < item.tags.length; i++) {
-                                      if (aNC.tags) {
+                                {tags.map((tag) => {
+                                  let itemsWithNeedTag =
+                                    itemsWithNeedCategory.filter((item) => {
+                                      let isTagItem = false;
+                                      for (
+                                        let i = 0;
+                                        i < item.tags.length;
+                                        i++
+                                      ) {
                                         if (tag.id === item.tags[i].id) {
                                           isTagItem = true;
                                         }
-                                      } else {
-                                        let pos = filterData["tags"].map(e => e.id).indexOf(tag.id);
-                                        if (tag.id === item.tags[i].id && filterData["tags"][pos].isChecked) {
-                                          isTagItem = true;
-                                        }
                                       }
-                                    }
-                                    return isTagItem;
-                                  });
+                                      return isTagItem;
+                                    });
                                   if (itemsWithNeedTag.length > 0) {
                                     return (
                                       <Fragment>
-                                        <h3 className="category-title">{tag.title}</h3>
+                                        <h3 className="category-title">
+                                          {tag.title}
+                                        </h3>
                                         <div className="items-wrap">
-                                          {itemsWithNeedTag.map(item => {
-                                            return <ResultShopItem item={item} unnecessaryTag={tag} />
+                                          {itemsWithNeedTag.map((item) => {
+                                            return (
+                                              <ResultShopItem
+                                                item={item}
+                                                unnecessaryTag={tag}
+                                              />
+                                            );
                                           })}
                                         </div>
                                       </Fragment>
-                                    )
+                                    );
                                   }
                                 })}
                               </Fragment>
-                            )
+                            );
                           }
                         })}
                       </div>
                     </Fragment>
-                  )
+                  );
                 }
               })}
               {/* gfojp */}
@@ -333,7 +373,9 @@ function Result() {
           </section>
         </main>
         <footer>
-          <h3 className="footer-title">Дякуємо, що користуєтеся нашим сервісом!</h3>
+          <h3 className="footer-title">
+            Дякуємо, що користуєтеся нашим сервісом!
+          </h3>
           <div className="footer-wrap">
             <p className="footer-paragraph">
               Більше інформації про ТРЦ можете знайти за посиланнями на офіційні
@@ -382,7 +424,7 @@ function Result() {
         </footer>
       </div>
     </Fragment>
-  )
+  );
 }
 
-export default Result
+export default Result;
