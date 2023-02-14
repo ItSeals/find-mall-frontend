@@ -50,10 +50,6 @@ function Result() {
     );
   }, []);
 
-  // &mall_ids=[1]
-  // &category_ids=[1]
-  // &tag_ids=[1]
-
   useEffect(() => {
     networkCall(
       {
@@ -62,15 +58,15 @@ function Result() {
         }=${searchName === null ? "" : searchName}${
           !allNoChecked(filterData["malls"])
             ? getArrChecked(filterData["malls"], "&mall_ids=")
-            : ""
+            : "&mall_ids="
         }${
           !allNoChecked(filterData["categories"])
             ? getArrChecked(filterData["categories"], "&category_ids=")
-            : ""
+            : "&category_ids="
         }${
           !allNoChecked(filterData["tags"])
             ? getArrChecked(filterData["tags"], "&tag_ids=")
-            : ""
+            : "&tag_ids="
         }`,
         type: "get",
       },
@@ -292,21 +288,28 @@ function Result() {
             <div className="shops-section">
               {/* pdsl */}
               {searchName !== "" && searchName !== null ? (
-                <>
-                  <div className="request-search-name">
-                    Ви ввели: “{searchName}”
-                  </div>
-                  <div className="request-search-name-small">
-                    Шукаємо по запиту: “{searchName}”
-                  </div>
-                </>
+                <div className="request-search-name">
+                  Шукаємо по запиту: “{searchName}”
+                </div>
               ) : null}
-              {malls.map((mall) => {
+              {malls.map(mall => {
+                let aNC = {
+                  malls: allNoChecked(filterData["malls"]), 
+                  categories: allNoChecked(filterData["categories"]),
+                  tags: allNoChecked(filterData["tags"])
+                }
                 let itemsWithNeedMall = items.filter((item) => {
                   let isMallItem = false;
                   for (let i = 0; i < item.malls.length; i++) {
-                    if (mall.id === item.malls[i].id) {
-                      isMallItem = true;
+                    if (aNC.malls) {
+                      if (mall.id === item.malls[i].id) {
+                        isMallItem = true;
+                      }
+                    } else {
+                      let pos = filterData["malls"].map(e => e.id).indexOf(mall.id);
+                      if (mall.id === item.malls[i].id && filterData["malls"][pos].isChecked) {
+                        isMallItem = true;
+                      }
                     }
                   }
                   return isMallItem;
@@ -316,56 +319,62 @@ function Result() {
                     <Fragment>
                       <h1 className="mall-title">{mall.title}</h1>
                       <div className="shop-category-wrap">
-                        {categories.map((category) => {
-                          let itemsWithNeedCategory = itemsWithNeedMall.filter(
-                            (item) => category.id === item.category.id
-                          );
+                        {categories.map(category => {
+                          let itemsWithNeedCategory = itemsWithNeedMall.filter((item) => {
+                            let isCategoryItem = false;
+                            if (aNC.categories) {
+                              if (category.id === item.category.id) {
+                                isCategoryItem = true
+                              }
+                            } else {
+                              let pos = filterData["categories"].map(e => e.id).indexOf(category.id);
+                              if (category.id === item.category.id && filterData["categories"][pos].isChecked) {
+                                isCategoryItem = true
+                              }
+                            }
+                            return isCategoryItem;
+                          });
                           if (itemsWithNeedCategory.length > 0) {
                             return (
                               <Fragment>
                                 <h2 className="shop-title">{category.title}</h2>
-                                {tags.map((tag) => {
-                                  let itemsWithNeedTag =
-                                    itemsWithNeedCategory.filter((item) => {
-                                      let isTagItem = false;
-                                      for (
-                                        let i = 0;
-                                        i < item.tags.length;
-                                        i++
-                                      ) {
+                                {tags.map(tag => {
+                                  let itemsWithNeedTag = itemsWithNeedCategory.filter((item) => {
+                                    let isTagItem = false;
+                                    for (let i = 0; i < item.tags.length; i++) {
+                                      if (aNC.tags) {
                                         if (tag.id === item.tags[i].id) {
                                           isTagItem = true;
                                         }
+                                      } else {
+                                        let pos = filterData["tags"].map(e => e.id).indexOf(tag.id);
+                                        if (tag.id === item.tags[i].id && filterData["tags"][pos].isChecked) {
+                                          isTagItem = true;
+                                        }
                                       }
-                                      return isTagItem;
-                                    });
+                                    }
+                                    return isTagItem;
+                                  });
                                   if (itemsWithNeedTag.length > 0) {
                                     return (
                                       <Fragment>
-                                        <h3 className="category-title">
-                                          {tag.title}
-                                        </h3>
+                                        <h3 className="category-title">{tag.title}</h3>
                                         <div className="items-wrap">
-                                          {itemsWithNeedTag.map((item) => {
-                                            return (
-                                              <ResultShopItem
-                                                item={item}
-                                                unnecessaryTag={tag}
-                                              />
-                                            );
+                                          {itemsWithNeedTag.map(item => {
+                                            return <ResultShopItem item={item} unnecessaryTag={tag} />
                                           })}
                                         </div>
                                       </Fragment>
-                                    );
+                                    )
                                   }
                                 })}
                               </Fragment>
-                            );
+                            )
                           }
                         })}
                       </div>
                     </Fragment>
-                  );
+                  )
                 }
               })}
               {/* gfojp */}
