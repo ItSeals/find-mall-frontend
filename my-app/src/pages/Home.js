@@ -86,6 +86,21 @@ const Home = () => {
     console.log("filterDataRef.current", filterDataRef.current);
   }
 
+	function chooseNearestMall(mallId) {
+		let img = "3.jpg"
+		let mallName = "KING CROSS LEOPOLIS"
+		let targetedButton = document.getElementById(`mallButtonId-${mallId}`);
+    if (targetedButton.innerText = `ОБРАТИ\n${mallName}`) {
+      targetedButton.parentNode.style.background = `linear-gradient(rgba(252, 170, 88, 0.45), rgba(252, 170, 88, 0.45)), url(assets/images/${img})`;
+      targetedButton.parentNode.style.backgroundSize = "cover";
+      targetedButton.innerText = `ШУКАЄМО В\n${mallName}`;
+    } else {
+      targetedButton.parentNode.style.background = `linear-gradient(rgba(59, 45, 70, 0.55), rgba(59, 45, 70, 0.55)), url(assets/images/${img})`;
+      targetedButton.parentNode.style.backgroundSize = "cover";
+      targetedButton.innerText = `ОБРАТИ\n${mallName}`;
+    }
+	}
+
   function changeFilterDataRef(obj) {
     const pos = filterDataRef.current[obj.name].map(e => e.id).indexOf(obj.id);
     filterDataRef.current[obj.name][pos].isChecked = !filterDataRef.current[obj.name][pos].isChecked;
@@ -149,7 +164,8 @@ const Home = () => {
           <div className="row trc-labels" style={{ marginTop: "40px" }}>
             <div className="col-6">
               {/* <!-- image VICTORIA GARDENS --> */}
-              <div 
+              <div
+								id="mallId-1"
                 className="vg-div"
                 style={{
                   background:
@@ -188,6 +204,7 @@ const Home = () => {
             </div>
             <div className="col-6">
               <div
+								id="mallId-2"
                 className="vg-div"
                 style={{
                   background:
@@ -195,7 +212,7 @@ const Home = () => {
                   backgroundSize: "cover",
                 }}
               >
-                <button className="choose-trc" onClick={(e) => onClickMall(e, "3.jpg", "KING CROSS LEOPOLIS", {id: 11, name: "malls"})}>
+                <button id="mallButtonId-2" className="choose-trc" onClick={(e) => onClickMall(e, "3.jpg", "KING CROSS LEOPOLIS", {id: 11, name: "malls"})}>
                   ОБРАТИ<br />KING CROSS LEOPOLIS
                 </button>
               </div>
@@ -204,6 +221,7 @@ const Home = () => {
           <div className="row trc-labels">
             <div className="col-6">
               <div
+								id="mallId-3"
                 className="vg-div"
                 style={{
                   background:
@@ -245,6 +263,7 @@ const Home = () => {
             <div className="col-6">
               {/* <!-- image FORUM --> */}
               <div
+								id="mallId-4"
                 className="vg-div"
                 style={{
                   background:
@@ -390,7 +409,7 @@ const Home = () => {
             </form>
           </div>
 
-          <MyGoogleMap />
+          <MyGoogleMap chooseNearestMall={chooseNearestMall}/>
 
           <div className="row fill-background">
             <div className="col-12 fill-background">

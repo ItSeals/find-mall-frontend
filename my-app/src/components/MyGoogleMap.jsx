@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import { GoogleMap, useLoadScript, MarkerF, PolylineF } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 
-function MyGoogleMap() {
+function MyGoogleMap({ chooseNearestMall }) {
 	const { isLoaded } = useLoadScript({
 		googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 	});
@@ -25,6 +25,33 @@ function MyGoogleMap() {
 		return d;
 	}
 
+	function getNearestMallCor(position) {
+		let currentNearestMallId = 1;
+		let smallestDistance = 100000;
+		for (let i = 0; i < mallsMarkers.length; i++) {
+			let currentDistance = haversine_distance({
+				lat: position.coords.latitude,
+				lng: position.coords.longitude,
+			}, mallsMarkers[i])
+			if (currentDistance < smallestDistance) {
+				currentNearestMallId = i + 1;
+				smallestDistance = currentDistance;
+			}
+		}
+		console.log("smallestDistance", smallestDistance);
+		chooseNearestMall(currentNearestMallId);
+	}
+
+	function getUserGeolocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition((position) => {
+				getNearestMallCor(position);
+			})
+		}
+		else console.log("geolocation not support");
+	}
+	getUserGeolocation();
+
 	if (!isLoaded) return <div>Loading...</div>;
 	return (
 		// <div id="map" className="row map-block">
@@ -42,9 +69,7 @@ function MyGoogleMap() {
 				<MarkerF label="KING CROSS LEOPOLIS" position={mallsMarkers[1]} />
 				<MarkerF label="SPARTAK" position={mallsMarkers[2]} />
 				<MarkerF label="FORUM LVIV" position={mallsMarkers[3]} />
-				<PolylineF draggable="true" path={[mallsMarkers[0], mallsMarkers[1]]} />
 			</GoogleMap>
-			<div>Distance between markers: {haversine_distance(mallsMarkers[0], mallsMarkers[1])}</div>
 		</>
 	);
 }
