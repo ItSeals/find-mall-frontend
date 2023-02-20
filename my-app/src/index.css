@@ -227,3 +227,9 @@ table.admin-table .title-input {
   left: 42px;
   top: 0;
 }
+
+.map-container {
+  width: 300px;
+  height: 150px;
+  margin: 27px auto 38px auto;
+}
