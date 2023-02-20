@@ -4,6 +4,7 @@ import MyGoogleMap from "../components/MyGoogleMap";
 import { global } from "../helpers/helpers";
 
 const Home = () => {
+	const nearestMallIsChoosedRef = useRef(false);
 	const searchNameRef = useRef("");
 	const mallsRef = useRef([
 		{
@@ -105,28 +106,32 @@ const Home = () => {
 			e.target.innerText = `Обрати ${categotyName}`;
 		}
 		changeFilterDataRef(obj);
-		console.log("filterDataRef.current", filterDataRef.current);
 	}
 
 	function chooseNearestMall(mallId) {
 		let pos = mallsRef.current.map(m => m.id).indexOf(mallId);
-		let img = mallsRef.current[pos].imgName;
-		let mallName = mallsRef.current[pos].name;
+		let currentMall = mallsRef.current[pos];
+		let img = currentMall.imgName;
+		let mallName = currentMall.name;
 		let targetedButton = document.getElementById(`mallButtonId-${mallId}`);
 		if (targetedButton.innerText = `ОБРАТИ\n${mallName}`) {
 			targetedButton.parentNode.style.background = `linear-gradient(rgba(252, 170, 88, 0.45), rgba(252, 170, 88, 0.45)), url(assets/images/${img})`;
 			targetedButton.parentNode.style.backgroundSize = "cover";
 			targetedButton.innerText = `ШУКАЄМО В\n${mallName}`;
-		} else {
-			targetedButton.parentNode.style.background = `linear-gradient(rgba(59, 45, 70, 0.55), rgba(59, 45, 70, 0.55)), url(assets/images/${img})`;
-			targetedButton.parentNode.style.backgroundSize = "cover";
-			targetedButton.innerText = `ОБРАТИ\n${mallName}`;
 		}
+		console.log("nearestMallIsChoosedRef.current", nearestMallIsChoosedRef.current);
+		if (!nearestMallIsChoosedRef.current) {
+			alert(`Ми вже обрали ТЦ ${mallName}, оскільки він є найближчий до вас`);
+			nearestMallIsChoosedRef.current = true;
+		}
+		filterDataRef.current["malls"][mallId - 1].isChecked = true;
+		console.log("filterDataRef.current", filterDataRef.current);
 	}
 
 	function changeFilterDataRef(obj) {
 		const pos = filterDataRef.current[obj.name].map(e => e.id).indexOf(obj.id);
 		filterDataRef.current[obj.name][pos].isChecked = !filterDataRef.current[obj.name][pos].isChecked;
+		console.log("filterDataRef.current", filterDataRef.current);
 	}
 	
 	return (
