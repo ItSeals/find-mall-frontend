@@ -121,7 +121,9 @@ const Home = () => {
 		}
 		console.log("nearestMallIsChoosedRef.current", nearestMallIsChoosedRef.current);
 		if (!nearestMallIsChoosedRef.current) {
-			alert(`Ми вже обрали ТЦ ${mallName}, оскільки він є найближчий до вас`);
+			setTimeout(() => {
+				alert(`Ми вже обрали ТЦ ${mallName}, оскільки він є найближчий до вас`);
+			}, 250)
 			nearestMallIsChoosedRef.current = true;
 		}
 		filterDataRef.current["malls"][mallId - 1].isChecked = true;
