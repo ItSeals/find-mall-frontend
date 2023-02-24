@@ -10,6 +10,7 @@ import SorCCategory from "./components/allSAndC/SorCCategory";
 import Tags from "./components/Tags";
 import Home from "./pages/Home";
 import Result from "./pages/Result";
+import OtherTags from "./components/OtherTags";
 
 function App() {
 	//const [success, setSuccess] = useState(true);
@@ -55,7 +56,7 @@ function App() {
 					}
 				/>
 				<Route path="tags" element={<Tags />} />
-				<Route path="otherTags" element={<Tags />} />
+				<Route path="otherTags" element={<OtherTags />} />
 				<Route path="items" element={<AllSAndC />} />
 				{categories.map((category) => {
 					return (
