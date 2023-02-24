@@ -10,65 +10,67 @@ import SorCCategory from "./components/allSAndC/SorCCategory";
 import Tags from "./components/Tags";
 import Home from "./pages/Home";
 import Result from "./pages/Result";
+import OtherTags from "./components/OtherTags";
 
 function App() {
-  //const [success, setSuccess] = useState(true);
-  //
-  // if (success === false) {
-  //   return (
-  //     <main className="App">
-  //       <Login success={success} setSuccess={setSuccess}/>
-  //     </main>
-  //   );
-  // } else {
-  //   return(
-  //     <SideBar/>
-  //   )
-  // }
+	//const [success, setSuccess] = useState(true);
+	//
+	// if (success === false) {
+	//   return (
+	//     <main className="App">
+	//       <Login success={success} setSuccess={setSuccess}/>
+	//     </main>
+	//   );
+	// } else {
+	//   return(
+	//     <SideBar/>
+	//   )
+	// }
 
-  const [categories, setCategories] = useState([]);
+	const [categories, setCategories] = useState([]);
 
-  function updateCategories() {
-    networkCall(
-      { type: "get", url: `${global.api}/category` },
-      (res) => setCategories(res),
-      (error) => console.log("error", error)
-    );
-  }
+	function updateCategories() {
+		networkCall(
+			{ type: "get", url: `${global.api}/category` },
+			(res) => setCategories(res),
+			(error) => console.log("error", error)
+		);
+	}
 
-  useEffect(() => updateCategories(), []);
+	useEffect(() => updateCategories(), []);
 
-  return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="result" element={<Result />} />
-      <Route path="admin" element={<SideBar categories={categories} />}>
-        <Route index={true} element={<Malls />} />
-        <Route path="malls" element={<Malls />} />
-        <Route
-          path="categories"
-          element={
-            <Categories
-              categories={categories}
-              updateCategories={updateCategories}
-            />
-          }
-        />
-        <Route path="tags" element={<Tags />} />
-        <Route path="items" element={<AllSAndC />} />
-        {categories.map((category) => {
-          return (
-            <Route
-              path={`items/${category.id}`}
-              element={<SorCCategory categoryId={category.id} />}
-            />
-          );
-        })}
-      </Route>
-      <Route path="admin/login" element={<Login />} />
-      <Route path="*" element={<div>error 404: not faund page</div>} />
-    </Routes>
-  );
+	return (
+		<Routes>
+			<Route path="/" element={<Home />} />
+			<Route path="result" element={<Result />} />
+			<Route path="admin" element={<SideBar categories={categories} />}>
+				<Route index={true} element={<Malls />} />
+				<Route path="malls" element={<Malls />} />
+				<Route
+					path="categories"
+					element={
+						<Categories
+							categories={categories}
+							updateCategories={updateCategories}
+						/>
+					}
+				/>
+				<Route path="tags" element={<Tags />} />
+				<Route path="otherTags" element={<OtherTags />} />
+				<Route path="items" element={<AllSAndC />} />
+				{categories.map((category) => {
+					return (
+						<Route
+							path={`items/${category.id}`}
+							element={<SorCCategory categoryId={category.id} />}
+						/>
+					);
+				})}
+			</Route>
+			<Route path="admin/login" element={<Login />} />
+			<Route path="*" element={<div>error 404: not faund page</div>} />
+		</Routes>
+	);
 }
 
 export default App;

@@ -17,7 +17,7 @@ export var global = {
       : "false",
   searchName: null,
   filterData: {},
-  admin: { mall: {}, category: {}, tag: {}, item: {} },
+  admin: { mall: {}, category: {}, tag: {}, otherTag: {}, item: {} },
 };
 
 export async function networkCall(networkData, successCallback, errorCallback) {

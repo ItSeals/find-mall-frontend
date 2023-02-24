@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { global, networkCall } from "../helpers/helpers";
-import TagCreate from "./tags/TagCreate";
-import TagEdit from "./tags/TagEdit";
-import TagItem from "./tags/TagItem";
+import OtherTagCreate from "./otherTags/OtherTagCreate";
+import OtherTagEdit from "./otherTags/OtherTagEdit";
+import OtherTagItem from "./otherTags/OtherTagItem";
 import Dialog from "./Dialog";
 
-const Tags = () => {
-  const [tags, setTags] = useState([])
+const OtherTags = () => {
+  const [otherTags, setOtherTags] = useState([])
   const [createPage, setCreatePage] = useState(false);
   const [editPage, setEditPage] = useState(false);
   const [dialog, setDialog] = useState({
@@ -15,30 +15,30 @@ const Tags = () => {
     nameProduct: "",
   });
 
-  const idTagRef = useRef();
-  const apiEndPoint = `${global.api}/tag`;
+  const idOtherTagRef = useRef();
+  const apiEndPoint = `${global.api}/othertag`;
 
   useEffect(() => {
-    updateTags();
+    updateOtherTags();
   }, []);
 
-  function AddTag(tag) {
+  function AddOtherTag(tag) {
     networkCall(
       { url: apiEndPoint, type: "post", content: tag },
-      () => updateTags(),
+      () => updateOtherTags(),
       (error) => console.log("error", error)
     );
     setCreatePage(false);
   }
 
-  function EditTag(tag) {
+  function EditOtherTag(tag) {
     networkCall(
       {
-        url: apiEndPoint + "/" + global.admin.tag.id,
+        url: apiEndPoint + "/" + global.admin.otherTag.id,
         type: "put",
         content: tag,
       },
-      () => updateTags(),
+      () => updateOtherTags(),
       (error) => console.log("error", error)
     );
     setEditPage(false);
@@ -53,61 +53,62 @@ const Tags = () => {
   }
 
   function handleDelete(id) {
-    const index = tags.findIndex((t) => t.id === id);
+    const index = otherTags.findIndex((t) => t.id === id);
     handleDialog(
       "Are you sure you want to delete?",
       true,
-      tags[index].title
+      otherTags[index].title
     );
-    idTagRef.current = id;
+    idOtherTagRef.current = id;
   }
 
   function areUSureDelete(choose) {
     if (choose) {
       networkCall(
-        { url: apiEndPoint + "/" + idTagRef.current, type: "delete" },
-        () => updateTags(),
+        { url: apiEndPoint + "/" + idOtherTagRef.current, type: "delete" },
+        () => updateOtherTags(),
         (error) => console.log("error", error)
       );
     }
     handleDialog("", false);
   }
 
-  function updateTags() {
+  function updateOtherTags() {
     networkCall(
-      { type: "get", url: `${global.api}/tag` },
-      (res) => setTags(res),
+      { type: "get", url: `${apiEndPoint}` },
+      (res) => setOtherTags(res),
       (error) => console.log("error", error)
     );
   }
 
   function outputTableLines() {
-    if (tags.length > 0) {
+    if (otherTags.length > 0) {
       return (
-        tags.map((tag, index, arr) => {
+        otherTags.map((otherTag, index, arr) => {
           if (index + 1 < arr.length || arr.length >= 10) {
             return (
-              <TagItem
-                tag={tag}
+              <OtherTagItem
+                tag={otherTag}
                 handleDelete={handleDelete}
                 setEditPage={setEditPage}
-                key={tag.id}
+                key={otherTag.id}
               />
             )
           }
           else if (arr.length < 10) {
             let tempArr = [];
             tempArr.push(
-              <TagItem
-                tag={tag}
+              <OtherTagItem
+                tag={otherTag}
                 handleDelete={handleDelete}
                 setEditPage={setEditPage}
-                key={tag.id}
+                key={otherTag.id}
               />
             );
             for (let i = 0; i < 8 - index + 1; i++) {
               tempArr.push(
                 <tr>
+                  <td></td>
                   <td></td>
                   <td></td>
                 </tr>
@@ -125,6 +126,7 @@ const Tags = () => {
           <tr>
             <td></td>
             <td></td>
+            <td></td>
           </tr>
         );
       }
@@ -134,19 +136,19 @@ const Tags = () => {
 
   if (createPage) {
     return (
-      <TagCreate
+      <OtherTagCreate
         className="position-absolute"
         style={{ width: "100%", left: "0" }}
-        AddTag={AddTag}
+        AddTag={AddOtherTag}
         prePage={setCreatePage}
       />
     );
   } else if (editPage) {
     return (
-      <TagEdit
+      <OtherTagEdit
         className="position-absolute"
         style={{ width: "100%", left: "0" }}
-        EditTag={EditTag}
+        EditTag={EditOtherTag}
         prePage={setEditPage}
       />
     );
@@ -160,6 +162,7 @@ const Tags = () => {
           <thead>
             <tr>
               <th>Name</th>
+              <th>ItemName</th>
               <th style={{ width: "230px" }}>
                 <button
                   onClick={() => setCreatePage(true)}
@@ -186,4 +189,4 @@ const Tags = () => {
   }
 };
 
-export default Tags;
+export default OtherTags;
