@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { global, networkCall } from "../helpers/helpers";
-import TagCreate from "./tags/TagCreate";
+import OtherTagCreate from "./otherTags/OtherTagCreate";
 import OtherTagEdit from "./otherTags/OtherTagEdit";
 import OtherTagItem from "./otherTags/OtherTagItem";
 import Dialog from "./Dialog";
@@ -136,7 +136,7 @@ const OtherTags = () => {
 
   if (createPage) {
     return (
-      <TagCreate
+      <OtherTagCreate
         className="position-absolute"
         style={{ width: "100%", left: "0" }}
         AddTag={AddOtherTag}
