@@ -78,7 +78,7 @@ const Home = () => {
 	}
 
 	function onClickMall(e, img, mallName, obj) {
-		if (e.currentTarget.parentNode.style.background === `linear-gradient(rgba(59, 45, 70, 0.55), rgba(59, 45, 70, 0.55)) 0% 0% / cover, url(\"assets/images/${img}\")`) {
+		if (e.currentTarget.parentNode.style.background === `linear-gradient(rgba(59, 45, 70, 0.55), rgba(59, 45, 70, 0.55)) 0% 0% / cover, url("assets/images/${img}")`) {
 			e.currentTarget.parentNode.style.background = `linear-gradient(rgba(252, 170, 88, 0.45), rgba(252, 170, 88, 0.45)), url(assets/images/${img})`;
 			e.currentTarget.parentNode.style.backgroundSize = "cover";
 			e.target.innerText = `ШУКАЄМО В\n${mallName}`;
@@ -141,7 +141,7 @@ const Home = () => {
 			<div className="home">
 				<div className="container">
 					<div className="row">
-						<div className="col-12 header fill-background">
+						<div className="col-12 header fill-background" style={{position: "fixed", zIndex: 1, left: 0, right: 0}}>
 							<a href="#golovna" className="golovna-button btn-style">Головна</a>
 							<a href="#trc" className="trc-button btn-style">ТРЦ</a>
 							<a href="#categories" className="categories-button btn-style">Категорії</a>
@@ -160,13 +160,14 @@ const Home = () => {
 							<a
 								href="#searchByName" 
 								className="name-search-button btn-style"
+								style={{minWidth: "50px"}}
 							>
 								Пошук за назвою
 							</a>
 							<a href="#mape" className="map-button btn-style">Мапа</a>
 						</div>
 					</div>
-					<div id="golovna" className="row background">
+					<div id="golovna" className="row background" style={{marginTop: "30px"}}>
 						<div className="col-12 entry-page" style={{ display: "flex" }}>
 							<div className="col guide-text">
 								твій гід <br />
