@@ -141,33 +141,90 @@ const Home = () => {
 			<div className="home">
 				<div className="container">
 					<div className="row">
-						<div className="col-12 header fill-background" style={{position: "fixed", zIndex: 1, left: 0, right: 0}}>
+						<div className="col-12 header fill-background" style={{position: "fixed", zIndex: 1, left: 0, right: 0, paddingLeft: 0}}>
 							<a href="#golovna" className="golovna-button btn-style">Головна</a>
 							<a href="#trc" className="trc-button btn-style">ТРЦ</a>
-							<a href="#categories" className="categories-button btn-style">Категорії</a>
+							<a href="#categories" className="categories-button btn-style" style={{marginRight: "3px"}}>Категорії</a>
 							<span
 								className="main-name"
 								style={{ fontFamily: "FixelText-Medium" }}
 							>
 								FindMall
 							</span>
-							<img
+							{/* <img
 								src="assets/logo_transparent.png"
 								alt="Logo"
 								width="25"
 								height="25"
-							/>
-							<a
-								href="#searchByName" 
+							/> */}
+							<a href="#map" className="map-button btn-style" style={{paddingRight: "10px"}}>Мапа</a>
+							{/* <button
+								id="searchByName"
 								className="name-search-button btn-style"
-								style={{minWidth: "50px"}}
+								style={{minWidth: "40px", display: "flex", alignItems: "center", justifyContent: "center"}}
 							>
-								Пошук за назвою
-							</a>
-							<a href="#mape" className="map-button btn-style">Мапа</a>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									xmlnsXlink="http://www.w3.org/1999/xlink"
+									xmlnsSvgjs="http://svgjs.com/svgjs"
+									version="1.1"
+									width="12px"
+									height="12px"
+									x="0"
+									y="0"
+									viewBox="0 0 24 24"
+									style={{ enableBackground: "new 0 0 512 512" }}
+									xmlSpace="preserve"
+								>
+									<g>
+										<path
+											d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"
+											fill="#ffffff"
+											data-original="#000000"
+										/>
+									</g>
+								</svg>
+							</button> */}
+							
+							<div></div>
+							<div className="row fill-background div-search" style={{display: "flex", flexWrap: "nowrap"}}>
+								<button className="button" onClick={(e) => SearchNameSubmit(e, searchNameRef.current.value)}>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										xmlnsXlink="http://www.w3.org/1999/xlink"
+										xmlnsSvgjs="http://svgjs.com/svgjs"
+										version="1.1"
+										width="12px"
+										height="12px"
+										x="0"
+										y="0"
+										viewBox="0 0 24 24"
+										style={{ enableBackground: "new 0 0 512 512" }}
+										xmlSpace="preserve"
+									>
+										<g>
+											<path
+												d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"
+												fill="#000"
+												data-original="#000000"
+											/>
+										</g>
+									</svg>
+								</button>
+								<form className="searchbar form-search-field" role="search" onSubmit={(e) => SearchNameSubmit(e, searchNameRef.current.value)}>
+									<input
+										ref={searchNameRef}
+										type="search"
+										className="search-field"
+										placeholder="Введіть назву"
+										aria-label="Search"
+										onChange={() => console.log("searchNameRef", searchNameRef.current.value)}
+									/>
+								</form>
+							</div>
 						</div>
 					</div>
-					<div id="golovna" className="row background" style={{marginTop: "30px"}}>
+					<div id="golovna" className="row background" style={{paddingTop: "30px"}}>
 						<div className="col-12 entry-page" style={{ display: "flex" }}>
 							<div className="col guide-text">
 								твій гід <br />
@@ -183,7 +240,7 @@ const Home = () => {
 						<div
 							id="trc"
 							className="col-6 fill-background"
-							style={{ marginTop: "25px", width: "222px", height: "48px" }}
+							style={{ marginTop: "25px", width: "222px", height: "70px", padding: "5px 15px" }}
 						>
 							<h2 className="trc-text">Доступні для пошуку ТРЦ</h2>
 							<p className="dostupni-trc-text">
@@ -192,8 +249,8 @@ const Home = () => {
 							</p>
 						</div>
 					</div>
-					<div className="row trc-labels" style={{ marginTop: "40px" }}>
-						<div className="col-6">
+					<div className="row trc-labels" style={{ marginTop: "64px" }}>
+						<div className="col-6" style={{paddingLeft: 0, marginLeft: "-15px"}}>
 							{/* <!-- image VICTORIA GARDENS --> */}
 							<div
 								id="mallId-1"
@@ -250,7 +307,7 @@ const Home = () => {
 						</div>
 					</div>
 					<div className="row trc-labels">
-						<div className="col-6">
+						<div className="col-6" style={{paddingLeft: 0, marginLeft: "-15px"}}>
 							<div
 								id="mallId-3"
 								className="vg-div"
@@ -313,7 +370,7 @@ const Home = () => {
 						<div className="col-12">
 							<h2>Оберіть категорії пошуку</h2>
 							<p>
-								Натисніть на шукану категорію та оберіть підкатегорії зі списку
+								Натисніть на шукану категорію
 								(знову ж таки, можете обрати декілька, сміливіше)
 							</p>
 						</div>
@@ -368,76 +425,7 @@ const Home = () => {
 					<div className="row">
 						<div className="col-12" style={{ marginTop: "32px" }}>
 							<button className="srch-btn" onClick={(e) => filterDataSubmit(e)}>Почати пошук</button>
-							<h2
-								id="searchByName"
-								style={{
-									textAlign: "center",
-									fontStyle: "normal",
-									fontWeight: "500",
-									fontSize: "10px",
-									lineHeight: "14px",
-									color: "#000000",
-									fontFamily: "FixelText-Medium",
-									marginTop: "26px",
-								}}
-							>
-								Або скористатися пошуком за назвою
-							</h2>
 						</div>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							fill="currentColor"
-							className="bi bi-arrow-down"
-							style={{
-								display: "block",
-								margin: "0 auto",
-								marginBottom: "10px",
-							}}
-							viewBox="0 0 16 16"
-						>
-							<path
-								fill-rule="evenodd"
-								d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
-							/>
-						</svg>
-					</div>
-
-					<div className="row name-search-type-field fill-background div-search">
-						<form className="searchbar form-search-field" role="search">
-							<input
-								ref={searchNameRef}
-								type="search"
-								className="search-field"
-								placeholder="Введіть назву магазину/кафе/послуги та натисніть на знак пошуку..."
-								aria-label="Search"
-								onChange={() => console.log("searchNameRef", searchNameRef.current.value)}
-							/>
-							<button className="button" onClick={(e) => SearchNameSubmit(e, searchNameRef.current.value)}>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									xmlnsXlink="http://www.w3.org/1999/xlink"
-									xmlnsSvgjs="http://svgjs.com/svgjs"
-									version="1.1"
-									width="12px"
-									height="12px"
-									x="0"
-									y="0"
-									viewBox="0 0 24 24"
-									style={{ enableBackground: "new 0 0 512 512" }}
-									xmlSpace="preserve"
-								>
-									<g>
-										<path
-											d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"
-											fill="#ffffff"
-											data-original="#000000"
-										/>
-									</g>
-								</svg>
-							</button>
-						</form>
 					</div>
 
 					<MyGoogleMap chooseNearestMall={chooseNearestMall}/>

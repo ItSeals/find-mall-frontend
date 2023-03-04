@@ -97,7 +97,7 @@
   font-style: normal;
   font-family: 'FixelText-Regular', sans-serif;
   font-weight: 400;
-  font-size: 6px;
+  font-size: 8px;
   line-height: 8px;
   color: #000000;
 }
@@ -120,10 +120,11 @@
 	font-style: normal;
 	font-family: 'FixelText-Medium', sans-serif;
 	font-weight: 500;
-	font-size: 8px;
+	font-size: 12px;
 	line-height: 11px;
   /* identical to box height */
 	color: #000000;
+	margin-left: -50px;
 	position: relative;
   z-index: 1;
 }
@@ -131,8 +132,8 @@
 .resPage .logo::after {
 	content: "";
 	display: flex;
-	height: 1px;
-	width: 50px;
+	height: 2px;
+	width: 65px;
 	position: absolute;
 	background-color: var(--accent-color);
 	z-index: -1;
@@ -143,14 +144,14 @@
 
 .resPage .search-input {
 	display: flex;
-	width: 60px;
+	width: 75px;
 	padding-left: 9px;
 	height: 10px;
 	font-style: normal;
 	font-family: 'FixelText-Regular', sans-serif;
 	font-weight: 400;
-	font-size: 6px;
-	line-height: 8px;
+	font-size: 9px;
+	line-height: 12px;
 	color: #000000;
 	outline: none;
 	background-color: transparent;
@@ -161,8 +162,8 @@
 	font-style: normal;
 	font-weight: 400;
 	font-family: 'FixelText-Regular', sans-serif;
-	font-size: 6px;
-	line-height: 8px;
+	font-size: 9px;
+	line-height: 12px;
 	color: #000000;
 }
 
@@ -179,7 +180,7 @@
 	font-style: normal;
 	font-weight: 200;
 	font-family: 'FixelText-ExtraLight', sans-serif;
-	font-size: 15px;
+	font-size: 16px;
 	line-height: 21px;
 	color: #f5f5f5;
 }
@@ -211,7 +212,7 @@
 	width: 89px;
 	min-width: 89px;
 	height: min-content;
-	border: 0.5px solid #3b2d46;
+	border: 0.5px solid #ab92be;
 	padding: 10px 0 0 0;
 	position: relative;
 }
@@ -224,8 +225,8 @@
 	font-style: normal;
 	font-family: 'FixelText-Medium', sans-serif;
 	font-weight: 500;
-	font-size: 8px;
-	line-height: 11px;
+	font-size: 12px;
+	line-height: 15px;
   /* identical to box height */
 	margin-bottom: 11px;
 	color: #000000;
@@ -238,8 +239,8 @@
 	font-style: normal;
 	font-weight: 400;
 	font-family: 'FixelText-Regular', sans-serif;
-	font-size: 6px;
-	line-height: 8px;
+	font-size: 10px;
+	line-height: 14px;
   /* identical to box height */
 	color: #000000;
 	margin-bottom: 11px;
@@ -248,10 +249,10 @@
 .resPage .category-label::before {
 	content: "";
 	display: block;
-	width: 5px;
-	min-width: 5px;
-	height: 5px;
-	min-height: 5px;
+	width: 7px;
+	min-width: 7px;
+	height: 7px;
+	min-height: 7px;
 	background-color: transparent;
 	border: 1px solid var(--accent-color);
 	margin-right: 7px;
@@ -274,7 +275,7 @@
 .resPage .check-form {
 	display: flex;
 	flex-wrap: wrap;
-	margin-left: 10px;
+	margin-left: 9px;
 	margin-right: 5px;
 }
 
@@ -324,8 +325,8 @@
 	font-style: normal;
 	font-weight: 300;
 	font-family: 'FixelText-Light',sans-serif;
-	font-size: 15px;
-	line-height: 21px;
+	font-size: 17px;
+	line-height: 19px;
 	text-transform: uppercase;
 	color: #000000;
 }
@@ -334,8 +335,8 @@
 	font-style: normal;
 	font-weight: 200;
 	font-family: 'FixelText-ExtraLight', sans-serif;
-	font-size: 10px;
-	line-height: 14px;
+	font-size: 14px;
+	line-height: 18px;
 	color: #000000;
 }
 
@@ -353,8 +354,8 @@
 	font-style: normal;
 	font-weight: 200;
 	font-family: 'FixelText-ExtraLight', sans-serif;
-	font-size: 10px;
-	line-height: 14px;
+	font-size: 14px;
+	line-height: 18px;
 	color: #000000;
 	margin: 5px 0;
 }
@@ -400,8 +401,8 @@
 	font-style: normal;
 	font-weight: 400;
 	font-family: 'FixelText-Regular', sans-serif;
-	font-size: 6px;
-	line-height: 8px;
+	font-size: 10px;
+	line-height: 13px;
 	color: #000000;
 }
 
@@ -425,8 +426,8 @@
 	font-style: normal;
 	font-weight: 300;
 	font-family: 'FixelText-Light',sans-serif;
-	font-size: 5px;
-	line-height: 7px;
+	font-size: 8px;
+	line-height: 10px;
 	text-align: center;
 	color: #000000;
 }

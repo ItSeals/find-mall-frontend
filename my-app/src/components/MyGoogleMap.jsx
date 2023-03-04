@@ -60,7 +60,7 @@ function MyGoogleMap({ chooseNearestMall }) {
 		//   <button className="my-location">Моє місцезнаходження</button>
 		// </div>
 		<>
-			<GoogleMap
+			<GoogleMap id="map"
 				zoom={10}
 				center={center}
 				mapContainerClassName="map-container"
