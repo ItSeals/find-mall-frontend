@@ -12,7 +12,7 @@ const MallEdit = (props) => {
           <tr>
             <th style={{ position: "relative" }}>
               <button
-                onClick={() => props.prePage({ mall: {}, is: false })}
+                onClick={() => props.prePage(false)}
                 className="btn-pre-arrow"
               >
                 <svg

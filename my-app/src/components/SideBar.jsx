@@ -1,13 +1,12 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 require("../reactBootstrap.css");
-require("../bootstrapBody.css");
 
 const SideBar = (props) => {
 	return (
 		<div className="reactbootstrap">
 			<div className="admin_sidebar" style={{ display: 'flex' }}>
-				<div className='min-vh-100 sidebar overflow-auto' style={{ height: "100vh", minWidth: "294px", width: "294px" }}>
+				<div className='sidebar overflow-auto' style={{ minWidth: "294px", width: "294px", height: "92vh", minHeight: "auto" }}>
 					<div className='row pt-6' style={{ marginRight: "0" }}>
 						<div className='col-8 admin_panel pt-2'>
 							<img className='alt' src={require('../img/TonyStarkPhoto.PNG')} width="50" height="50" style={{ borderRadius: "50%" }}></img> <span className='ms-2' >admin pannel</span>
@@ -69,7 +68,7 @@ const SideBar = (props) => {
 					</ul>
 				</div>
 				<div style={{ width: "100%" }}>
-					<Outlet />
+					{props.children}
 				</div>
 			</div>
 		</div>

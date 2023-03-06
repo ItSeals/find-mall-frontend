@@ -136,7 +136,7 @@ const Tags = () => {
     return (
       <TagCreate
         className="position-absolute"
-        style={{ width: "100%", left: "0" }}
+        style={{ width: "100%", left: "0", overflow: "auto", height: "92vh" }}
         AddTag={AddTag}
         prePage={setCreatePage}
       />
@@ -145,7 +145,7 @@ const Tags = () => {
     return (
       <TagEdit
         className="position-absolute"
-        style={{ width: "100%", left: "0" }}
+        style={{ width: "100%", left: "0", overflow: "auto", height: "92vh" }}
         EditTag={EditTag}
         prePage={setEditPage}
       />
@@ -154,7 +154,7 @@ const Tags = () => {
     return (
       <div
         className="position-relative overflow-auto"
-        style={{ height: "100vh" }}
+        style={{ height: "92vh" }}
       >
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>

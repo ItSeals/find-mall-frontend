@@ -138,7 +138,7 @@ const SorCCategory = (props) => {
     return (
       <SorCCreate
         className={`${props.className} position-absolute`}
-        style={{ width: "100%", left: "0" }}
+        style={{ width: "100%", left: "0", overflow: "auto", height: "92vh" }}
         AddSOrC={AddSOrC}
         setCreatePage={setCreatePage}
       />
@@ -147,7 +147,7 @@ const SorCCategory = (props) => {
     return (
       <SorCEdit
         className={`${props.className} position-absolute`}
-        style={{ width: "100%", left: "0" }}
+        style={{ width: "100%", left: "0", overflow: "auto", height: "92vh" }}
         EditSOrC={EditSOrC}
         setEditPage={setEditPage}
       />
@@ -156,7 +156,7 @@ const SorCCategory = (props) => {
     return (
       <div
         className={`${props.className} position-relative overflow-auto`}
-        style={{ height: "100vh" }}
+        style={{ height: "92vh" }}
       >
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>

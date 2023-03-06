@@ -127,7 +127,7 @@ const Categories = ({ categories, updateCategories }) => {
     return (
       <CategoryCreate
         className="position-absolute"
-        style={{ width: "100%", left: "0" }}
+        style={{ width: "100%", left: "0", overflow: "auto", height: "92vh" }}
         AddCategory={AddCategory}
         prePage={setCreatePage}
       />
@@ -136,7 +136,7 @@ const Categories = ({ categories, updateCategories }) => {
     return (
       <CategoryEdit
         className="position-absolute"
-        style={{ width: "100%", left: "0" }}
+        style={{ width: "100%", left: "0", overflow: "auto", height: "92vh" }}
         EditCategory={EditCategory}
         prePage={setEditPage}
       />
@@ -145,7 +145,7 @@ const Categories = ({ categories, updateCategories }) => {
     return (
       <div
         className="position-relative overflow-auto"
-        style={{ height: "100vh" }}
+				style={{height: "92vh"}}
       >
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>

@@ -134,7 +134,7 @@ const Malls = (props) => {
     return (
       <MallCreate
         className={`${props.className} position-fixed`}
-        style={{ width: "100%", left: "0" }}
+        style={{ width: "100%", left: "0", overflow: "auto", height: "92vh" }}
         AM={AddMall}
         prePage={setCreatePage}
       />
@@ -143,7 +143,7 @@ const Malls = (props) => {
     return (
       <MallEdit
         className={`${props.className} position-fixed`}
-        style={{ width: "100%", left: "0" }}
+        style={{ width: "100%", left: "0", overflow: "auto", height: "92vh" }}
         ME={EditMall}
         prePage={setEditPage}
         mall={editPage.mall}
@@ -153,7 +153,7 @@ const Malls = (props) => {
     return (
       <div
         className={`${props.className} position-relative overflow-auto`}
-        style={{ height: "100vh" }}
+				style={{height: "92vh"}}
       >
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>

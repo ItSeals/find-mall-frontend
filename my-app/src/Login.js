@@ -1,108 +1,145 @@
-import { useState, useRef, useEffect, useContext } from "react";
-import AuthContext from "./context/AuthProvider";
-import axios from "./api/axios";
-import "./Login.css";
-const LOGIN_URL = "/auth";
-const Login = () => {
-  const { setAuth } = useContext(AuthContext);
-  const userRef = useRef();
-  const errRef = useRef();
+import React, { Component,Route } from "react";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import AuthService from "./services/auth.service";
+import { withRouter } from './common/with-router';
+const required = value => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
 
-  const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
 
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
+    this.state = {
+      username: "",
+      password: "",
+      loading: false,
+      message: ""
+    };
+  }
 
-  useEffect(() => {
-    setErrMsg("");
-  }, [user, pwd]);
+  onChangeUsername(e) {
+    this.setState({
+      username: e.target.value
+    });
+  }
 
-  const handleSubmit = async (e) => {
+  onChangePassword(e) {
+    this.setState({
+      password: e.target.value
+    });
+  }
+
+  handleLogin(e) {
     e.preventDefault();
-    // console.log(user, pwd);
-    
-    try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-type": "application/json" },
-          withCredentials: true,
+
+    this.setState({
+      message: "",
+      loading: true
+    });
+
+    this.form.validateAll();
+    if (this.checkBtn.context._errors.length === 0) {
+      AuthService.login(this.state.username, this.state.password).then(
+        () => {
+          this.props.router.navigate('/admin');
+        },
+        error => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          this.setState({
+            loading: false,
+            message: resMessage
+          });
         }
       );
-      console.log(JSON.stringify(response?.data));
-      // console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ user, pwd, roles, accessToken });
-      setUser("");
-      setPwd("");
-      setSuccess(true);
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
-      }
-      errRef.current.focus();
+    } else {
+      this.setState({
+        loading: false
+      });
     }
-  };
+  }
 
-  return (
-    <>
-      {success ? (
-        <section class="go-to-admin">
-          <h1>You are logged in!</h1>
-          <br />
-          <p>
-            <a href="#" class="go-to-admin-link">Go to Admin Pannel</a>
-          </p>
-        </section>
-      ) : (
-        <section class="authorization-field">
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-          <h1>Sign In</h1>
-          
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input class="input-field"
-              type="text"
-              id="username"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
-              required
-            />
-           
-            <label htmlFor="password">Password:</label>
-            <input class="input-field"
-              type="password"
-              id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
-              required
-            />
-            <br/>
-            <button class="sign-in-button">Sign in</button>
-          </form>
-        </section>
-      )}
-    </>
-  );
-};
-export default Login;
+  render() {
+    return (
+      <div className="container mt-3">
+				<div className="col-md-12">
+					<div className="card card-container">
+					<h1>Login</h1>
+						<Form
+							onSubmit={this.handleLogin}
+							ref={c => {
+								this.form = c;
+							}}
+						>
+							<div className="form-group">
+								<label htmlFor="username">Username</label>
+								<Input
+									type="text"
+									className="form-control"
+									name="username"
+									value={this.state.username}
+									onChange={this.onChangeUsername}
+									validations={[required]}
+								/>
+							</div>
+							<div className="form-group">
+								<label htmlFor="password">Password</label>
+								<Input
+									type="password"
+									className="form-control"
+									name="password"
+									value={this.state.password}
+									onChange={this.onChangePassword}
+									validations={[required]}
+								/>
+							</div>
+							<div className="form-group">
+								<button
+									className="btn btn-primary btn-block"
+									disabled={this.state.loading}
+								>
+									{this.state.loading && (
+										<span className="spinner-border spinner-border-sm"></span>
+									)}
+									<span>Login</span>
+								</button>
+							</div>
+							{this.state.message && (
+								<div className="form-group">
+									<div className="alert alert-danger" role="alert">
+										{this.state.message}
+									</div>
+								</div>
+							)}
+							<CheckButton
+								style={{ display: "none" }}
+								ref={c => {
+									this.checkBtn = c;
+								}}
+							/>
+						</Form>
+					</div>
+				</div>
+			</div>
+    );
+  }
+}
+
+export default withRouter(Login);

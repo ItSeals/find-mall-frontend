@@ -138,7 +138,7 @@ const OtherTags = () => {
     return (
       <OtherTagCreate
         className="position-absolute"
-        style={{ width: "100%", left: "0" }}
+        style={{ width: "100%", left: "0", overflow: "auto", height: "92vh" }}
         AddTag={AddOtherTag}
         prePage={setCreatePage}
       />
@@ -147,7 +147,7 @@ const OtherTags = () => {
     return (
       <OtherTagEdit
         className="position-absolute"
-        style={{ width: "100%", left: "0" }}
+        style={{ width: "100%", left: "0", overflow: "auto", height: "92vh" }}
         EditTag={EditOtherTag}
         prePage={setEditPage}
       />
@@ -156,7 +156,7 @@ const OtherTags = () => {
     return (
       <div
         className="position-relative overflow-auto"
-        style={{ height: "100vh" }}
+        style={{ height: "92vh" }}
       >
         <table className="admin-table" style={{ width: "100%" }}>
           <thead>
