@@ -30,9 +30,9 @@ class Admin extends Component {
           </div>
 
           <div className="navbar-nav ml-auto">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to={"profile"} className="nav-link"></Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link to={"login"} className="nav-link" onClick={this.logOut}>
                 LogOut
@@ -44,12 +44,6 @@ class Admin extends Component {
             <li className="nav-item">
               <Link to={"login"} className="nav-link">
                 Login
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"register"} className="nav-link">
-                Sign Up
               </Link>
             </li>
           </div>

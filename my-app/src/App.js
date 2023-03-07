@@ -126,7 +126,6 @@ function App() {
 			<Route path="admin" element={<Admin/>}>
 				<Route index={true} element={<PrivateRoute><SideBar categories={categories} ><Malls /></SideBar></PrivateRoute>} />
 				<Route path="login" element={<Login />} />
-				<Route path="register" element={<Register />} />
 				<Route path="malls" element={<PrivateRoute><SideBar categories={categories} ><Malls /></SideBar></PrivateRoute>} />
 				<Route
 					path="categories"
